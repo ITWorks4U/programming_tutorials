@@ -1,0 +1,13 @@
+# ignore .vscode folder and its sub files
+.vscode/
+
+# get rid of executable file(s)
+*.exe
+*.run
+*.out
+
+# don't add any library file(s)
+*.dll
+*.so
+*.dylib
+*.a
