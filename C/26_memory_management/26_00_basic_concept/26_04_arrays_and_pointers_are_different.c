@@ -44,12 +44,12 @@ int main(void) {
 	//	just a normal array, like always
 	int array_0[] = {1,2,3,4,5};
 
-	//	Often misinterpreted: this "array" is neither a realy
-	//	array nor the initialization is wrong, too.
+	//	Often misinterpreted: this "array" is neither a real
+	//	array nor the initialization is valid.
 	//	A field can't have more than one value for initialization value.
 	// int *array_1 = {1,2,3,4,5};
 
-	//	this is the correct definition of a field, even when "array" is given
+	//	this is the correct definition of a field, even when "array" as name is given
 	int *array_1 = (int *) calloc(5, sizeof(int));
 	for(int i = 0; i < 5; i++) {
 		array_1[i] = i+1;
@@ -76,8 +76,8 @@ int main(void) {
 	*
 	* If you're using a field, then you'll get in trouble, because a pointer hasn't a
 	* known amount of elements. This pointer "just" points to an address, where this field
-	* has been placed and this pointer also points to the first element of this field with
-	* n elements.
+	* has been placed on any free space in your RAM and this pointer uses the desired amount
+	* of size depending on the architecture, you are working on.
 	*/
 
 	//	--------------------
@@ -91,6 +91,9 @@ int main(void) {
 	//	using an array or a field, in both ways a pointer is in use for this
 	//	argument and this pointer can only point to the first value of the
 	//	address, where this array / field has been placed.
+	//
+	//	so, that's the reason, why functions also have a second integer argument
+	//	to use the "correct" number of elements
 	handle_array(array_0);
 	handle_array(array_1);
 	handle_field(array_0);

@@ -2,13 +2,13 @@
 
 -   by using memory management, you don't often have a chance to avoid raw pointers
     -   in C this is fundamental
-    -   in C++ you should **smart_pointers** instead
+    -   in C++ you should use **smart_pointers** instead
 
 -   with pointers you're able to access to addresses instead of the values, thus your workflow can be much more faster than expeced, however, by using pointers it also results a *huge risk*. You can also run to the next wall if you don't mind
 
 ###	Are pointers works fine in C, as well as, in C++?
 -   not really
--	pointers should be used n **C** only! **C++** may also work with raw pointers, but this is **NOT** recommended
+-	pointers should be used in **C** only! **C++** may also work with raw pointers, but this is **NOT** recommended
     -   C++ wasn't designed for working with pointers and it may result different a behavior in contrast to C
     -   so it's not clearly known, if C++ can also work with C pointers 
         -   except for some instructions => syntax error in C++
@@ -52,7 +52,7 @@
 -   smart pointers
     -   *shall be used for C++ only*
     -   autmatically releasing allocated memory, when this is no longer required
-        -   even in case of any error => with raw pointer(s), this is very hard up to impossible
+        -   even in case of any error => with raw pointer(s), this is very hard or impossible
 -   advanced usage
     -   different ways to allocate memory
     -   overloading your current RAM => **only for educational purpose**

@@ -177,11 +177,12 @@ void use_dynamic_reference(void) {
 	//	_size: the size of the field
 
 	//	in C++ you may write:
-	#ifdef __cplusplus
-	Person *p0 = new Person();
-	#endif
+	//	Person *p0 = new Person();
+	//
 
 	//	this is not required, but recommended
+	//	hint: in C++ use nullptr instead, because
+	//	NULL is different defined rather thant C
 	if (p0 == NULL) {
 		//	there was not enough free space and we can skip
 		//	this process or do anything else
@@ -200,6 +201,10 @@ void use_dynamic_reference(void) {
 	//	you have to use one of these two methods instead:
 	//	(1) *(p.person_id) => can be used, but this causes misspelling at any time
 	//	(2) p->person_id => short form and tells you, that p "points" to person_id
+	//
+	//	fun facts:
+	//	- in a data structure the pointer points to the first member
+	//	- in a field the pointer points to the first element
 	p0->person_id = 1;
 
 	memset(p0->f_name, '\0', BUFFER_LENGTH);
@@ -216,13 +221,13 @@ void use_dynamic_reference(void) {
 
 	//	for C++ only and remember in general:
 	//	if a pointer has been released (in any way), thus MUST NOT be released again
-	#ifdef __cplusplus
-	delete p0;
-	#endif
+	//
+	//	delete p0;
+	//
 
 	//	by the way, in C++ delete the command may also handle:
-	//	delete *pointer <= in that case this was a two dimensional pointer, whereas 
-	//	the one dimensional remaining pointer must also be released as well
+	//	delete *pointer <= in that case this causes a memory leaks or an
+	//	undefined behavior => take a look to 26_20_delete_behavior.cpp
 
 	//	------------
 	//	use calloc instead
@@ -267,7 +272,7 @@ struct Person *use_for_outside(void) {
 	//	because when this function pointer has been left, the
 	//	allocated memory is still available
 	//
-	//	you can use free() function as well as a customized function as well
+	//	you can use free() function as well as a customized function
 	return (struct Person *) calloc(1, sizeof(struct Person));
 }
 
@@ -288,7 +293,7 @@ int main(void) {
 	//	data_pointer does not be removed from memory by using
 	//	free(), because this pointer has never been managed
 	//	with malloc(), calloc(), ... and it will be removed
-	//	automatically from the stack, when the function, here main, ends
+	//	automatically from the stack, when the function or the block ends, here: main
 
 	//	hint: there's also a difference for NULL
 	//	in C: NULL := ((void *)0)

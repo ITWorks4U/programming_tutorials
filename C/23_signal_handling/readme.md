@@ -8,9 +8,9 @@
 
 -   by default, when a signal has been raised, this will be handled automatically with a predefined instruction (**SIG_DFL**)
 -   you can use a handler function to handle a specific amount of signals
--   you can also block (**SIG_BLK**) an incoming signal, however, this is **not** recommended, because by blocking a signal you can't no longer interact to that signal
-    -   not every signal is able to handle / block, like **SIGKILL**
-        -   on (very) old compilers this was able, however, this caused an undefined behavior
+-   you can also block (**SIG_BLK**) an incoming signal, however, this is **not** recommended, because by blocking a signal you can't longer interact to that signal
+    -   not every signal is able to handle / block, like **SIGKILL** (luckily)
+        -   on (very) old compilers or versions this was able, however, this caused an undefined behavior
 
 ### Write your own signal function
 -   definition: `void signal_handler(int signum);`
@@ -49,11 +49,11 @@
 | SIGSEGV   | 11 |  segmentation violation; when you try to access to a memory sector, which shouldn't be accessed   | `char word[20]` and transfer at least 20 chars; without \0 to word, then this signal may raise   | every system |
 | SIGTERM   | 15 |  normal termination of your process                           | **Windows:** `taskkill /p [pid] [app.exe] /F` **Linux:** `kill <process-id>` (without -9)        | every system |
 | SIGBREAK  | 21 |  Ctrl-Break-sequence; similar to SIGINT    | `while(true) {...}` <= hit `Ctrl + Pause/Break`    | Windows only |
-| SIGABRT   | 22 |  abnormal termination of your process; this is not the next level of SIGTERM   | assert(condition) results to false, call abort() function, ...           | every system |
+| SIGABRT   | 22 |  abnormal termination of your process; this is not the next level of SIGTERM   | `assert(condition)` results to false, call `abort()` function, ...           | every system |
 | SIGHUP    | 1  |  signal hang up; when a terminal line was disconnected        | a process is running in a **SSH session** and the session has suddenly been closed  | UNIX/Linux/macOS |
 | SIGQUIT   | 3  | quit signal; similar to SIGINT, but causes core dump          | hit `Ctrl + \` on runtime                        | UNIX/Linux/macOS |
 | SIGTRAP   | 5  | trace / breakpoint trap                                       | - on gdb when b(break) is defined and on debug the certain breakpoint has been reached; `raise(SIGTRAP)` => terminates the application and generate a core dump (useful for gdb)| UNIX/Linux/macOS |
-| SIGBUS    | 7  | bus error (e. g. misaligned memory access); invalid memory access, but not idendical to SIGSEGV;                  | - when a program tries to access to a memory in a way that violates hardware constraints, such as unaligned access or non existent physical address mapping, e. g.: memory-mapped files | UNIX/Linux/macOS |
+| SIGBUS    | 7  | bus error (e. g. misaligned memory access); invalid memory access, but not idendical to *SIGSEGV*;                  | - when a program tries to access to a memory in a way that violates hardware constraints, such as unaligned access or non existent physical address mapping, e. g.: memory-mapped files | UNIX/Linux/macOS |
 | SIGKILL   | 9  | killing process; a SIGKILL **can't** be handled on any system and terminates your application by using a brute-force-quit without relasing memory, closing streams, flush data, ...   | `kill -9 [process-id]`                           | UNIX/Linux/macOS |
 | SIGUSR1   | 10 | user defined signals - reserved for application defined purposes; those does not have a predefined meaning, which means: we can choose to do, whatever we want to do If SIGUSR1 / SIGUSR2 has been registered, but not handled, then the application terminates instead. | define that signal to handle and use any non critical signal instead, like: `while(true) {...}` and in another terminal hit: `kill -SIGUSR1 [pid]` | UNIX/Linux/macOS |
 | SIGUSR2   | 12 | like SIGUSR1                                                  |                                                | UNIX/Linux/macOS |
@@ -61,7 +61,7 @@
 | SIGSTKFLT | 16 | stack fault; less common and architecture-specific signal that indicates a stack fault on some Linux systems, especially on x86 architectures     | using a recursion function without an exit condition or that exit condition never reaches     | UNIX/Linux/macOS |
 | SIGCHLD   | 17 / 20 | child process terminated or stopped (Linux: **17**, macOS: **20**) | when a child process terminates earlier than the parent process   | UNIX/Linux/macOS |
 | SIGCONT   | 18 / 19 | continue a stopped process (Linux: **18**, macOS: **19**)                                    | run `fg`                                         | UNIX/Linux/macOS |
-| SIGTSTP   | 20 / 18 | terminal stop signal (sent by pressing `Ctrl + Z`) (Linux: **20**, macOS: **18**)              | `while(true) {sleep(x);} ` by pressing Ctrl + Z SIGTSTP will be triggerd by pressing fg afterwards, **SIGCONT** will be triggered                       | UNIX/Linux/macOS |
+| SIGTSTP   | 20 / 18 | terminal stop signal (sent by pressing `Ctrl + Z`) (Linux: **20**, macOS: **18**)              | `while(true) {sleep(x);} ` by pressing `Ctrl + Z` *SIGTSTP* will be triggerd by pressing `fg` afterwards, *SIGCONT* will be triggered                       | UNIX/Linux/macOS |
 
 ####    Appendix:
 > There might be another signals, which may be a redefinition of one of the previous signals or these does not exist everywhere.
