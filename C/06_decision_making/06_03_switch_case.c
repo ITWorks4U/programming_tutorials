@@ -22,6 +22,11 @@ int main(void) {
 		case -123:
 			//	only for -123...
 			break;
+		case 100:
+		case 200:
+		case 300:
+			//	you can also handle multuple, fixed cases
+			break;
 		default:
 			//	any other unmanaged case lands here
 			break;

@@ -10,7 +10,8 @@ int main(void) {
 	//	-----------
 	int ctr = 0;
 	while(ctr < 10) {
-		ctr++;																				//	required, otherwise the loop never ends
+		//	required, otherwise the loop never ends
+		ctr++;
 		printf("%d\n", ctr);
 	}
 
