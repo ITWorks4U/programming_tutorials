@@ -13,8 +13,11 @@
 */
 
 #include <iostream>
-#include <string>
+#include <cstring>
+// #include <string>
 using namespace std;
+
+#define	BUFFER_LENGTH	50
 
 //	union may also contain nothing
 //	NOTE: On Windows or any IDE it may happen, that
@@ -28,10 +31,12 @@ union MyUnion {
 	long identification;
 	float percent;
 	int another_index;
-	string word;
+
+	char word[BUFFER_LENGTH];
+	// string word;
 	//...
 
-	//	since string is in use here,
+	//	When a C++ key element, like string, is in use here,
 	//	a constructor as well as a
 	//	destructor must exist
 	MyUnion() {}
@@ -54,7 +59,13 @@ int main(void) {
 	* all raw C++ instructions in that union or you must define a constructor
 	* as well as a destructor.
 	*
-	* Furthermore it may happen, that you won't be able to see that instructions below.
+	* In general: Do not use a C++ key element in an union, otherwise your application
+	* might crash without any information of failure. By using string in our union,
+	* those instructions below won't proceed.
+	*
+	* Reason: Usually, an union uses the space amount for the highest known datatype.
+	* Since a string exists, which contains any amount of characters, the union structure
+	* can't be used correctly. In that case remove string or replace this with a C-String instead.
 	*/
 
 	MyUnion mu;
@@ -63,7 +74,11 @@ int main(void) {
 	mu.identification = 123;
 	mu.percent = 0.76;
 	mu.another_index = 700;
-	mu.word = "";
+
+	//	remember: by using a C-String, the C header file
+	//	<string.h> (C) | <cstring> (C++) must be imported
+	memset(mu.word, '\0', BUFFER_LENGTH);
+	// mu.word = "";
 
 	cout << "Amount of bytes for \"mu\": " << size_of_union << endl;
 
@@ -76,7 +91,8 @@ int main(void) {
 	<< endl;
 
 	//	let's modify that value:
-	mu.word = "Hello from union!";
+	strcpy(mu.word, "Hello from union!");
+	// mu.word = "Hello from union!";
 
 	//	Warning: this may cause an undefined behavior on runtime
 	cout <<
