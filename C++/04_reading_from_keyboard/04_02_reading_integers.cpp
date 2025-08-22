@@ -10,7 +10,7 @@ using namespace std;
 * there're different ways to reveal a number:
 * - using a primitive way (can be used, but this is not recommended)
 * - using a built-in "method" (does not work for every case)
-* - using a regular expression => more in chapter 21
+* - using a regular expression => more in chapter 22
 */
 
 //	primitive C way

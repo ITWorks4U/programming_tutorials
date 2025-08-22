@@ -38,7 +38,7 @@ class Service {
 		// much better
 
 		// by default no constructor or destructor is strictly
-		// required => more details: take a look to chapter 20
+		// required => more details: take a look to chapter 21
 		Service() {}
 		~Service() {}
 
