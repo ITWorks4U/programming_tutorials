@@ -3,7 +3,6 @@
 -   an exception may appear in a critical section, like:
     -   using file stream
     -   using network stream
-    -   division by 0
     -   converting a string into an integer (without using a regular expression check before)
     -   ...
 
