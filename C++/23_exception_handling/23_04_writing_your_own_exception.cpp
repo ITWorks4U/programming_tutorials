@@ -19,9 +19,20 @@ class CustomException : exception {
 			err_msg = message;
 		}
 
-		//	to make sure, that this exception class
-		//	may be thrown and also catched
-		virtual ~CustomException() throw() {}
+		//	A promise to the compiler, that this destructor
+		//	does NOT throw an exception.
+		//	=> e. g. by using / releasing data from
+		//	memory
+		//
+		//	On old C++ versions (C++98 and earlier)
+		//	throw() has been used here, which is
+		//	identical to noexcept; on newer versions
+		//	C++11 and newer, throw() is deprecated.
+		//
+		//	If an exception may be raised here, then
+		//	you lied to the compiler and the application
+		//	termiantes immediately.
+		virtual ~CustomException() noexcept {}
 
 		const char *what() const noexcept override {
 			return err_msg.c_str();
