@@ -1,4 +1,4 @@
-    #	Lambda expressions C++
+#	Lambda expressions C++
 
 -   offers to use an anonymous function for a quick implementation without define a function itself
 -   often used by mathematicians
