@@ -1,7 +1,7 @@
 #   Programming tutorials
 
 -   offers different languages for almost every system
--   combination of all used sub repositories as an own repository to offer you every language
+-   it's a combination of all used sub repositories as an own repository to offer you a bunch of languages
     -   the certain repositories are now private and will be removed in the future
 -   the most of the tutorials were rewritten and refreshed to make sure to work on (almost) every system, depending on the language itself
 
