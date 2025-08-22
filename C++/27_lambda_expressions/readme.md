@@ -1,4 +1,4 @@
-#	Lambda expressions C++
+    #	Lambda expressions C++
 
 -   offers to use an anonymous function for a quick implementation without define a function itself
 -   often used by mathematicians
@@ -49,6 +49,7 @@
 
 -   "promise", that this lambda expression won't throw an exception
     -   *attention: if you lied and any exception has been triggered here, then the application termiantes immediately*
+    -   *any possible exception **must** be handled inside of the lambda expression*
 
 ```
     auto func = []() noexcept {
@@ -56,8 +57,10 @@
     };
 ```
 
--   "promise", that this lambda expression will throw an exception
-    -   *must be handled inside of the lambda expression*
+-   "promise", that this lambda expression will also **not** throw an exception
+    -   *any possible exception **must** be handled inside of the lambda expression*
+    -   *throw() is an old expression for noexcept and does have the same meaning*
+    -   *if you lied (again), then the termiantes immediately*
 
 ```
     auto func = []() throw() {
@@ -97,7 +100,7 @@
     };
 ```
 
--   just throw an exception, which is expected
+-   just throw an exception, which is **not** expected, because you gave a promise to: *"No, an exception is not going to throw here."*
     -   even in an own exception block this can't be handled, because the application terminates immediately
 
 ```
