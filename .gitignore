@@ -11,3 +11,8 @@
 *.so
 *.dylib
 *.a
+
+# ignore python folders
+__pycache__
+.pytest_cache
+stuff
