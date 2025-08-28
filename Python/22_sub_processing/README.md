@@ -1,6 +1,5 @@
 #   Using sub processes
 -   can emulate parallel operations
-    -   are not supposed to do this
     -   similar to threads
 -   when a new process has successfully been created:
     -   gets a new process-ID

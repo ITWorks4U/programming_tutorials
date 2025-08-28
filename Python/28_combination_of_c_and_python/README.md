@@ -6,12 +6,14 @@
 -   since Python does not comes with data types, it's hard to understand which type from a C library can be used correctly for python and vice versa
 
 -   contains:
-    1.  accessing to a C function, which prints a text to the console
-    2.  accessing to a C function, which calculates the square multiplication for a number range and returns it result back to Python
+    1.  use a C function, which prints a text to the console
+    2.  use a C function to calculate the square multiplication for 1,000,000 numbers
+    3.  use a C function to sort 250,000 random numbers with bubble sort => O(n²)!
 
 ###	need to know
 
 -   using ctypes module (shall already comes with Python)
--   written and tested only under a Linux Mint 21.1 Cinnamon
--   the C source file(s) must be converted into a library, e. g. .dll, .so, ... with specific arguments form a C compiler (here: gnu gcc)
--   not sure, if a C++ library can also be used like a C library
+-   before you start, make sure to let build your library
+    -   go into `library_collection` folder and run `makefile` (for UNIX systems) or `makefile.bat` (for Windows)
+    -   the certain library will be copied to the super folder and can be used there
+-   not tested, if a library with C++ instructions can also be used

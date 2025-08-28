@@ -20,6 +20,7 @@
     -   easier to implement, but harder to understand and much harder to debug
 
 -   a recursion can be determined between:
+
 | recursion type | effect |
 | - | - |
 | direct recursion | calling the function itself |
