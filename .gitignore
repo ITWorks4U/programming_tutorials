@@ -12,7 +12,9 @@
 *.dylib
 *.a
 
-# ignore python folders
+# ignore python folders and other files
 __pycache__
 .pytest_cache
 stuff
+*.pyd
+build/
