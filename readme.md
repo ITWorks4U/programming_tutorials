@@ -10,7 +10,7 @@
 | bash / shell | Linux (perhaps also for macOS) |
 | C | Windows, Linux, macOS |
 | C++ | Windows, Linux, macOS |
+| Python | Windows, Linux, macOS |
 
 ### in the future:
--   Python
 -   batch (Windows only)
