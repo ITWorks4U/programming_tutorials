@@ -13,7 +13,7 @@ def main() -> None:
 	upper_boundary = 250000
 
 	# create a random array with 250,000 elements
-	random_collection = np.random.rand(250000)
+	random_collection = np.random.rand(upper_boundary)
 
 	# call the Cython-accelerated bubble sort
 	start = perf_counter()
