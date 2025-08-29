@@ -37,7 +37,7 @@ except Exception as e:
 	# Waiting patiently...
 	# ^CFinally!
 	# Traceback (most recent call last):
-	# File "17_01_exception_and_signal_are_different.py", line >LINE_NBR<, in <module>
+	# File "19_01_dumb_way.py", line >LINE_NBR<, in <module>
 	# pass
 	# KeyboardInterrupt
 	#

@@ -7,7 +7,7 @@ global_state: bool = True
 # Who says, that only one signal handler function may exist?
 
 # a signal handler function must have two arguments, often used "signal" and "frame"
-# - "signlal" <=> signal number
+# - "signal" <=> signal number
 # - "frame"   <=> address on memory, where this signal has been detected
 def handle_critical_signal(signal, frame) -> None:
 	summary = f"""
