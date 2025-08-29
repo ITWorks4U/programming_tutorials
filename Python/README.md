@@ -43,7 +43,7 @@
 -   you also can display whitespace(s) and tab(s) (almost any editor):
     -   `Menu bar -> view -> display whitespaces (or similar expression)`
 
--   in Visual Studio (used here), go to the gear symbol (left corner)
+-   in Visual Studio Code (used here), go to the gear symbol (left corner)
     -   settings => in the search bar, hit "whitespace", be default the second entry `render whitespace` shall appear and set the setting to `all`
     -   bonus: hit `insert spaces` in the search bar to decide, if a tab will automatically be converted into **space(s)**, if you like
 -   in this tutuoral all blocks are used with tab (4 spaces)
