@@ -18,3 +18,4 @@ __pycache__
 stuff
 *.pyd
 build/
+*.log
