@@ -15,4 +15,4 @@
 -   fibonacci series with @cache (from functools)
 -   fibonacci series with @lru_cache (from functools)
 -   fibonacci series with a loop instead
-    -   in contrast to the other functions above this is a drastically performance boost within 5µs
+    -   in contrast to the other functions above this is a drastically performance boost within 8µs

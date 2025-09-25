@@ -84,11 +84,33 @@ def fibonacci_4(n: int) -> int:
 	return already_handled[n]
 #end function
 
+# use a loop function instead
+@time_measurment
+def fibonacci_5(n: int) -> None:
+	fib_series: list[int] = []
+	ctr: int = 0
+
+	while ctr < n:
+		match ctr:
+			case (0 | 1):
+				fib_series.append(ctr)
+			case _:
+				fn: int = fib_series[ctr - 1] + fib_series[ctr - 2]
+				fib_series.append(fn)
+			#end cases
+		#end match
+
+		ctr += 1
+	#end while
+
+	return fib_series
+#end function
+
 if __name__ == "__main__":
 	from sys import argv
 
 	if len(argv) == 2:
-		recursion_levels: tuple[str] = ("raw_recursion", "list_recursion", "cache_recursion", "lru_recursion", "bottom_up")
+		recursion_levels: tuple[str] = ("raw_recursion", "list_recursion", "cache_recursion", "lru_recursion", "bottom_up", "iteration")
 
 		if argv[1] in recursion_levels:
 			upper_boundary: int = 40
@@ -111,6 +133,9 @@ if __name__ == "__main__":
 				elif argv[1] == recursion_levels[4]:
 					# NOTE: F(40) took up to 6 µs
 					fibonacci_4(i)
+				elif argv[1] == recursion_levels[5]:
+					# NOTE: F(40) took up to 8 µs
+					fibonacci_5(i)
 				#end if
 			# #end for
 		else:

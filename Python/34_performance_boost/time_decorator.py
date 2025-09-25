@@ -1,7 +1,9 @@
 # ---
 # NOTE: This wrapper is more in use for recursive functions. To avoid to receive
 # thousands, millions, ... outputs to the console, only the recursion top level
-# is using this wrapper. Otherwise the decorator will also wrap every sub
+# is using this wrapper.
+#
+# Otherwise the decorator will also wrap every sub
 # recursion level, which slows the program down immensely,
 # potentially causing a hang or apparent infinite loop.
 # ---
