@@ -13,14 +13,15 @@
     -   not tested on a macOS, but shall also run fine
 
 ### important informations
--   this application has been written in C only and shall be build with a C compiler only
-    -   a C++ compiler may work, too, but it may happen, that any functions could return an undefined behavior
+-   this application has been written in **C** and shall be build with a **C compiler** only
+    -   a C++ compiler *may* work, too, but it may happen, that any functions *could* lead to an undefined behavior
 -   this sample comes with a config file
-    -   located on /config folder
+    -   located in /config folder
         -   if the config file doesn't exist or an error may appear, then a default setting is in use instead
--   on unix/ folder the server and client has been written for any UNIX system
+        -   default setting: `host: 127.0.0.1, port: 50000`
+-   in unix/ folder the server and client has been written for any UNIX system
     -   build the server / client by using the `makefile` with the certain target
--   on windows/ folder the server and client has been written for a Windows system
+-   in windows/ folder the server and client has been written for a Windows system
     -   build the server / client by using the `build.bat` with the certain target
 
 ####    server
