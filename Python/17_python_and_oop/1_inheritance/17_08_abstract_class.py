@@ -1,28 +1,42 @@
 # ---
-# Inheritance allows you to extend
-# a class with new functionalities.
+# Create and use abstract classes. Similar to C++ Python does
+# not come with a difference between an abstract class and an
+# own interface. This is also the same.
 # ---
 
+# NOTE:
+# depending on the python version you're using, abstractclassmethod
+# may be marked as deprecated and shall be replaced with:
+# @classmethod @abstractmethod
+
+from abc import ABC, abstractmethod #, abstractclassmethod
 from math import sqrt, pi
 
-# simple base class
-class GeometricObject:
+# To make this class abstract, this inherits ABC and at
+# least ONE method is marked as abstact, too.
+class GeometricObject(ABC):
 	def __init__(self) -> None:
 		print(f"Constructor for {self.__class__.__name__}")
 	#end constructor
 
-	# a destructor is hardly required, but in that
-	# case this is also given here
 	def __del__(self) -> None:
 		print(f"Destructor for {self.__class__.__name__}")
 	#end destructor
 
-	# area and perimeter for the "abstract" base class
-	# are not supposed to use here
+	# area and perimeter should not be used outside
+	# of the class => to realize this, we make those
+	# abstract
+
+	@classmethod
+	@abstractmethod
+	# @abstractclassmethod
 	def area(self):
 		pass
 	#end method
 
+	@classmethod
+	@abstractmethod
+	# @abstractclassmethod
 	def perimeter(self):
 		pass
 	#end method
@@ -30,15 +44,9 @@ class GeometricObject:
 
 # ---
 # derived classes
-# syntax: class <name>(<name_of_super_class>):
 # ---
 class Circle(GeometricObject):
 	def __init__(self, radius: float) -> None:
-		# this command will also initialize
-		# the base class; this is not always
-		# required to do
-		# super().__init__()
-
 		print(f"Constructor for {self.__class__.__name__}")
 
 		self.radius = radius
@@ -72,9 +80,6 @@ class Triangle(GeometricObject):
 
 	def area(self):
 		s: float = (self.a + self.b + self.c) / 2.0
-
-		# Heron's formula
-		# with abs(x) to use the positive number of x, if x may be negative
 		return sqrt(abs(s * (s - self.a) * (s - self.b) * (s - self.c)))
 	#end method
 
@@ -83,15 +88,19 @@ class Triangle(GeometricObject):
 	#end method
 #end class
 
-# ---
-# usage...
-# ---
+def main() -> None:
+	# since GeometricObject is now abstract, this can't be
+	# instanciated to use this
+	# go: GeometricObject = GeometricObject()
+	# print(f"(go) area: {go.area()}, perimeter: {go.perimeter()}")
 
-go: GeometricObject = GeometricObject()
-print(f"(go) area: {go.area()}, perimeter: {go.perimeter()}")
+	c: Circle = Circle(radius=2)
+	print(f"(c) area: {c.area()}, perimeter: {c.perimeter()}")
 
-c: Circle = Circle(radius=2)
-print(f"(c) area: {c.area()}, perimeter: {c.perimeter()}")
+	t: Triangle = Triangle(a=1, b=0.3, c=4)
+	print(f"(t) area: {t.area()}, perimeter: {t.perimeter()}")
+#end main
 
-t: Triangle = Triangle(a=1, b=0.3, c=4)
-print(f"(t) area: {t.area()}, perimeter: {t.perimeter()}")
+if __name__ == "__main__":
+	main()
+#end entry point
