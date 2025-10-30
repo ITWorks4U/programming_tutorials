@@ -11,7 +11,7 @@ int main(void) {
 	*
 	* Don't be confused with a single & or | => These are bitwise operators
 	* and does not have any with the logical AND or logical OR!
-	* take a look to part 10 for bitwise operations
+	* take a look to part 11 for bitwise operations.
 	*/
 
 	if (valueA >= 100 && valueB >= 100) {

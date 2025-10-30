@@ -44,19 +44,22 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #ifdef _WIN32
-	#define SUB_PROCESS_WINDOWS
-	#include <Windows.h>
-	#define APP_TO_LAUNCH "C:\\Windows\\System32\\notepad.exe"
+// for Windows only
+#define SUB_PROCESS_WINDOWS
+#include <Windows.h>
+#define APP_TO_LAUNCH "C:\\Windows\\System32\\notepad.exe"
 #else
-	#define SUB_PROCESS_UNIX
-	#include <unistd.h>
-	#include <sys/types.h>
+#define SUB_PROCESS_UNIX
+// for UNIX only
+#include <unistd.h>
+#include <sys/types.h>
 #endif
 
-int main(void) {
-	#ifdef SUB_PROCESS_WINDOWS
+#ifdef SUB_PROCESS_WINDOWS
+void create_new_process(void) {
 	STARTUPINFO si;
 	PROCESS_INFORMATION pi;
 
@@ -78,19 +81,21 @@ int main(void) {
 		&pi)                // Pointer to PROCESS_INFORMATION structure
 	) {
 		fprintf(stderr, "CreateProcess failed (%lu).\n", GetLastError());
-		return EXIT_FAILURE;
+		return;
 	}
 
 	// wait until child process exits
 	WaitForSingleObject(pi.hProcess, INFINITE);
 	puts("back to business...");
 
-	// Close process and thread handles
+	// close process and thread handles
 	CloseHandle(pi.hProcess);
 	CloseHandle(pi.hThread);
-	#endif
+}
+#endif
 
-	#ifdef SUB_PROCESS_UNIX
+#ifdef SUB_PROCESS_UNIX
+void create_new_process(void) {
 	/*
 	* pid_t fork(void);
 	*
@@ -133,6 +138,35 @@ int main(void) {
 			break;
 		}
 	}
+}
+#endif
+
+int main(void) {
+	printf("Scanning running system: ");
+	bool on_unknown_system = false;
+
+	#ifdef _WIN32
+	puts("Windows");
+	#elif defined(__unix__) || defined(__linux__)
+	puts("Linux");
+	#elif defined(__APPLE__) || defined(_MAC)
+	puts("macOS");
+	#else
+	puts("unknown");
+	on_unknown_system = true;
+	#endif
+
+	if (on_unknown_system) {
+		fprintf(stderr, "ERROR: Unable to detect the OS. A sub process can't be created.\n");
+		return EXIT_FAILURE;
+	}
+
+	#ifdef SUB_PROCESS_WINDOWS
+	create_new_process();
+	#endif
+
+	#ifdef SUB_PROCESS_UNIX
+	create_new_process();
 	#endif
 
 	return EXIT_SUCCESS;

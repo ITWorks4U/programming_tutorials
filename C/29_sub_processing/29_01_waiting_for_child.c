@@ -1,32 +1,41 @@
 /*
-	Creating a mechanism to do a "parallel" work with fork().
-	It's not really a way to do parallel work, however, this allows
-	you to run your own tasks, which might be independent to this program.
+* Waiting for a child process may be helpful, when two or more tasks needs a "parallel" result action.
+* The main process can wait for the child process, if set.
+* If not, then the child process may become an ophran process and the init process (process ID 1) takes over. (UNIX only).
+* The child process itself could also be terminated earlier than the parent process does, so the child
+* process may become to a zombie process.
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+
+// 10s for sleeping
+// NOTE: for Windows this milliseconds must be multiplied
+//       by factor 1000
+#define TIME_TO_SLEEP 10
 
 #ifdef _WIN32
-	#define SUB_PROCESS_WINDOWS
-	#include <Windows.h>
-	#define APP_TO_LAUNCH "C:\\Windows\\System32\\notepad.exe"
-	#define TIME_TO_SLEEP 10000 //10.000ms => 10s
+// for Windows only
+#define SUB_PROCESS_WINDOWS
+#include <Windows.h>
+#define APP_TO_LAUNCH "C:\\Windows\\System32\\notepad.exe"
 #else
-	#define SUB_PROCESS_UNIX
-	#include <unistd.h>
-	#include <sys/types.h>
+// for UNIX only
+#define SUB_PROCESS_UNIX
+#include <unistd.h>
+#include <sys/types.h>
 
-	//	required for waitpid()
+// required for waitpid()
 #include <sys/wait.h>
 #endif
 
-int main(void) {
-	#ifdef SUB_PROCESS_WINDOWS
+#ifdef SUB_PROCESS_WINDOWS
+void wait_for_child(void) {
 	HANDLE hJob = CreateJobObject(NULL, NULL);
 	if (hJob == NULL) {
 		printf("CreateJobObject failed (%lu)\n", GetLastError());
-		return EXIT_FAILURE;
+		return;
 	}
 
 	JOBOBJECT_EXTENDED_LIMIT_INFORMATION jeli = { 0 };
@@ -34,10 +43,10 @@ int main(void) {
 
 	if (!SetInformationJobObject(hJob, JobObjectExtendedLimitInformation, &jeli, sizeof(jeli))) {
 		printf("SetInformationJobObject failed (%lu)\n", GetLastError());
-		return EXIT_FAILURE;
+		return;
 	}
 
-	// Create child process
+	// create child process
 	STARTUPINFO si = { sizeof(si) };
 	PROCESS_INFORMATION pi;
 	BOOL success = CreateProcess(
@@ -46,33 +55,37 @@ int main(void) {
 
 	if (!success) {
 		printf("CreateProcess failed (%lu)\n", GetLastError());
-		return EXIT_FAILURE;
+		return;
 	}
 
-	// Assign child to job
+	// assign child to job
 	if (!AssignProcessToJobObject(hJob, pi.hProcess)) {
 		printf("AssignProcessToJobObject failed (%lu)\n", GetLastError());
 		TerminateProcess(pi.hProcess, 1);
-		return EXIT_FAILURE;
+		return;
 	}
 
-	// Resume child
+	// resume child
 	ResumeThread(pi.hThread);
 
-	// Now, when parent exits, the child will be terminated automatically.
-	printf("Child running. Close parent to kill child.\n");
-	Sleep(TIME_TO_SLEEP);	// Simulate some parent process work
+	// now, when parent exits, the child will be terminated automatically
+	printf("Child running. Close parent process to kill child or wait %d seconds.\n", TIME_TO_SLEEP);
 
-	//	if the child process is still alive, then the main process
-	//	terminates the child process
+	// simulating some process for the parent process
+	Sleep(TIME_TO_SLEEP * 1000);
 
-	// Cleanup
+	// if the child process is still alive, then the main process
+	// terminates the child process
+
+	// clean up
 	CloseHandle(hJob);
 	CloseHandle(pi.hProcess);
 	CloseHandle(pi.hThread);
-	#endif
+}
+#endif
 
-	#ifdef SUB_PROCESS_UNIX
+#ifdef SUB_PROCESS_UNIX
+void wait_for_child(void) {
 	pid_t pid = fork();
 
 	switch(pid) {
@@ -82,23 +95,19 @@ int main(void) {
 		} case 0: {
 			printf("PID: %3d, PPID: %3d\n", getpid(), getppid());
 
-			puts("child: \"I'm going to sleep!\"");
-			for(int i = 0; i < 5; i++) {
-				puts("child: \"zzz... zzz... zzz...\"");
-				sleep(1);
-			}
-
-			puts("child: \"I'm back!\"");
+			printf("[child]: \"I'm going to sleep for %d seconds!\"\n", TIME_TO_SLEEP);
+			sleep(TIME_TO_SLEEP);
+			puts("[child]: \"I'm back!\"");
 
 			if (getppid() == 1) {
-				puts("child: \"Mommy...?\"");
+				puts("[child]: \"Mommy...?\"");
 			}
 
 			break;
 		} default: {
 			printf("PID: %3d, PPID: %3d\n", getpid(), getppid());
-			puts("parent: \"Time to go.\"");
-			puts("parent: \"Wait...? Did I forgot something?\"");
+			puts("[parent]: \"Time to go.\"");
+			puts("[parent]: \"Wait...? Did I forgot something?\"");
 
 			/*
 			* pid_t waitpid(pid_t __pid, int *__stat_loc, int __options);
@@ -142,10 +151,10 @@ int main(void) {
 			*/
 			switch (waitpid(pid, NULL, 0)) {
 				case -1: {
-					perror("parent: \"Hm, I think it wasn't important...\"");
+					perror("[parent]: \"Hm, I think it wasn't important...\"");
 					break;
 				} default: {
-					puts("parent: \"Ah, there you're! :)\"");
+					puts("[parent]: \"Ah, there you are! :)\"");
 					break;
 				}
 			}
@@ -153,6 +162,35 @@ int main(void) {
 			break;
 		}
 	}
+}
+#endif
+
+int main(void) {
+	printf("Scanning running system: ");
+	bool on_unknown_system = false;
+
+	#ifdef _WIN32
+	puts("Windows");
+	#elif defined(__unix__) || defined(__linux__)
+	puts("Linux");
+	#elif defined(__APPLE__) || defined(_MAC)
+	puts("macOS");
+	#else
+	puts("unknown");
+	on_unknown_system = true;
+	#endif
+
+	if (on_unknown_system) {
+		fprintf(stderr, "ERROR: Unable to detect the OS. A sub process can't be created.\n");
+		return EXIT_FAILURE;
+	}
+
+	#ifdef SUB_PROCESS_WINDOWS
+	wait_for_child();
+	#endif
+
+	#ifdef SUB_PROCESS_UNIX
+	wait_for_child();
 	#endif
 
 	return EXIT_SUCCESS;
