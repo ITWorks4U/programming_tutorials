@@ -10,7 +10,7 @@ namespace Color {
 
 			void drinkFromBottle();
 			void fillBottle();
-			/*	...	*/
+			/* ... */
 	};
 
 	/*
@@ -30,10 +30,10 @@ namespace Color {
 		std::cout << "working..." << std::endl;
 	}
 
-	/*	that works instead	*/
+	/* that works instead */
 	void bruh();
 
-	/*	readonly expressions	*/
+	/* readonly expressions */
 	const int a = 100;
 }
 #endif

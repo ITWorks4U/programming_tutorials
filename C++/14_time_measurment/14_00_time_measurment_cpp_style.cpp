@@ -8,15 +8,15 @@ void print_time(long long seconds) {
 }
 
 int main() {
-	//	unlike to write:
-	//	std::chrono::steady_clock::time_point (Have fun to read this. >:-) )
-	//	use auto keyword instead
+	// unlike to write:
+	// std::chrono::steady_clock::time_point (Have fun to read this. >:-) )
+	// use auto keyword instead
 
 	auto start = high_resolution_clock::now();
 	cout << "Hit enter to see the measured time. " << endl << "waiting paitently..." << endl;
 
-	//	runs endless until the enter key
-	//	has been pressed
+	// runs endless until the enter key
+	// has been pressed
 	while(true) {
 		if (cin.get()) {
 			break;

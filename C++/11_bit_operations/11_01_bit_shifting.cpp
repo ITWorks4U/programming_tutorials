@@ -7,16 +7,17 @@
 using namespace std;
 
 int main() {
-	//	Bit shifting allows you to move the bits by n positions to the left or right.
-	//	Shift to the left makes the number bigger, where right shift makes the number smaller.
+	// Bit shifting allows you to move the bits by n positions to the left or right.
+	// Shift to the left makes the number bigger, where right shift makes the number smaller.
 
 	int a = 42;
+	int shift_position = 3;
 
-	//	42 becomes 336
-	cout << "a << 3 = " << (a << 3) << endl;
+	// 42 becomes 336
+	cout << "a << 3 = " << (a << shift_position) << endl;
 
 	// 42 becomes 5
-	cout << "a >> 3 = " << (a >> 3) << endl;
+	cout << "a >> 3 = " << (a >> shift_position) << endl;
 
 	return 0;
 }

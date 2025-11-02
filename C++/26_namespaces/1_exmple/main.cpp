@@ -14,19 +14,16 @@ using namespace std;
 * using namespace Color;
 * using namespace Drink;
 *
-* int main() {
-*	// error, because the compiler doesn't know
-* 	// which bottle shall be used here
-*
-* 	Bottle b;
-* 	b.fillBottle();
-* 	b.drinkFromBottle();
-*
-* 	return 0;
-* }
 */
 
 int main() {
+	// error, because the compiler doesn't know
+	// which bottle shall be used here
+	// Bottle b;
+	// b.fillBottle();
+	// b.drinkFromBottle();
+
+	// use this instead
 	Color::Bottle b;
 	b.fillBottle();
 	b.drinkFromBottle();

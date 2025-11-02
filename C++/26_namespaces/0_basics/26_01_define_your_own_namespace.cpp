@@ -11,8 +11,8 @@
 #include <string>
 
 namespace custom_namespace {
-	//	allows you to use String instead of std::string,
-	//	as well as, the class Person
+	// allows you to use String instead of std::string,
+	// as well as, the class Person
 	using String = std::string;
 
 	struct Person {

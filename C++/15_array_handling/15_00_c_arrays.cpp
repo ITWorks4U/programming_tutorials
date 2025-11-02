@@ -10,14 +10,14 @@
 using namespace std;
 
 int main() {
-	//	It's possible to use C-arrays.
+	// It's possible to use C-arrays.
 	int array[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 
-	//	Determine array elements? No!
+	// Determine array elements? No!
 	size_t nbr_of_elements = sizeof(array);
 	cout << "wrong way: array contains " << nbr_of_elements << " elements" << endl;
 
-	//	correct way to determine array elements
+	// correct way to determine array elements
 	nbr_of_elements = sizeof(array) / sizeof(array[0]);
 	cout << "correct way: array contains " << nbr_of_elements << " elements" << endl;
 
@@ -37,7 +37,7 @@ int main() {
 	cout << "]" << endl << "--------------" << endl <<
 	"get all array elements by C++-style: " << endl << "[ ";
 
-	//	"lazy way": iterates automatically trough the whole array (16 times)
+	// "lazy way": iterates automatically trough the whole array (16 times)
 	for(int a : array) {
 		cout << a << " ";
 	}

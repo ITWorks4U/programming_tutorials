@@ -1,6 +1,6 @@
 #include <iostream>
 
-//	in use for expressions, like: and, or
+// in use for expressions, like: and, or
 #include <ciso646>
 using namespace std;
 
@@ -20,41 +20,41 @@ int main() {
 	* In C++ keywords, like >and<, >or<, ... exists, but those are hardly used.
 	*/
 
-	//	union of conditions:
-	//	every sub condition must be true to become >true< as a result
-	//	can never be >true<, because:
-	//	if (true AND false AND true) is FALSE
+	// union of conditions:
+	//   every sub condition must be true to become >true< as a result
+	//   can never be >true<, because:
+	//   if (true AND false AND true) is FALSE
 	if (statementTrue && statementFalse && number) {
 		cout << "You'll never see this text." << endl;
 	}
 
-	//	independent check of sub conditions:
-	//	at least one sub condition must be true to become >true> as a result
-	//	if (true OR false OR true) is TRUE
+	// independent check of sub conditions:
+	//   at least one sub condition must be true to become >true> as a result
+	//   if (true OR false OR true) is TRUE
 	if (statementTrue || statementFalse || number) {
 		cout << "You'll see that text, of course!" << endl;
 	}
 
-	//	a block of condition checks
-	//	if a sub condition is true, the other possible
-	//	true condition checks are ignored
-	if (statementTrue && number > 50) {							//	true AND true => true
+	// a block of condition checks
+	//   if a sub condition is true, the other possible
+	//   true condition checks are ignored
+	if (statementTrue && number > 50) {                                // true AND true => true
 		cout << "statementTrue && number > 50" << endl;
-	} else if (statementTrue && number > 100) {					//	true AND false => false
+	} else if (statementTrue && number > 100) {                        // true AND false => false
 		cout << "statementTrue && number > 100" << endl;
-	} else if (!statementFalse && number < 200) {				//	true AND true => true
+	} else if (!statementFalse && number < 200) {                      // true AND true => true
 		cout << "!statementFalse && number < 200" << endl;
 	} else {
 		cout << "nothing of the conditions above were true..." << endl;
 	}
 
-	//	What will happen here?
-	//	NOTE: depending on the IDE or OS you're using
-	//	the keywords >and<, >or< might not be "known"
+	// What will happen here?
+	// NOTE: depending on the IDE or OS you're using
+	//       the keywords >and<, >or< might not be "known"
 	//
-	//	to avoid such error, include this header file:
-	//	<ciso646> => was required in older versions of C++ to work
-	//	with those expressions
+	// to avoid such error, include this header file:
+	//   <ciso646> => was required in older versions of C++ to work
+	//   with those expressions
 	if (statementTrue and statementFalse) {
 		//                                                 Must be placed into brackets!
 		cout << "statementTrue and statementFalse: " << (statementTrue and statementFalse) << endl;

@@ -25,7 +25,7 @@ int main() {
 
 		fs.open("__any__file__", ios_base::in);
 
-		//	using a smart pointer here
+		// using a smart pointer here
 		unique_ptr<char []> buffer(new char[buffer_size]);
 		fs.read(buffer.get(), buffer_size);
 
@@ -37,8 +37,8 @@ int main() {
 		cerr << "exception &e has been thrown: " << e.what() << endl;
 	}
 
-	//	buffer will be deleted automatically, no matter if an
-	//	exception has been thrown or not
+	// buffer will be deleted automatically, no matter if an
+	// exception has been thrown or not
 
 	return 0;
 }

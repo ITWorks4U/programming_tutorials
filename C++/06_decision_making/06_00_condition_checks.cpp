@@ -13,24 +13,26 @@ using namespace std;
 int main() {
 	bool checker = true;
 
-	//	often used: if (checker) {...}
+	// often used: if (checker) {...}
 	if (checker == true) {
 		cout << "condition is true" << endl;
 	} else {
-		//	only in use, if the condition above is false
+		// only in use, if the condition above is false
 		cout << "condition is false" << endl;
 	}
 
-	//	opposite
+	// opposite way
 
-	//	often used: if (!checker) {...}
+	// often used: if (!checker) {...}
 	if (checker != true) {
 		cout << ">this< condition is true" << endl;
 	} else {
 		cout << ">this< condition is false" << endl;
 	}
 
-	//	What happens here?
+	// What happens here?
+	// Note: Similar to C programming a boolean value is
+	//       always true, as long as, the value is not 0.
 	bool expression = -3000;
 	cout << "expression is marked as: " << expression << endl;
 

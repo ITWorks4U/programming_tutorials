@@ -13,8 +13,8 @@ int main() {
 	string content;
 	cout << "enter anything: ";
 
-	//	cin := console input => read something from keyboard
-	//	>>  := "and move the input to a destination"
+	// cin   := console input => read something from keyboard
+	// >>    := "and move the input to a destination"
 	cin >> content;
 
 	cout << "content contains: " << content << endl;

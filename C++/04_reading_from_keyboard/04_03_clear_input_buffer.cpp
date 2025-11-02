@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 
-//	for numeric_limits
-//	don't mix this with limits.h
+// for numeric_limits
+// don't mix this with limits.h
 #include <limits>
 
 using namespace std;
@@ -11,8 +11,8 @@ int main() {
 	string content;
 	cout << "enter something: ";
 
-	//	reading until the enter key ('\n') has been detected
-	//	allows to read multiple words
+	// reading until the enter key ('\n') has been detected
+	// allows to read multiple words
 	getline(cin, content);
 	cout << "content contains: " << content << endl;
 
@@ -33,8 +33,8 @@ int main() {
 	* not a good choice for performance critical section(s).
 	*/
 
-	//	cleans the whole buffer
-	//	a second "enter key press" is required here
+	// cleans the whole buffer
+	// a second "enter key press" is required here
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 	return 0;

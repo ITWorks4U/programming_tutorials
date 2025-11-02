@@ -16,13 +16,13 @@ using namespace std;
 *     before it's called
 */
 
-//	function prototype (for C++ strictly required)
-//	without a prototype, it won't work
+// function prototype (for C++ strictly required)
+// without a prototype, it won't work
 // void test_function();
 
 int main() {
-	//	compiler error:
-	//	error: ‘test_function’ was not declared in this scope
+	// compiler error:
+	// error: ‘test_function’ was not declared in this scope
 	test_function();
 
 	return 0;

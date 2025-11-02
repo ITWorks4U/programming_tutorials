@@ -13,8 +13,8 @@
 #include <fstream>
 #include <string>
 
-//	exception handling with additional options
-//	those libraries are not required to use here:
+// exception handling with additional options
+// those libraries are not required to use here:
 // #include <exception>
 // #include <stdexcept>
 
@@ -32,13 +32,13 @@ int main() {
 
 	fstream fs;
 
-	//	to enable to throw exceptions, this must be done first,
-	//	because fs.open() does not throw an exception by default,
-	//	which will be able to handle here
+	// to enable to throw exceptions, this must be done first,
+	// because fs.open() does not throw an exception by default,
+	// which will be able to handle here
 	fs.exceptions(ios::failbit | ios::badbit);
 	
 	try {
-		//	this can be failed, but this is an expected possible failure
+		// this can be failed, but this is an expected possible failure
 		fs.open("not_existing", ios_base::in);
 		string current_line;
 
@@ -48,18 +48,18 @@ int main() {
 
 		fs.close();
 	} catch (const ifstream::failure &io_e) {
-		//	catching every file error here
+		// catching every file error here
 		cerr << "ifstream::failure &io_e has been thrown: " << io_e.what() << endl;
 	} catch (const exception &e) {
-		//	in case of any error, here: a general error
-		//	this gives us an information, why the attempt(s)
-		//	above failed
+		// in case of any error, here: a general error
+		// this gives us an information, why the attempt(s)
+		// above failed
 
-		//	this is the last possible way to handle any exception,
-		//	which was unable to handle before
+		// this is the last possible way to handle any exception,
+		// which was unable to handle before
 		//
-		//	fun fact: unlike to use [const] exception &e, you can
-		//	also use: catch(...) to catch any exception
+		// fun fact: unlike to use [const] exception &e, you can
+		// also use: catch(...) to catch any exception
 		cerr << "exception &e has been thrown: " << e.what() << endl;
 	}
 

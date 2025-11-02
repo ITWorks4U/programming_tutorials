@@ -8,6 +8,7 @@
 #include <regex>
 #include <string>
 #include <limits>
+#include <vector>
 using namespace std;
 
 bool on_match(string expression) {
@@ -24,7 +25,8 @@ bool on_match(string expression) {
 	* -OR-
 	* any octal number: starting with o or O, followed by a character between 0-7 1 - n times
 	*/
-	const string regex_expression = "^(-|\\+)?[0-9]+(,|\\.[0-9]+)?|(0x|0X)?[A-Fa-f0-9]+(H|h)?|(0b|0B)[01]+|(o|O)[0-7]+$";
+	//                                signed decimal or floating point or exponential | hexadecimal number       | binary     | octal
+	const string regex_expression = "^(-|\\+)?[0-9]+((,|\\.[0-9]+)|((e|E))(-)?[0-9]+)?|(0x|0X)?[A-Fa-f0-9]+(H|h)?|(0b|0B)[01]+|(o|O)[0-7]+$";
 
 	regex r(regex_expression);
 	return regex_match(expression, r);
@@ -35,7 +37,7 @@ int main() {
 	cout << "Enter any number: ";
 	getline(cin, input);
 
-	//	remeber: hit 'enter' again to get cout
+	// remeber: hit 'enter' again to get cout
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	
 	cout <<
@@ -43,6 +45,14 @@ int main() {
 		(on_match(input) ? "passed" : "failed") <<
 		" trough the regular expression filter."
 	<< endl;
+
+	// use a vector of expressions instead
+	cout << endl << endl;
+	vector<string> expressions = {"Hello World!", "Affe", "epic fail", "0B1001001", "-123e9", "123abc", "0123456789"};
+
+	for(string s : expressions) {
+		cout << (on_match(s) ? "passed" : "failed") << ": \"" << s << "\": " << endl;
+	}
 
 	return 0;
 }

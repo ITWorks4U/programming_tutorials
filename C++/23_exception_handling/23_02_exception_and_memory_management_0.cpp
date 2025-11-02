@@ -18,8 +18,8 @@ int main() {
 	const int buffer_size = 1024;
 
 	try {
-		//	What will happen with buffer, when
-		//	an exception has been thrown...?
+		// What will happen with buffer, when
+		// an exception has been thrown...?
 		buffer = new char[buffer_size];
 
 		fs.open("__any__file__", ios_base::in);
@@ -35,14 +35,14 @@ int main() {
 		cerr << "exception &e has been thrown: " << e.what() << endl;
 	}
 
-	//	Since buffer has been allocated as a buffer for
-	//	file I/O and suddenly any error appeared, the buffer
-	//	won't be released from memory and this causes a
-	//	memory leak. Doesn't sounds good, right?
+	// Since buffer has been allocated as a buffer for
+	// file I/O and suddenly any error appeared, the buffer
+	// won't be released from memory and this causes a
+	// memory leak. Doesn't sounds good, right?
 
-	//	in general, this instruction below could be used,
-	//	where the delete[] command in the try block must not
-	//	be placed there:
+	// in general, this instruction below could be used,
+	// where the delete[] command in the try block must not
+	// be placed there:
 	delete[] buffer;
 
 	return 0;

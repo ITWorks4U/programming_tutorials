@@ -1,8 +1,8 @@
 #   Structures, Unions, Enumerations
 
 -   allows you to store data (almost of any kind) into a storage "class" to work with
--   in C only ```struct```, ```union``` and ```enum``` exists
-    -   C++ also comes with ```class```, ```enum class```
+-   in C only `struct`, `union` and `enum` exists
+    -   C++ also comes with `class`, `enum class`
 
 ### struct
 
@@ -32,7 +32,6 @@
     -   ...
 -   **must not** contain multiple states
     -   even when more than one enum exists, an another enumeration **must not** have an identical expression
-    -   in contrast to C++, which comes with ```enum class``` there's possible to define multiple expressions
     -   in contrast to C++, you can do operations in C, which are invalid in C++
 
 ### enum class
@@ -44,4 +43,4 @@
 -   in contrast to a `struct` every member, method (class function), ... is set to `private` by default
     -   public access for outside: `public`
     -   for inheritance / polymorphic: `protected` (can also be `public`)
-    -   more details in the section **20_oop**
+    -   more details in **chapter 22**

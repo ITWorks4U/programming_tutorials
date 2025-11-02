@@ -16,35 +16,37 @@
 using namespace std;
 
 int main() {
-	//	start with time_t variable
-	//	if this has a fixed value, then you will always get
-	//	the same "random" numbers
+	// start with time_t variable
+	// if this has a fixed value, then you will always get
+	// the same "random" numbers
 	//
-	//	A C++ compiler might gives you a warning.
+	// A C++ compiler might gives you a warning.
 	time_t t;
 
-	//	create a random seed
-	//	NOTE: If your application (tested under Windows) may not
-	//	launch, because it might be a computer virus or else,
-	//	then this instruction below might cause this:
-	// srand(time(&t));
+	// create a random seed
+	//
+	// NOTE:   If your application (tested on some Windows machines) may not
+	//         launch, because it might be a "computer virus" or else,
+	//         then this instruction below might be the reason:
+	//         srand(time(&t));
 
+	// may be used, but also allows backdoors to use
 	srand(t);
 
-	//	srand(<any fixed number>) results to a fixed "random" number over and
-	//	and over again
+	// srand(<any fixed number>) results to a fixed "random" number over and
+	// and over again
 
-	//	since a random seed has been created, rand() can now be used
-	//	basicly a random number between 0 and RAND_MAX
+	// since a random seed has been created, rand() can now be used
+	// basicly a random number between 0 and RAND_MAX
 	for(int i = 0; i < 10; i++) {
 		cout << "random number: " << rand() << endl;
 	}
 
 	cout << endl << endl;
 
-	//	a random number within a range
-	//	rand() % <number> returns a range between 0..n-1 (for <number>)
-	//	if you want a range between 1..n, just add +1
+	// a random number within a range
+	// rand() % <number> returns a range between 0..n-1 (for <number>)
+	// if you want a range between 1..n, just add +1
 	for(int i = 0; i < 10; i++) {
 		cout << "random number between 10 and 100: " << (rand() % (100-10) + 1) << endl;
 	}

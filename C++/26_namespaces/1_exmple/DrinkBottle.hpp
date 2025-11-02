@@ -9,7 +9,7 @@ namespace Drink {
 
 			void drinkFromBottle();
 			void fillBottle();
-			/*	...	*/
+			/* ... */
 	};
 }
 #endif

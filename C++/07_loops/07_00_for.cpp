@@ -2,25 +2,26 @@
 using namespace std;
 
 int main() {
-	//	-----------
-	//	for loop (stops automatically when end condition is no longer given)
-	//	-----------
-	/*	sequential loop	*/
+	// -----------
+	// for loop (stops automatically when end condition is no longer given)
+	// -----------
+
+	/* sequential loop */
 	for(int i = 0; i < 10; i++) {
 		cout << "i: " << i << endl;
 	}
 
-	/*	sequential loop in reversal order	*/
+	/* sequential loop in reversal order */
 	for(int i = 9; i >= 0; i--) {
 		cout << "i: " << i << endl;
 	}
 
-	/*	modifying index	*/
+	/* modifying index */
 	for(int i = 0; i < 10; i++) {
 		cout << "i++: " << i++ << endl;
 	}
 
-	/*	skipping a step	*/
+	/* skipping a step */
 	for(int i = 0; i < 10; i++) {
 		if (i == 5) {
 			continue;
@@ -29,7 +30,7 @@ int main() {
 		cout << "i: " << i << endl;
 	}
 
-	/*	canceling loop	*/
+	/* canceling loop */
 	for(int i = 0; i < 10; i++) {
 		if (i == 5) {
 			break;
@@ -38,22 +39,23 @@ int main() {
 		cout << "i: " << i << endl;
 	}
 
-	/*	infinite loop (use this with care)	*/
+	/* infinite loop (use this with care) */
 	for(;;) {
-		/*	at this point this loop ends only, if a break statement has been detected	*/
+		/* at this point this loop ends only, if a break statement has been detected */
 		break;
 	}
 
-	/*	usually, an infinite for loop can also looks like:	*/
+	/* usually, an infinite for loop can also looks like: */
 	for(int i = 0;;i++) {
-		/*	since no exit condition is defined, this loop also runs over and over again	*/
+		/* since no exit condition is defined, this loop also runs over and over again */
 		if (i == 10) {
 			break;
 		}
 	}
 
-	/*	also an infinite loop, however, THIS can't be handled in the usual way!	*/
+	/* also an infinite loop, however, THIS can't be handled in the usual way! */
 	// for(;;);
+	// for(;;) {}
 
 	return 0;
 }

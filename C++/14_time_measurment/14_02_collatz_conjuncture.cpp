@@ -3,8 +3,8 @@
 using namespace std;
 using namespace chrono;
 
-//	static tells the compiler, that this step_ctr is available
-//	only in this file
+// static tells the compiler, that this step_ctr is available
+// only in this file
 static int step_ctr = 0;
 
 void print_time(long long seconds) {
@@ -26,16 +26,16 @@ int collatz_conjecture(int number) {
 	step_ctr++;
 
 	if (number == 1) {
-		//	return 1 for 1 only
+		// return 1 for 1 only
 		return 1;
 	}
 
 	if (number % 2 == 0) {
-		//	number is even
+		// number is even
 		return collatz_conjecture(number / 2);
 	}
 	
-	//	number is odd (except for 1)
+	// number is odd (except for 1)
 	return collatz_conjecture(3 * number + 1);
 }
 

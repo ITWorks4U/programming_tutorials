@@ -10,9 +10,9 @@
 using namespace std;
 static const int upper_boundary = 1500500500;
 
-//	-----
-//	primitive way
-//	-----
+// -----
+// primitive way
+// -----
 
 bool on_prime(int n) {
 	if (n <= 1) return false;
@@ -39,9 +39,9 @@ void primitive_way_for_prime_numbers() {
 	cout << "found " << prime_numbers.size() << " prime numbers" << endl;
 }
 
-//	-----
-//	using a sieve instead
-//	-----
+// -----
+// using a sieve instead
+// -----
 
 void sieve_of_eratosthenes() {
 	vector<bool> on_prime_number(upper_boundary + 1, true);

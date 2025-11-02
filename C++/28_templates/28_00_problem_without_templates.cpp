@@ -7,8 +7,8 @@
 #include <iostream>
 using namespace std;
 
-//	macro function for any type, but this
-//	is not recommended for C++
+// macro function for any type, but this
+// is not recommended for C++
 #define GET_MAX(X, Y) (((X) > (Y)) ? (X) : (Y))
 
 int get_maximum(int a, int b) {
@@ -24,8 +24,8 @@ int main() {
 	cout << "maximum (double only): " << get_maximum(1.2e5, 0.2e6) << endl;
 	cout << "maximum (by macro): " << GET_MAX(123, 456) << endl;
 
-	//	Don't use this command below. This will not crash your application,
-	//	but you also won't be happy with this.
+	// Don't use this command below. This will not crash your application,
+	// but you also won't be happy with this.
 	// cout << "maximum (by macro again): " << GET_MAX("Hello there!", "How are you?") << endl;
 
 	return 0;

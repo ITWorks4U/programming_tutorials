@@ -20,7 +20,7 @@ void aNormalFunction() {
 int main() {
 	aNormalFunction();
 
-	//	an empty lambda, which does and returns nothing; can't handle with variables
+	// an empty lambda, which does and returns nothing; can't handle with variables
 	auto empty_lambda = [](){};
 
 	int argument = 5;
@@ -41,7 +41,7 @@ int main() {
 		return "Everything is fine.";
 	};
 
-	//	when called, the application terminates immediately
+	// when called, the application terminates immediately
 	auto lambda_no_exception_liar = []() noexcept {
 		throw runtime_error("Pinoccio would be jealous...");
 	};
@@ -63,15 +63,15 @@ int main() {
 		}
 	};
 
-	//	this does also not throw an exception, even when throw()
-	//	is given here
+	// this does also not throw an exception, even when throw()
+	// is given here
 	auto confusing_lambda_expression = []() throw() {
 		return "Everything works fine.";
 	};
 
 
 
-	//	when called, the application terminates immediately
+	// when called, the application terminates immediately
 	auto lambda_05_failure_0 = []() throw() {
 		try {
 			throw logic_error("throw here...");
@@ -86,15 +86,15 @@ int main() {
 		}
 	};
 
-	//	when called, the application terminates immediately
+	// when called, the application terminates immediately
 	auto lambda_05_failure_1 = []() throw() {
 		logic_error e("logic_error is going to throw here");
 		throw e;
 	};
 
-	//	-------------------
-	//	-------------------
-	//	-------------------
+	// -------------------
+	// -------------------
+	// -------------------
 
 	cout <<
 		"-------------" << endl <<
@@ -102,8 +102,8 @@ int main() {
 		"-------------" <<
 	endl;
 
-	//	can't be used, because an empty lambda expression
-	//	is just like a void function
+	// can't be used, because an empty lambda expression
+	// is just like a void function
 	// cout << empty_lambda << endl;
 	// cout << empty_lambda() << endl;
 
@@ -130,7 +130,7 @@ int main() {
 	} catch (exception &e) {
 		cerr << e.what() << endl;
 	}
-	//	-----------------
+	// -----------------
 
 	cout << "lambda_with_exception (without try-except) " << endl;
 	lambda_with_exception();

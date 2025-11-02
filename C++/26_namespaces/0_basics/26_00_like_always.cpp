@@ -29,22 +29,22 @@
 #include <iostream>
 #include <string>
 
-//	allow to use anything from std from
-//	iostream and string only
+// allow to use anything from std from
+// iostream and string only
 using namespace std;
 
-//	alternative way (doesn't throw an error)
-//	define String as an alias of std::string
+// alternative way (doesn't throw an error)
+// define String as an alias of std::string
 using String = std::string;
 
-//	however, this below won't work
+// however, this below won't work
 // using out = std::cout;
 
 int main() {
-	//	alias...
+	// alias...
 	String s = "Hello World!";
 
-	//	from std
+	// from std
 	cout << s << endl;
 
 	return 0;

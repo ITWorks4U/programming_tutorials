@@ -7,5 +7,5 @@
 #include <chrono>
 using namespace std::chrono;
 
-//	function prototype
+// function prototype
 void print_time(long long seconds);

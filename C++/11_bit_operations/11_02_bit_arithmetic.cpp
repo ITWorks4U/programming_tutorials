@@ -13,15 +13,15 @@ int main() {
 	int a = 42;
 	int b = 9001;
 
-	//	arithmetic way
+	// arithmetic way
 	cout << a << " is odd or even? => " << (a % 2 == 0 ? "even" : "odd") << endl;
 	cout << b << " is odd or even? => " << (b % 2 == 0 ? "even" : "odd") << endl;
 
-	//	bitwise way
-	//	only the last bit is checked with 1
-	//	if true, then this number is odd, otherwise even
+	// bitwise way
+	// only the last bit is checked with 1
+	// if true, then this number is odd, otherwise even
 	cout << a << " is odd or even? => " << ((a & 1) == 0 ? "even" : "odd") << endl;
 	cout << b << " is odd or even? => " << ((b & 1) == 0 ? "even" : "odd") << endl;
 
-	return EXIT_SUCCESS;
+	return 0;
 }

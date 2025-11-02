@@ -10,7 +10,7 @@
 // for calloc, free (C)
 #include <cstdlib>
 
-//	handling with C-Strings
+// handling with C-Strings
 #include <cstring>
 
 using namespace std;
@@ -21,25 +21,25 @@ using namespace std;
 struct Person {
 	int person_id;
 
-	//	C-Strings with fixed known size
-	//	holds up to 29 characters + '\0'
+	// C-Strings with fixed known size
+	// holds up to 29 characters + '\0'
 	char f_name[BUFFER_LENGTH];
 	char l_name[BUFFER_LENGTH];
 
-	//	dynamic C-String with unknown size
-	//	usually 8 Bit for 64 Bit architecture,
-	//	but that does not mean, that you can
-	//	store only 7 characters...
+	// dynamic C-String with unknown size
+	// usually 8 Bit for 64 Bit architecture,
+	// but that does not mean, that you can
+	// store only 7 characters...
 	char *birth_date;
 };
 
 void casting_examples_0() {
-	//	using C-style casting can be used in C++, but
-	//	this has a bunch of pitfalls, e. g.:
-	//	- you don't often see the brackets
-	//	- datatype overflow / underflow
-	//	- does hardly throw an error
-	//	...
+	// using C-style casting can be used in C++, but
+	// this has a bunch of pitfalls, e. g.:
+	// - you don't often see the brackets
+	// - datatype overflow / underflow
+	// - does hardly throw an error
+	// ...
 
 	cout << "light year: " << LIGHT_YEAR << endl;
 
@@ -73,7 +73,7 @@ void casting_examples_1() {
 	* C-Programming / chapter 26 (memory management)
 	*/
 
-	//	typical C-style casting
+	// typical C-style casting
 	Person *p = (Person *) calloc(1, sizeof(Person));
 	if (p == nullptr) {
 		perror("calloc(Person)");
@@ -99,9 +99,10 @@ void casting_examples_1() {
 		"]"
 	<< endl;
 
-	/*	***		some operations here	***		*/
-	//	since calloc() was in use to allocate memory,
-	//	we must release the memory by our own
+	/* *** some operations here *** */
+
+	// since calloc() was in use to allocate memory,
+	// we must release the memory by our own
 	free(p);
 }
 
@@ -113,10 +114,10 @@ int main() {
 	* functions, ... for C++.
 	*/
 
-	//	using simple castings
+	// using simple castings
 	casting_examples_0();
 
-	//	using dynamic allocation...
+	// using dynamic allocation...
 	casting_examples_1();
 
 	return 0;

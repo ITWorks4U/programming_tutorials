@@ -9,7 +9,7 @@
 #include <iostream>
 using namespace std;
 
-//	to use templates write:
+// to use templates write:
 template <class T>
 T getMaximum(T a, T b) {
 	return a > b ? a : b;
@@ -26,13 +26,13 @@ void doSomething(anything a) {
 	cout << a << endl;
 }
 
-//	---------------------
+// ---------------------
 class Test {};
 
 enum class E {
 	A, B, C, D, E, F
 };
-//	---------------------
+// ---------------------
 
 int main() {
 	int a = 10;
@@ -41,10 +41,8 @@ int main() {
 	double c = 3.141;
 	double d = 4e12;
 
-	/*
-		for template functions there's no need to write the data type behind the function,
-		but you also can do this
-	*/
+	// for template functions there's no need to write the data type behind the function,
+	// but you also can do this
 	cout << "a (" << a << ") or b (" << b << "): " << getMaximum<int>(a, b) << endl;
 	cout << "c (" << c << ") or d (" << d << "): " << getMaximum(c, d) << endl;
 	cout << "c (" << c << ") or d (" << d << "): " << getMaximum<double>(c, d) << endl;

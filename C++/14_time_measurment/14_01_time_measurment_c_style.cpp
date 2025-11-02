@@ -5,6 +5,10 @@
 * C++ - string is in use here.
 */
 
+// NOTE:  Your application might be interpreted as a threat and your
+//        antivirus application may take action to move it into the
+//        quarantaine or delete the application.
+
 #include <iostream>
 #include <cmath>
 #include <ctime>
@@ -14,9 +18,9 @@
 using namespace std;
 
 void print_time(double seconds) {
-	//	unlike to raw C-style cast: (int)
-	//	the static_cast instruction is in use here
-	//	more details: see chapter X
+	// unlike to raw C-style cast: (int)
+	// the static_cast instruction is in use here
+	// more details: see chapter 20
 
 	int hours = static_cast<int>(floor(seconds / 3600));
 	int minutes = static_cast<int>(floor(seconds / 60));
@@ -30,13 +34,13 @@ int main() {
 	const string s1 = "This is a simple lext to copy.";
 	unsigned int counter = 0;
 
-	//	from <ctime> / <time.h>
+	// from <ctime> / <time.h>
 	clock_t start_timer = clock();
 	cout << "starting time measurement..." << endl << "Please hold the lion." << endl;
 
-	//	a simple, stupid and "Holy sh*t! Why do you do such bullsh*t?" instruction
-	//	to emulate a long time amount
-	//	UINT_MAX from <climits> / <limits.h>
+	// a simple, stupid and "Holy sh*t! Why do you do such bullsh*t?" instruction
+	// to emulate a long time amount
+	// UINT_MAX from <climits> / <limits.h>
 	while(counter != UINT_MAX) {
 		counter++;
 		s0 = s1;
@@ -45,8 +49,8 @@ int main() {
 	cout << "Finished!" << endl;
 	clock_t end_timer = clock();
 
-	//	end-start must be devided by CLOCLS_PER_SEC (number of clock ticks per second)
-	//	to receive the current elapsed time in seconds
+	// end-start must be devided by CLOCLS_PER_SEC (number of clock ticks per second)
+	// to receive the current elapsed time in seconds
 	double total_time = static_cast<double>((end_timer - start_timer) / CLOCKS_PER_SEC);
 	print_time(total_time);
 

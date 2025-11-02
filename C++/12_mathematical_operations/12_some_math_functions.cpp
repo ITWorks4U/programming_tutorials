@@ -8,26 +8,29 @@
 */
 
 #ifndef _WIN32
+// only for UNIX systems
+// NOTE: #warning may not be available on your system, so it may also appear,
+//       that you'll receive an error on compile time instead
 #warning "Make sure to link -lm to the compiler, otherwise your application can't be build."
 #endif
 
 #include <iostream>
 
-//	for functions, like sin, cos, tan, pow, ...
+// for functions, like sin, cos, tan, pow, ...
 #include <cmath>
 
-//	for DBL_MAX expression
+// for DBL_MAX expression
 #include <cfloat>
 
-//	for pi, euler, ...
-//	only for C++20 or later
+// for pi, euler, ...
+// only for C++20 or later
 //
-//	otherwise the expressions can't be found, so the compilation won't continue;
-//	same result, when this header file was not found
+// otherwise the expressions can't be found, so the compilation won't continue;
+// same result, when this header file was not found
 // #include <numbers>
 
-//	to be able to print floating point
-//	numbers into exponentional notation
+// to be able to print floating point
+// numbers into exponentional notation
 #include <iomanip>
 using namespace std;
 
@@ -47,7 +50,7 @@ using namespace std;
 * this is in use instead of macro expressions => see: chapter 17 in C programming for more details
 */
 
-/*	own written functions to calculate something	*/
+// own written functions to calculate something
 void calculate_area_circle(int radius) {
 	cout << "area: " << scientific << setprecision(5) << (M_PI * radius * radius) << endl;
 }
@@ -64,7 +67,7 @@ int main() {
 
 	cout << "============" << endl << endl;
 
-	//	using some math functions from [c]math.h:
+	// using some math functions from [c]math.h:
 	for(double i = 0.0; i <= 90.0; i += 0.1) {
 		cout << "sin(" << i << ") = " << sin(i) << endl;
 		cout << "cos(" << i << ") = " << cos(i) << endl;
@@ -75,13 +78,15 @@ int main() {
 	cout << "============" << endl << endl;
 
 	for (int i = 0; i < 10; i++) {
-		//	casting is recommended, because most of those functions
-		//	are handling floating point numbers
-		cout << "power of " << i << " = " << pow((double)i, (double)i) << endl;
-		cout << "square root of " << i << " = " << sqrt((double) i) << endl;
+		// A casting is recommended, because most of those functions
+		// are handling floating point numbers.
+		double index = static_cast<double>(i);
+
+		cout << "power of " << i << " = " << pow(index, index) << endl;
+		cout << "square root of " << i << " = " << sqrt(index) << endl;
 	}
 
-	//	many other functions here...
+	// many other functions here...
 	double d_infinite = DBL_MAX;
 	cout << "Is " << d_infinite << " infinite? " << (isfinite(d_infinite) ? "yes" : "no") << endl;
 

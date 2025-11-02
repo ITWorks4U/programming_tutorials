@@ -27,15 +27,15 @@ int main() {
 	fs.open("not_existing", ios_base::in);
 
 	if (!fs.is_open()) {
-		//	perror can also be used here to show up
-		//	a more clean reason for that failure
+		// perror can also be used here to show up
+		// a more clean reason for that failure
 		perror("fs.open()");
 		return 1;
 	}
 
-	//	do something with that opened file
+	// do something with that opened file
 
-	//	close the file stream
+	// close the file stream
 	fs.close();
 
 	return 0;

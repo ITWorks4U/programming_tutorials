@@ -24,7 +24,7 @@
 using namespace std;
 
 namespace {
-	/*	"static" is at this point optional here	*/
+	/* "static" is at this point optional here */
 	static long VARIABLE = 10L;
 }
 
