@@ -9,33 +9,36 @@
 >   **NOTE**:   In modern languages, C will also be handled as a "modern language", **logic-and** is written as **A && B**, whereas **bit-and** is written as **A & B**. 
 
 ##  1)  bit operations in detail
-### bit and
+### bit and (A & B)
 -   combine the value A and value B bit by bit and return a result
 -   the result is for bit i (i = 0,1,2,...) is 1 only, if A(i) and B(i) are 1
+-   use: `A & B`
 
-| A | B | A & B |
+| A | B | A and B |
 | - | - | - |
 | 0 | 0 | 0 |
 | 1 | 0 | 0 |
 | 0 | 1 | 0 |
 | 1 | 1 | 1 |
 
-### bit or
+### bit or (A | B)
 -   combine the value A and value B bit by bit and return a result
 -   the result is for bit i (i = 0,1,2,...) is 1 only, if A(i) or B(i) or both are 1
+-   use: `A | B`
 
-| A | B | A & B |
+| A | B | A or B |
 | - | - | - |
 | 0 | 0 | 0 |
 | 1 | 0 | 1 |
 | 0 | 1 | 1 |
 | 1 | 1 | 1 |
 
-### bit xor
+### bit xor (A ^ B)
 -   combine the value A and value B bit by bit and return a result
 -   the result is for bit i (i = 0,1,2,...) is 1 only, if A(i) and B(i) are different
+-   use: `A ^ B`
 
-| A | B | A & B |
+| A | B | A xor B |
 | - | - | - |
 | 0 | 0 | 0 |
 | 1 | 0 | 1 |
