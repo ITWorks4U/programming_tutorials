@@ -12,12 +12,9 @@
     -   ```<boost/regex.h>```
 -   outside of Visual Studio (e. g.: **mingw**) you might use a library to work with regular expressions
     - use an alternative, like:
-        - PCRE2 (https://www.pcre.org/) => ```<pcre2.h>``` (implemented examples, but not tested)
-        - ... 
+        - PCRE2 (https://www.pcre.org/) => ```<pcre2.h>```
+        - helping python script
 
 ##  working on UNIX/Linux/macOS
 -   using **POISX** regex
     -   shall also work with macOS (never tested)
-
-#### NOTE:
-> The following examples are written with POSIX regex. PCRE2 is implemented as well, however, this has not been tested.
