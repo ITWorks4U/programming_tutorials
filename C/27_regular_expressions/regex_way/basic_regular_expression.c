@@ -203,7 +203,16 @@ int on_match(const char *expression) {
 
 	// NOTE: using system(const char *command); is not a valid
 	//       solution of all time, unless you know, what you do
+
+	// NOTE: On some systems it may happen, that the system() function
+	//       returns a value outside of [0,1], like 256. For 256 the
+	//       8th bit position is 1 and the result must be right shifted
+	//       by 8 bits.
 	result = system(external_command);
+
+	if (!(result == 0 && result == 1)) {
+		result = result >> 8;
+	}
 	#endif
 
 	return result;

@@ -17,18 +17,18 @@
 * it will "break your neck", when you don't mind that.
 *
 * There're different ways to allocate memory:
-* -	malloc		(C/C++)
-* -	calloc		(C/C++)
-* -	realloc		(C/C++)
-* -	valloc		(C/C++; may work, but it's not a guarantee)
-* -	new			(C++ only)
+* -	malloc     (C/C++)
+* -	calloc     (C/C++)
+* -	realloc    (C/C++)
+* -	valloc     (C/C++; may work, but it's not a guarantee)
+* -	new        (C++ only)
 *
 * attention:
 * - unlike to C, in C++ you MUST cast it to your specified data type, because every function (except new) returns void*
 *
 * there're two ways to releasing allocated memory:
-* -	free		(C/C++)
-* -	delete		(C++ only)
+* -	free       (C/C++)
+* -	delete     (C++ only)
 *
 * fun fact:
 * In C++ you might use new to allocate memory and use the C-function free()
@@ -36,37 +36,37 @@
 * delete to remove this allocated memory. But that's not recommented.
 *
 * ------------------------------
-* >>	Allocate memory of n bytes. It returns an address, where n bytes are now
-* >>	available, however, your variable(s), struct(s), field(s) contains
-* >>	garbage and must be initialized later
+* >>   Allocate memory of n bytes. It returns an address, where n bytes are now
+* >>   available, however, your variable(s), struct(s), field(s) contains
+* >>   garbage and must be initialized later
 * void *malloc(size_t __size);
 *
 * ------------------------------
-* >>	Acts like malloc, however, your object is initialized with a
-* >>	default value, depending on the data type:
-* >>	- int, short, long, float, double = 0(.0(F))
-* >>	- char = '\0'
-* >>	- C-string = "\0\0...\0"
-* >>	- pointer(s) = NULL
+* >>   Acts like malloc, however, your object is initialized with a
+* >>   default value, depending on the data type:
+* >>   - int, short, long, float, double = 0(.0(F))
+* >>   - char = '\0'
+* >>   - C-string = "\0\0...\0"
+* >>   - pointer(s) = NULL
 *
-* >>	argument #0: how many times an object needs to be allocated
-* >>	argument #1: the amount of bytes for each object
+* >>   argument #0: how many times an object needs to be allocated
+* >>   argument #1: the amount of bytes for each object
 * void *calloc(size_t __nmemb, size_t __size);
 *
 * ------------------------------
-* >>	Reallocating more memory for an already allocated pointer.
-* >>	It can also be used to allocate memory for the first time.
-* >>	argument #0: pointer to use (can be NULL / nullptr in C++)
-* >>	argument #1: additional amount of bytes
+* >>   Reallocating more memory for an already allocated pointer.
+* >>   It can also be used to allocate memory for the first time.
+* >>   argument #0: pointer to use (can be NULL / nullptr in C++)
+* >>   argument #1: additional amount of bytes
 * void *realloc(void *__ptr, size_t __size);
 *
 * ------------------------------
-* >>	MAY work like malloc/calloc/realloc, may also cause
-* >>	an error on compile or runtime. => Hardly used.
+* >>   MAY work like malloc/calloc/realloc, may also cause
+* >>   an error on compile or runtime. => Hardly used.
 * void *valloc(size_t __size);
 *
 * ------------------------------
-* >>	releasing memory in C/C++:
+* >>   releasing memory in C/C++:
 * void free(void* __ptr);
 *
 * ATTENTION:
@@ -108,15 +108,15 @@
 #define BUFFER_LENGTH	100
 
 struct Person {
-	//	just a normal member
+	// just a normal member
 	int person_id;
 
-	//	f_name and l_name are static C-strings
+	// f_name and l_name are static C-strings
 	char f_name[BUFFER_LENGTH];
 	char l_name[BUFFER_LENGTH];
 
-	//	birth_date, however, is a dynamic C-string
-	//	and must be handled in a different way
+	// birth_date, however, is a dynamic C-string
+	// and must be handled in a different way
 	char *birth_date;
 };
 
@@ -126,28 +126,28 @@ void use_static_reference(void) {
 	memset(p.f_name, '\0', BUFFER_LENGTH);
 	memset(p.l_name, '\0', BUFFER_LENGTH);
 
-	//	since birth_date is a dynamic C-string,
-	//	often called "field", this must be initialized
-	//	with a function, like malloc, calloc, ...
+	// since birth_date is a dynamic C-string,
+	// often called "field", this must be initialized
+	// with a function, like malloc, calloc, ...
 
-	//	you need the size of the data type first and multiply this
-	//	with a known number to let allow to store up to 99 characters
-	//	(p.birth_date[99] = '\0') for now
+	// you need the size of the data type first and multiply this
+	// with a known number to let allow to store up to 99 characters
+	// (p.birth_date[99] = '\0') for now
 
-	//	important: in C++ you MUST cast the pointer reference
-	//	to the known / expected data type, otherwise the application
-	//	can't be build
+	// important: in C++ you MUST cast the pointer reference
+	// to the known / expected data type, otherwise the application
+	// can't be build
 	p.birth_date = (char *) malloc(sizeof(char) * BUFFER_LENGTH);
 	memset(p.birth_date, '\0', BUFFER_LENGTH);
 
-	//	do something here
+	// do something here
 
-	//	usually, when this function has been left, the used storage of p
-	//	is autoamtically removed from the STACK, but since p.birth_date
-	//	has been initialized with malloc, calloc, ..., this MUST be
-	//	released, otherwise a memory leak results
+	// usually, when this function has been left, the used storage of p
+	// is autoamtically removed from the STACK, but since p.birth_date
+	// has been initialized with malloc, calloc, ..., this MUST be
+	// released, otherwise a memory leak results
 
-	//	for C / C++
+	// for C / C++
 	free(p.birth_date);
 
 	// C++ only
@@ -155,98 +155,98 @@ void use_static_reference(void) {
 	delete p.birth_date;
 	#endif
 
-	//	hint: never, really NEVER release an already released pointer,
-	//	otherwise it will crash your application
+	// hint: never, really NEVER release an already released pointer,
+	// otherwise it will crash your application
 }
 
 void use_dynamic_reference(void) {
-	//	a dynamic reference may look like:
+	// a dynamic reference may look like:
 	struct Person *p0 = (struct Person *) malloc(sizeof(struct Person));
 
-	//	you COULD also use malloc(212), because your structure requires
-	//	a total amount of 212 bytes (4 bytes (int), 2x 100 bytes (C-string), 8 bytes (char*)),
-	//	but if this structure is going to update, you won't be happy with the fixed number
+	// you COULD also use malloc(212), because your structure requires
+	// a total amount of 212 bytes (4 bytes (int), 2x 100 bytes (C-string), 8 bytes (char*)),
+	// but if this structure is going to update, you won't be happy with the fixed number
 
-	//	Unlike to p->birth_date, why is malloc be able to allocate the correct amount of bytes?
-	//	Any field must be written with its type, followed by how many additional bytes with the
-	//	size of the data type are required.
+	// Unlike to p->birth_date, why is malloc be able to allocate the correct amount of bytes?
+	// Any field must be written with its type, followed by how many additional bytes with the
+	// size of the data type are required.
 	//
-	//	To avoid such confusing, you could also use calloc() function:
-	//	void *calloc(size_t _count, size_t _size);
-	//	_count: how many elements are requested
-	//	_size: the size of the field
+	// To avoid such confusing, you could also use calloc() function:
+	// void *calloc(size_t _count, size_t _size);
+	// _count: how many elements are requested
+	// _size: the size of the field
 
-	//	in C++ you may write:
-	//	Person *p0 = new Person();
+	// in C++ you may write:
+	// Person *p0 = new Person();
 	//
 
-	//	this is not required, but recommended
-	//	hint: in C++ use nullptr instead, because
-	//	NULL is different defined rather thant C
+	// this is not required, but recommended
+	// hint: in C++ use nullptr instead, because
+	// NULL is different defined rather thant C
 	if (p0 == NULL) {
-		//	there was not enough free space and we can skip
-		//	this process or do anything else
+		// there was not enough free space and we can skip
+		// this process or do anything else
 		perror("p0");
 		return;
 	}
 
-	//	How to access to p's members? Since p is now a pointer to an address
-	//	the members are unable to call on the direct way.
-	//	The pointer address must be dereferenced first to be able to access
-	//	to the members itself.
+	// How to access to p's members? Since p is now a pointer to an address
+	// the members are unable to call on the direct way.
+	// The pointer address must be dereferenced first to be able to access
+	// to the members itself.
 
-	//	ERROR
+	// ERROR
 	// p.person_id = 1;
 
-	//	you have to use one of these two methods instead:
-	//	(1) *(p.person_id) => can be used, but this causes misspelling at any time
-	//	(2) p->person_id => short form and tells you, that p "points" to person_id
+	// you have to use one of these two methods instead:
+	// (1) *(p.person_id) => can be used, but this causes misspelling at any time
+	// (2) p->person_id => short form and tells you, that p "points" to person_id
 	//
-	//	fun facts:
-	//	- in a data structure the pointer points to the first member
-	//	- in a field the pointer points to the first element
+	// fun facts:
+	// - in a data structure the pointer points to the first member
+	// - in a field the pointer points to the first element
 	p0->person_id = 1;
 
 	memset(p0->f_name, '\0', BUFFER_LENGTH);
-	//	similar to the already used methods
+	// similar to the already used methods
 
-	//	IMPORTANT:
-	//	- if p->birth_date has been initialized with malloc, calloc, ... before,
-	//	  then this MUST also be released first, before p0 is going to release
-	//	- if p->birth_date, however, has never been touched, then you MUST NOT
-	//	  release this field
+	// IMPORTANT:
+	// - if p->birth_date has been initialized with malloc, calloc, ... before,
+	//   then this MUST also be released first, before p0 is going to release
+	// - if p->birth_date, however, has never been touched, then you MUST NOT
+	//   release this field
 
-	//	release p0 from memory
+	// release p0 from memory
 	free(p0);
 
-	//	for C++ only and remember in general:
-	//	if a pointer has been released (in any way), thus MUST NOT be released again
+	// for C++ only and remember in general:
+	// if a pointer has been released (in any way), thus MUST NOT be released again
 	//
-	//	delete p0;
+	// delete p0;
 	//
 
-	//	by the way, in C++ delete the command may also handle:
-	//	delete *pointer <= in that case this causes a memory leaks or an
-	//	undefined behavior => take a look to 26_20_delete_behavior.cpp
+	// by the way, in C++ delete the command may also handle:
+	// delete *pointer <= in that case this causes a memory leaks or an
+	// undefined behavior => take a look to 26_20_delete_behavior.cpp
 
-	//	------------
-	//	use calloc instead
-	//	------------
+	// ------------
+	// use calloc instead
+	// ------------
 	struct Person *p1 = (struct Person *) calloc(1, sizeof(struct Person));
 	if (p1 == NULL) {
 		perror("p1");
 		return;
 	}
 
-	//	do something here
+	// do something here
 	free(p1);
 }
 
 void use_file_stream(void) {
-	//	Do you remember to use file stream(s)?
-	//	This is just a pointer usage.
+	// Do you remember to use file stream(s)?
+	// This is just a pointer usage.
 
-	//	__FILE__ => your current file name
+	// __FILE__ => your current file name
 	FILE *source = fopen(__FILE__, "r");
 
 	if (source == NULL) {
@@ -265,64 +265,64 @@ void use_file_stream(void) {
 }
 
 struct Person *use_for_outside(void) {
-	//	this allows you to handle the person structure for outside
-	//	similar to FILE *source = fopen(...)
+	// this allows you to handle the person structure for outside
+	// similar to FILE *source = fopen(...)
 	//
-	//	that means, that this structure MUST also be released,
-	//	because when this function pointer has been left, the
-	//	allocated memory is still available
+	// that means, that this structure MUST also be released,
+	// because when this function pointer has been left, the
+	// allocated memory is still available
 	//
-	//	you can use free() function as well as a customized function
+	// you can use free() function as well as a customized function
 	return (struct Person *) calloc(1, sizeof(struct Person));
 }
 
 void remove_person_from_memory(struct Person *p) {
-	//	this is not required, but you should know,
-	//	that this might be a mistake here
+	// this is not required, but you should know,
+	// that this might be a mistake here
 	if (p != NULL) {
 		free(p);
 	}
 }
 
 int main(void) {
-	//	simple example
+	// simple example
 	int data = 9;
 	int *data_pointer = &data;
 
 	printf("data = %d, address = %p\n", data, data_pointer);
-	//	data_pointer does not be removed from memory by using
-	//	free(), because this pointer has never been managed
-	//	with malloc(), calloc(), ... and it will be removed
-	//	automatically from the stack, when the function or the block ends, here: main
+	// data_pointer does not be removed from memory by using
+	// free(), because this pointer has never been managed
+	// with malloc(), calloc(), ... and it will be removed
+	// automatically from the stack, when the function or the block ends, here: main
 
-	//	hint: there's also a difference for NULL
-	//	in C: NULL := ((void *)0)
-	//	in C++: NULL := 0
+	// hint: there's also a difference for NULL
+	// in C: NULL := ((void *)0)
+	// in C++: NULL := 0
 
-	//	C++ also comes with nullptr, but this is not
-	//	identical to NULL; that's just a new data type instead
+	// C++ also comes with nullptr, but this is not
+	// identical to NULL; that's just a new data type instead
 
 	use_static_reference();
 	use_dynamic_reference();
 	use_file_stream();
 
 	struct Person *p = use_for_outside();
-	//	do whatever you want to do
+	// do whatever you want to do
 
-	//	either:
+	// either:
 	// free(p);
-	//	or:
+	// or:
 	remove_person_from_memory(p);
 
-	//	What might happen here? Since NULL argument or any NULL-pointer
-	//	is given, nothing happens. Luckily.
+	// What might happen here? Since NULL argument or any NULL-pointer
+	// is given, nothing happens. Luckily.
 	free(NULL);
 
-	//	By the way, since you know, that uninitialized variables
-	//	contains garbage on runtime, guess what uninitialized
-	//	pointers may contain...? :D
+	// By the way, since you know, that uninitialized variables
+	// contains garbage on runtime, guess what uninitialized
+	// pointers may contain...? :D
 	//
-	//	You should never use uninizalized pointers!
+	// You should never use uninizalized pointers!
 
 	return EXIT_SUCCESS;
 }

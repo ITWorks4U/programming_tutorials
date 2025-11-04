@@ -19,39 +19,39 @@
 * |  " "        |  string literal         |
 */
 
-//	by default, it might be interpreted as signed integer
-#define EXPRESSION_0	1000
+// by default, it might be interpreted as signed integer
+#define EXPRESSION_0   1000
 
-//	unsigned integer
-#define EXPRESSION_1	1000U
+// unsigned integer
+#define EXPRESSION_1   1000U
 
-//	long integer
-#define EXPRESSION_2	1000L
+// long integer
+#define EXPRESSION_2   1000L
 
-//	long long integer (1000i64)
-#define EXPRESSION_3	1000LL
+// long long integer (1000i64)
+#define EXPRESSION_3   1000LL
 
-//	binary expression => 1000 => 8 in decimal
-#define EXPRESSION_4	0B1000
+// binary expression => 1000 => 8 in decimal
+#define EXPRESSION_4   0B1000
 
-//	octal expression => 512 in decimal
-#define EXPRESSION_5	01000
+// octal expression => 512 in decimal
+#define EXPRESSION_5   01000
 
-//	hexadecimal expression => 4096 in decimal
-#define EXPRESSION_6	0x1000
+// hexadecimal expression => 4096 in decimal
+#define EXPRESSION_6   0x1000
 
-//	floating point expression only
-#define EXPRESSION_7	1000.0F
+// floating point expression only
+#define EXPRESSION_7   1000.0F
 
-//	double expression only
-#define EXPRESSION_8	1000.0
+// double expression only
+#define EXPRESSION_8   1000.0
 
-//	character literal only => 70 in decimal
-#define EXPRESSION_9	'F'
+// character literal only => 70 in decimal
+#define EXPRESSION_9   'F'
 
-//	string literal only, even this contains a single character only
-//	Guess what? C-String comes with \0 => "F" has a length of 2 bytes.
-#define EXPRESSION_10	"F"
+// string literal only, even this contains a single character only
+// Guess what? C-String comes with \0 => "F" has a length of 2 bytes.
+#define EXPRESSION_10  "F"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -72,7 +72,7 @@ int main(void) {
 				break;
 			case 3:
 				#ifdef _WIN32
-				//	Windows can't handle (unsigned) long long int correctly
+				// Windows can't handle (unsigned) long long int correctly
 				printf("%I64d\n", EXPRESSION_3);
 				#else
 				printf("%lld\n", EXPRESSION_3);
@@ -104,17 +104,17 @@ int main(void) {
 		}
 	}
 
-	//	also a commonly pitfall: Is there a float or a double value?
-	//	-------------------
-	//	It may happen, that you'll see the output: "Yeah, this is the same."
-	//	at the first attempt, however, this is not a 100% guarantee on each
-	//	runtime or system.
+	// also a commonly pitfall: Is there a float or a double value?
+	// -------------------
+	// It may happen, that you'll see the output: "Yeah, this is the same."
+	// at the first attempt, however, this is not a 100% guarantee on each
+	// runtime or system.
 	//
-	//	By default, "1.0" is set to a double value. Since float and double are
-	//	not the same, it may happen, that "1.0" is unequal to "1.0".
+	// By default, "1.0" is set to a double value. Since float and double are
+	// not the same, it may happen, that "1.0" is unequal to "1.0".
 	//
-	//	To make sure to use a float value instead, add a floating point literal
-	//	behind the number (F)
+	// To make sure to use a float value instead, add a floating point literal
+	// behind the number (F)
 	float upper_limit = 1.0;
 
 	if (1.0F == upper_limit) {

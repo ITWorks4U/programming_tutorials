@@ -152,8 +152,8 @@ int main(void) {
 	pthread_join(thread2, NULL);
 	#endif
 
-	//	on the test machine, (Windows) the time amount took up to 40 seconds
-	//	How long did this work on your machine? (:
+	// on the test machine, (Windows) the time amount took up to 40 seconds
+	// How long did this work on your machine? (:
 
 	return EXIT_SUCCESS;
 }

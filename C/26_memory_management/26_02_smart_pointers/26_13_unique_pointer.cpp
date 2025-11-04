@@ -38,7 +38,7 @@ int main() {
 	cout << "address of p0: " << p0.get() << "H" << endl;
 	cout << "using a second instance here" << endl;
 
-	//	unlike to auto_ptr, if available, you need to use move(*ptr)
+	// unlike to auto_ptr, if available, you need to use move(*ptr)
 	unique_ptr<Person> p1 = move(p0);
 	cout << "address of p1: " << p1.get() << "H" << endl;
 	cout << "address of p0: " << p0.get() << "H" << endl;
@@ -46,8 +46,8 @@ int main() {
 	cout << "p1 is now being deleted..." << endl;
 	p1.reset();
 
-	//	don't think, that p0 now gets access back to the memory address
-	//	p0 is still 0, but you can still use the function(s)
+	// don't think, that p0 now gets access back to the memory address
+	// p0 is still 0, but you can still use the function(s)
 	cout << "address of p0: " << p0.get() << "H" << endl;
 	p0->do_something();
 	p0.reset();

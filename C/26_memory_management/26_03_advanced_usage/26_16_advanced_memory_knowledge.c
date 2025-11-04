@@ -44,26 +44,26 @@ int main(void) {
 	* directly, you're "just" requesting the size of the function
 	* including where this function is going to store on runtime.
 	*/
-	//	4 bytes (int)
+	// 4 bytes (int)
 	#ifndef __cplusplus
-	//	C++ refuses to build this source code
+	// C++ refuses to build this source code
 	size_t size_of_function1 = sizeof(function1(a, b));
 	#endif
 
-	//	C: 4 bytes, because bool is an integer; C++: 1 byte
+	// C: 4 bytes, because bool is an integer; C++: 1 byte
 	size_t size_of_function2 = sizeof(function2(a, b));
 
-	//	1 byte (void)
-	//	in C this works, but C++ refuses to build your application
+	// 1 byte (void)
+	// in C this works, but C++ refuses to build your application
 	#ifndef __cplusplus
 	size_t size_of_function3 = sizeof(function3(a, b));
 	#endif
 
 	char fixed_word[] = "This is a simple text!";
-	//	with %p we're requesting, >>where<< a variable, function, pointer, ... is located on runtime
-	//	to get the address, write an apersand (&) in front of your object
+	// with %p we're requesting, >>where<< a variable, function, pointer, ... is located on runtime
+	// to get the address, write an apersand (&) in front of your object
 
-	//	NOTE: Windows uses %u, whereas %lu is in use elsewhere
+	// NOTE: Windows uses %u, whereas %lu is in use elsewhere
 	#ifndef __cplusplus
 	printf("size of function1 = %lu bytes, located on: %pH\n", size_of_function1, &function1);
 	#endif
@@ -82,10 +82,10 @@ int main(void) {
 	// printf("a = %d, b = %d <=> %pH, %pH\n", a, b, a, b);
 	printf("a = %d, b = %d <=> %pH, %pH\n", a, b, &a, &b);
 
-	function1(&a, &b);																						//	call by reference
+	function1(&a, &b);                                     // call by reference
 	printf("location of function1: %pH\n", &function1);
-	function2(a, b);																						//	call by value
-	function3(a, b);																						//	same here
+	function2(a, b);                                       // call by value
+	function3(a, b);                                       // same here
 
 	return EXIT_SUCCESS;
 }

@@ -20,6 +20,6 @@
 #include <stdlib.h>
 
 int main(void) {
-	//	nothing to do here
+	// nothing to do here
 	return EXIT_SUCCESS;
 }

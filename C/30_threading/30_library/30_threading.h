@@ -1,13 +1,13 @@
 #ifndef THREADING_H
 #define THREADING_H
 
-//	This shall not run with a C++ compiler to avoid undefined behavior(s).
+// This shall not run with a C++ compiler to avoid undefined behavior.
 #ifdef __cplusplus
 #error "This sample contains C functions only, which might not work correctly with C++. Use a C compiler instead."
 #else
 
-#define FILE_TO_USE	"random_numbers.txt"
-#define MAX_BUFFER 	250000
+#define FILE_TO_USE  "random_numbers.txt"
+#define MAX_BUFFER   250000
 
 #include <stdbool.h>
 
@@ -28,7 +28,7 @@
 	/// @param message the message to print
 	void print_error_message(const char *message);
 #else
-//	also valid for other non-Windows systems
+// also valid for other non-Windows systems
 	#define THREADING_ON_LINUX
 	#include <unistd.h>
 	#include <pthread.h>
@@ -52,9 +52,9 @@ void load_numbers_from_file(void);
 /// The elapsed time will be recorded.
 void bubble_sort(void);
 
-//	----------
-//	external features
-//	----------
+// ----------
+// external features
+// ----------
 
 /// @brief flag to check, if the I/O operation was successful
 extern bool coord_on_continue;

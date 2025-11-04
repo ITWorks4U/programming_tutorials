@@ -1,20 +1,24 @@
-//	Would you like to play lottery? Receive 6 random and unique numbers
-//	from 49 possible numbers. Perhaps this might be your next tip. ;-)
+#ifdef __cplusplus
+#error "By using a C++ compiler this application may be handled like a threat or it leads to an undefined behavior. Use a C compiler instead."
+#else
+
+// Would you like to play lottery? Receive 6 random and unique numbers
+// from 49 possible numbers. Perhaps this might be your next tip. ;-)
 
 #include <stdio.h>
 #include <stdlib.h>
 
-//	for C
+// for C
 #include <time.h>
 
-//	for C++
+// for C++
 // #include <ctime>
 
-//	not required for C++
+// not required for C++
 #include <stdbool.h>
 
-//	contains six of all 49 lottery numbers between 1 and 49
-//	where "-1" is a placeholder for not defined yet
+// contains six of all 49 lottery numbers between 1 and 49
+// where "-1" is a placeholder for not defined yet
 int lottery_array[] = {-1, -1, -1, -1, -1, -1};
 
 bool check_for_existence(int number) {
@@ -31,7 +35,7 @@ int main(void) {
 	time_t t;
 	srand(time(&t));
 
-	//	play lottery here...
+	// play lottery here...
 	int counter = 0;
 
 	do {
@@ -51,3 +55,4 @@ int main(void) {
 
 	return EXIT_SUCCESS;
 }
+#endif

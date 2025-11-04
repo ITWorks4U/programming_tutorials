@@ -13,13 +13,13 @@ int main(void) {
 	int a = 42;
 	int b = 9001;
 
-	//	arithmetic way
+	// arithmetic way
 	printf("%d is odd or even? => %s\n", a, a % 2 == 0 ? "even" : "odd");
 	printf("%d is odd or even? => %s\n", b, b % 2 == 0 ? "even" : "odd");
 
-	//	bitwise way
-	//	only the last bit is checked with 1
-	//	if true, then this number is odd, otherwise even
+	// bitwise way
+	// only the last bit is checked with 1
+	// if true, then this number is odd, otherwise even
 	printf("%d is odd or even? => %s\n", a, (a & 1) == 0 ? "even" : "odd");
 	printf("%d is odd or even? => %s\n", b, (b & 1) == 0 ? "even" : "odd");
 

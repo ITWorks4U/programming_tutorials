@@ -5,7 +5,7 @@
 #include <string.h>
 #include "30_threading.h"
 
-//	global settings
+// global settings
 bool coord_on_continue = true;
 long test_array[MAX_BUFFER];
 
@@ -20,7 +20,7 @@ void time_amount(double seconds) {
 	double microseconds = floor(fmod(fractional * 1e6, 1000));
 	double nanoseconds  = floor(fmod(fractional * 1e9, 1000));
 
-	//	it may happen, that the µ symbol can't be displayed correctly
+	// it may happen, that the µ symbol can't be displayed correctly
 	fprintf(
 		stdout,
 		"time amount: %.0lf h, %.0lf min, %.0lf s, %.0lf ms, %.0lf (micro)s, %.0lf ns\n",
@@ -39,11 +39,11 @@ void load_numbers_from_file(void) {
 		return;
 	}
 
-	//	load the full content to the C-string
+	// load the full content to the C-string
 	while ((fgets(content_random_numbers, MAX_BUFFER - 1, f)) != NULL);
 	fclose(f);
 
-	//	get each single element by tokenizing ',' and ' '
+	// get each single element by tokenizing ',' and ' '
 	char delimiter[] = ", ";
 	char* token = strtok(content_random_numbers, delimiter);
 	int ctr = 0;

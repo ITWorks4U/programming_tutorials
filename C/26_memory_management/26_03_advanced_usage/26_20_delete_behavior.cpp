@@ -7,15 +7,13 @@
 */
 
 #ifndef __cplusplus
-#error	"This sample can be build with a C++ compiler only."
+#error "This sample can be build with a C++ compiler only."
 #else
-#warning	"This sample causes an undefined behavior!"
-
 #include <iostream>
 
 void use_delete_pointer() {
-	//	just a normal way to use a raw pointer in C++
-	//	(not recommended; use smart pointers only)
+	// just a normal way to use a raw pointer in C++
+	// (not recommended; use smart pointers only)
 	int *i_ptr = new int;
 
 	/*
@@ -28,16 +26,16 @@ void use_delete_pointer() {
 	* for the allocation process => You don't know, what may happen!
 	*/
 
-	//	normal way
+	// normal way
 	delete i_ptr;
 
-	//	don't do this => undefined behavior
+	// don't do this => undefined behavior
 	// delete []i_ptr;
 }
 
 void use_delete_pointer_pointer() {
-	//	create a field of int, which is planned to store up to 100 different values
-	//	this is similar to the i_ptr above, but here you want to respect the limitation
+	// create a field of int, which is planned to store up to 100 different values
+	// this is similar to the i_ptr above, but here you want to respect the limitation
 	int *i_ptr = new int[100];
 
 	/*
@@ -48,17 +46,19 @@ void use_delete_pointer_pointer() {
 	* still exists. => Memory leak.
 	*/
 
-	//	normal way
+	// normal way
 	delete []i_ptr;
 
-	//	syntax error
+	// syntax error
 	// delete *i_ptr;
 
-	//	don't do this
+	// don't do this
 	// delete i_ptr;
 }
 
 int main() {
+	std::cerr << "Warning: This sample causes an undefined behavior during runtime!" << std::endl;
+
 	/*
 	* Even this application MAY work "without any error", use a memory check application,
 	* like "valgrind" (Linux), "Dr.Memory", "PVS Studio", ... to figure out, what kind of mess

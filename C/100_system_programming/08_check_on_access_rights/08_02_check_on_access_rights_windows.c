@@ -1,21 +1,33 @@
 /*
-	For Windows this way might work for you, too.
-	Before you're compiling make sure, your WINNT has a
-	value of 0x600 (in decimal: 1,536) or higher.
-	Or in other words: You OS must be a Windows Server 2008 or higher.
-
-	The WINNT version tells you, which OS you're working on.
-	Even on a Windows 10 (tested here) it tells you, that you're
-	running a "Windows 2000", which is wrong.
-
-	For more informations take a look here:
-	-	https://learn.microsoft.com/en-us/cpp/porting/modifying-winver-and-win32-winnt?view=msvc-170
-
-	ITWorks4U
+* For Windows this way might work for you, too.
+* Before you're compiling make sure, your WINNT has a
+* alue of 0x600 (in decimal: 1,536) or higher.
+* Or in other words: You OS must be a Windows Server 2008 or higher.
+*
+* The WINNT version tells you, which OS you're working on.
+* Even on a Windows 10 (tested here) it tells you, that you're
+* running a "Windows 2000", which is wrong.
+*
+* For more informations take a look here:
+* - https://learn.microsoft.com/en-us/cpp/porting/modifying-winver-and-win32-winnt?view=msvc-170
+*
+* author:   ITWorks4U
+* created:  July 1st, 2025
+* updated:  November 3rd, 2025
+*
+* youtube:  @itworks4u
+* github:   github.com/ITWorks4U
 */
 
-/*	override your WIN32_WINNT, if necessary	*/
-#define _WIN32_WINNT	0x600
+#ifdef __cplusplus
+#error "By using a C++ compiler this application may be handled like a threat or it leads to an undefined behavior. Use a C compiler instead."
+#else
+#ifndef _WIN32
+#error "This sample can only be used on a Windows machine. Either 32 or 64 bit."
+#else
+
+/* override your WIN32_WINNT, if necessary */
+#define _WIN32_WINNT    0x600
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,9 +35,9 @@
 #include <stdbool.h>
 
 /*
-	remember:
-		this has been built in C
-		in C++ it might have a different behavior
+* remember:
+* this has been built in C
+* in C++ it might have a different behavior
 */
 bool on_admin(void) {
 	bool onAdmin = false;
@@ -64,3 +76,5 @@ int main(void) {
 
 	return EXIT_SUCCESS;
 }
+#endif
+#endif

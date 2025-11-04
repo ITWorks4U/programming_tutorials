@@ -16,28 +16,30 @@ int main(void) {
 	char word[50];
 	char fixed_expression[] = "A fixed expression for our purpose.";
 
-	/*	Won't work in C!	*/
-	//	word = fixed_expression;
+	/* Won't work in C, unless pointers are in use. => See: chapter 26. */
+	// word = fixed_expression;
 
-	//	In C, and also C++, this can be used, but it's also NOT recommended
+	// In C, and also C++, this can be used, but it's also NOT recommended
 	// *word = *fixed_expression;
 
-	//	this can be used, however, since >>word<< contains any garbage you don't
-	//	know, what word may also contain data after fully copying each character
-	//	from fixed_expression to word
+	// this can be used, however, since >>word<< contains any garbage you don't
+	// know, what word may also contain data after fully copying each character
+	// from fixed_expression to word
 	// for(size_t i = 0; i < strlen(fixed_expression); i++) {
 	// 	word[i] = fixed_expression[i];
 	// }
 
 	/*
-		copying a text to an another C-string; doesn't handle buffer overflow
-		char *strcpy(char *dest, const char *source);
-
-		char *strncpy(char *dest, const char *source, size_t __n);
-		copies n characters from source to destination; doesn't handle buffer overflow
-
-		for Visual Studio:
-		use strcpy_s(), strncpy_s(), ... instead
+	* copy a text to an another C-string; doesn't handle buffer overflow
+	* char *strcpy(char *dest, const char *source);
+	*
+	* returns the memory address pointer for dest (rarely used)
+	*
+	* char *strncpy(char *dest, const char *source, size_t __n);
+	* copies n characters from source to destination; doesn't handle buffer overflow
+	*
+	* for Visual Studio:
+	* use strcpy_s(), strncpy_s(), ... instead
 	*/
 	strncpy(word, fixed_expression, strlen(fixed_expression));
 	printf("word contains: %s\n", word);

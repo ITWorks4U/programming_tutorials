@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//	-----------
-//	Debugging a code runs easy within an IDE.
-//	Without an IDE (terminal) use gdb
-//	-----------
-//	Linux:
-//		gdb shall be installed by default
-//		usage: gdb <application>
-//	Windows:
-//		use mingw to debug code outside of an IDE
-//		=> gdb.exe <your application.exe>
-//	-----------
-//	small breakdown for debugging:
+// -----------
+// Debugging a code runs easy within an IDE.
+// Without an IDE (terminal) use gdb
+// -----------
+// Linux:
+// 	gdb shall be installed by default
+// 	usage: gdb <application>
+// Windows:
+// 	use mingw to debug code outside of an IDE
+// 	=> gdb.exe <your application.exe>
+// -----------
+// small breakdown for debugging:
 //
 //  ---------------|----------------------------|-----------------------------
 //  command        | effect                     | additional information

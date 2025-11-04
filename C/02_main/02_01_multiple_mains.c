@@ -15,17 +15,17 @@ int main() {
 	return EXIT_SUCCESS;
 }
 
-/*	almost identical to function above without accepting any argument	*/
+/* almost identical to function above without accepting any argument */
 int main(void) {
 	return EXIT_SUCCESS;
 }
 
-/*	used to handle n arguments for your application	*/
+/* used to handle n arguments for your application */
 int main(int argc, char **argv) {
 	return EXIT_SUCCESS;
 }
 
-/*	hardly used, however, you'll get a warning on compile time, because a main must be of type int	*/
+/* hardly used, however, you'll get a warning on compile time, because a main must be of type int */
 void main() {
 }
 

@@ -14,8 +14,8 @@
 #ifndef LIBRARY_MAKER_H
 #define LIBRARY_MAKER_H
 
-//	this is optional, but often used for Windows;
-//	because the library must be able to load on runtime
+// this is optional, but often used for Windows;
+// because the library must be able to load on runtime
 #ifdef _WIN32
 	#ifdef LIBARY_MAKER_EXPORTS
 		#define LIBARY_MAKER_API __declspec(dllexport)
@@ -28,14 +28,14 @@
 
 /*	simple implementation for a periodic system	*/
 
-//	--------------
-//	libary
-//	--------------
+// --------------
+// libary
+// --------------
 #include <stdbool.h>
 
-//	--------------
-//	constants
-//	--------------
+// --------------
+// constants
+// --------------
 
 #define ELEMENT_LENGTH	101
 #define SYMBOL_LENGTH	4
@@ -52,9 +52,9 @@
 #define _ART		"ARTIFICIALLY"
 #define	_RADIO		"RADIOACTIVE"
 
-//	--------------
-//	structures
-//	--------------
+// --------------
+// structures
+// --------------
 
 /// @brief contains an element type in the range of {solid, liquid, gas}
 typedef enum {
@@ -87,9 +87,9 @@ typedef struct {
 	Notification _note;
 } Element;
 
-//	--------------
-//	function prototypes
-//	--------------
+// --------------
+// function prototypes
+// --------------
 
 /// @brief Print all elements from the array to stdout.
 LIBARY_MAKER_API void print_all_elements(void);
@@ -119,5 +119,5 @@ LIBARY_MAKER_API char *get_classification(Classification c);
 /// @return the element notification as a word or NULL, if not found
 LIBARY_MAKER_API char *get_notification(Notification n);
 
-//	any other functions here...
+// any other functions here...
 #endif

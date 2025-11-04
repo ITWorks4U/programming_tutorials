@@ -1,4 +1,4 @@
-//	This sample shall be build with a C compiler only.
+// This sample shall be build with a C compiler only.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -61,7 +61,7 @@ int main(void) {
 			// clear any existing error...
 			dlerror();
 
-			//	get the pointers to the functions and check, if there was an error
+			// get the pointers to the functions and check, if there was an error
 			addition_func addition = (addition_func) dlsym(library_handler, FUNC_ADD);
 			if ((error_message = dlerror()) != NULL) {
 				fprintf(stderr, "dlsym(\"%s\") failed: %s\n", FUNC_ADD, error_message);
@@ -108,6 +108,8 @@ int main(void) {
 		#endif
 
 		return EXIT_SUCCESS;
+	#else
+	puts("ERROR: It was not clear on which OS this application is running. Nothing was made.");
 	#endif
 
 	return EXIT_FAILURE;

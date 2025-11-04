@@ -41,10 +41,10 @@ int main() {
 	printf("%lu\n", size_of_address);
 	#endif
 
-	//	attentions:
-	//	without an array an accessing to a member also affects the other members
-	//	since C-strings are in use they contains garbage on runtime => are not fixed here by using memset()
-	//	if you try to build that sample in C++ make sure NOT to use C++ keywords, like "public", "private", ...
+	// attentions:
+	// without an array an accessing to a member also affects the other members
+	// since C-strings are in use they contains garbage on runtime => are not fixed here by using memset()
+	// if you try to build that sample in C++ make sure NOT to use C++ keywords, like "public", "private", ...
 
 	Address a[2];
 

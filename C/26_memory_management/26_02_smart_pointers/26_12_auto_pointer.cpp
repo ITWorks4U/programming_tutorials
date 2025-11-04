@@ -42,7 +42,7 @@ struct Person {
 
 int main() {
 	#ifdef _WIN32
-	#warning "The type auto_ptr is unknown under Windows. Try to run this sample on an another OS."
+	#error "The type auto_ptr is unknown under Windows. Try to run this sample on an another OS."
 	#else
 	cout << "using auto_ptr" << endl;
 	auto_ptr<Person> p0(new Person());
@@ -53,21 +53,21 @@ int main() {
 	cout << "using a second instance here" << endl;
 	auto_ptr<Person> p1(p0);
 
-	//	since p1 is now using the memory, p0 still exist, but this is no longer in use
-	//	unless p1 has been removed
+	// since p1 is now using the memory, p0 still exist, but this is no longer in use
+	// unless p1 has been removed
 	cout << "address of p1: " << p1.get() << "H" << endl;
 	cout << "address of p0: " << p0.get() << "H" << endl;
 
 	cout << "p1 is now being deleted..." << endl;
 	p1.reset();
 
-	//	now p0 is still in use here
+	// now p0 is still in use here
 	p0.reset();
 
-	//	unlike to free() / delete the smart_pointers does not need
-	//	to release manually; that means, even in an exception case
-	//	this allocated memory is automatically removed from the
-	//	system, too
+	// unlike to free() / delete the smart_pointers does not need
+	// to release manually; that means, even in an exception case
+	// this allocated memory is automatically removed from the
+	// system, too
 	#endif
 
 	return 0;

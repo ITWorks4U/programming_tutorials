@@ -2,20 +2,20 @@
 #include <stdlib.h>
 
 /*
-	It doesn't matter, which input function you're using, when you don't clear
-	the input buffer with any characters left. This input buffer causes a
-	wrong behavior if you're using a next input function. The buffer with n characters
-	left has a higher priority instead of your keyboard, a file, ...
-
-	Perhaps you have heared to use a function, like:
-	fflush(stdin);
-
-	This, however, does NOT clear your input buffer. This is only in use
-	for output buffer.
-
-	To clear the input buffer, use this syntax:
-	int c;
-	while ((c = getchar()) != '\n' && c != EOF);
+* It doesn't matter, which input function you're using, when you don't clear
+* the input buffer with any characters left. This input buffer causes a
+* wrong behavior if you're using a next input function. The buffer with n characters
+* left has a higher priority instead of your keyboard, a file, ...
+*
+* Perhaps you have heared to use a function, like:
+* fflush(stdin);
+*
+* This, however, does NOT clear your input buffer. This is only in use
+* for output buffer.
+*
+* To clear the input buffer, use this syntax:
+* int c;
+* while ((c = getchar()) != '\n' && c != EOF);
 */
 
 int main(void) {
@@ -28,7 +28,7 @@ int main(void) {
 	printf("enter something for word: ");
 	fgets(word, 31, stdin);
 
-	//	this will clear the input buffer left
+	// this will clear the input buffer left
 	int c;
 	while ((c = getchar()) != '\n' && c != EOF);
 
@@ -41,7 +41,7 @@ int main(void) {
 	char word_2[32];
 	fgets(word_2, 31, stdin);
 
-	/*	see, what happens:	*/
+	/* see, what happens: */
 	printf("your input was: %s\n", word);
 	printf("word_2 contains: %s\n", word_2);
 	printf("signle_sign contains...? \"%c\"\n", single_sign);

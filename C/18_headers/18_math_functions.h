@@ -3,7 +3,7 @@
 * These offers data types, definitions, functions, etc.
 */
 
-//	mostly used on Windows: #pragma once
+// mostly used on Windows: #pragma once
 // => short form of #ifndef .... #define .... #endif
 
 // basic usage, where the expression must contain the name
@@ -16,12 +16,12 @@
 // over and over again
 #ifndef	MATH_FUNCTIONS_H
 #define MATH_FUNCTIONS_H
-	//	a header file may contain:
-	//	- (any) included libraries
-	//	- (any) macro definitions (see chapter 17)
-	//	- (any) structures (see chapter 19)
-	//	- (any) function prototypes
-	//	- (any) external handling variables (see chapter 22)
+	// a header file may contain:
+	// - (any) included libraries
+	// - (any) macro definitions (see chapter 17)
+	// - (any) structures (see chapter 19)
+	// - (any) function prototypes
+	// - (any) external handling variables (see chapter 22)
 
 	int add(int a, int b);
 	int subtract(int a, int b);

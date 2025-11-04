@@ -14,7 +14,12 @@
 *       In summary, such a display can be provided on an UNIX system only.
 *       See: unix_only/scan_[relative|absolute]_path.c
 *
-* ITWorks4U
+* author:  ITWorks4U
+* created: October 13th, 2025
+* updated: November 3rd, 20257
+*
+* youtube:  @itworks4u
+* github:   github.com/ITWorks4U
 */
 
 #include <stdio.h>
@@ -200,17 +205,15 @@ int main(int argc, char **argv) {
 
 		int exit_code = system(external_command);
 
-		#ifdef _WIN32
-		// extracting exit code from result
-		//
 		// NOTE: The system() function may not return 0|1, depending on the
-		//       used platform. It may happen to receive any other value, however,
-		//       right shift the exit code by 8 may also lead to 0, even the real
-		//       exit code was not 0...
-		// printf("exit_code (then): %d\n", exit_code);
-		// exit_code = (exit_code >> 8);
-		// printf("exit_code (now): %d\n", exit_code);
-		#endif
+		//       used platform. It may happen to receive any other value, like 256.
+		//       For 256 the 8th bit is set with 1 and the result must be
+		//       right shifted by 8 bits to reveal the real return value instead.
+		// printf("exit_code: %d\n", exit_code);
+
+		if (!(exit_code == 0 && exit_code == 1)) {
+			exit_code = (exit_code >> 8);
+		}
 
 		if (exit_code != 0) {
 			fprintf(stderr, "Error: The given path \"%s\" was invalid.\n", path_to_start);

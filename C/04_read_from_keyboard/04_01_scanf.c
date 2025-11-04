@@ -15,27 +15,27 @@
 */
 
 int main(void) {
-	//	holds a single sign only
+	// holds a single sign only
 	char single_sign;
 
-	//	holds up to 31 characters including a null termination character \0
+	// holds up to 31 characters including a null termination character \0
 	char word[32];
 
-	//	fixed word
+	// fixed word
 	char fixed_word[] = "A given string with a fixed length";
 	
-	//	stores an expected number from keyboard => Undefined behavior, if "number" may contain any other
-	//	value instead of an integer value!
+	// stores an expected number from keyboard => Undefined behavior, if "number" may contain any other
+	// value instead of an integer value!
 	int number;
 
-	/*	reading from keyboard	*/
+	// reading from keyboard
 	printf("enter something: ");
 
-	//	advantage: you can handle different variables at the same time
-	//	disadvantage: the order of words must be identical to the scanned formats
+	// advantage: you can handle different variables at the same time
+	// disadvantage: the order of words must be identical to the scanned formats
 	scanf("%s %d", word, &number);
 
-	/*	see, what happens:	*/
+	// see, what happens:
 	printf("your input was: %s\n", word);
 	printf("signle_sign contains...? \"%c\"\n", single_sign);
 	printf("fixed word: %s\n", fixed_word);

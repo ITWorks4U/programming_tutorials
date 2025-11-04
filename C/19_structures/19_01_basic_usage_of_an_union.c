@@ -17,10 +17,10 @@
 #include <string.h>
 #define BUFFER_LENGTH	20
 
-//	union may also contain nothing
-//	NOTE: On Windows or any IDE it may happen, that
-//	an error is shown up, that a declaration is expected
-//	=> this application can be build anyway
+// union may also contain nothing
+// NOTE: On Windows or any IDE it may happen, that
+// an error is shown up, that a declaration is expected
+// => this application can be build anyway
 union EmptyUnion {};
 
 union MyUnion {
@@ -36,21 +36,21 @@ union MyUnion {
 int main(void) {
 	union EmptyUnion eu;
 
-	//	in C: 0 bytes, in C++: 1 byte!
+	// in C: 0 bytes, in C++: 1 byte!
 	size_t size_of_union = sizeof(eu);
 	printf("amount of bytes for \"eu\": ");
 
-	//	NOTE: On Windows sizeof is often declared as an unsigned int
-	//	instead of an unsigned long, so a warning (with -Wall flag)
-	//	appears on compile time; unless we're using the preprocessor
-	//	condition checks
+	// NOTE: On Windows sizeof is often declared as an unsigned int
+	// instead of an unsigned long, so a warning (with -Wall flag)
+	// appears on compile time; unless we're using the preprocessor
+	// condition checks
 	#if _WIN32
 	printf("%u byte(s)\n", size_of_union);
 	#else
 	printf("%lu byte(s)\n", size_of_union);
 	#endif
 
-	//	accessing to members
+	// accessing to members
 	union MyUnion mu;
 	mu.sign = 'A';
 	mu.index = 100;
@@ -68,24 +68,24 @@ int main(void) {
 	printf("%lu byte(s)\n", size_of_union);
 	#endif
 
-	//	WYSIWYG? => No! The last assigned member in your union dominates
-	//	the values of the other members. In that case mu.word was assigned last,
-	//	thus every member has a value of 0 (numeric) or '\0' for char or "\0\0\0..." for other C-string(s).
+	// WYSIWYG? => No! The last assigned member in your union dominates
+	// the values of the other members. In that case mu.word was assigned last,
+	// thus every member has a value of 0 (numeric) or '\0' for char or "\0\0\0..." for other C-string(s).
 	printf(
 		"%c, %d, %ld, %f, %d, %s\n",
 		mu.sign, mu.index, mu.identification, mu.percent, mu.another_index, mu.word
 	);
 
-	//	let's modify that value:
+	// let's modify that value:
 	strcpy(mu.word, "Hello from union!");
 
-	//	Warning: this may cause an undefined behavior on runtime
+	// Warning: this may cause an undefined behavior on runtime
 	printf(
 		"%c, %d, %ld, %f, %d, %s\n",
 		mu.sign, mu.index, mu.identification, mu.percent, mu.another_index, mu.word
 	);
 
-	//	or modify an another value instead:
+	// or modify an another value instead:
 	mu.percent = 0.23e2;
 
 	printf(

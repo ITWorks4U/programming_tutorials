@@ -10,8 +10,6 @@
 #error "This custom lamdba expression works on C only. Use the built in lambda functions for C++ instead."
 #else
 
-#warning "This application may cause an undefined behavior!"
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -34,10 +32,10 @@ static double collection[] = {3.141, 2.713, 9e3, 3e-5};
 static int int_collection[] = {1,2,3,4,5,6,7,8,9,10};
 static char word[] = "You can also use lambda expressions in C! These are rather difficult to C++.";
 
-//	-----------
-//	a general function
-//	for any type
-//	-----------
+// -----------
+// a general function
+// for any type
+// -----------
 double average_apply(double (*fn)(double)) {
 	double avg = 0.0;
 	int nbrOfElements = sizeof(collection)/sizeof(collection[0]);
@@ -49,9 +47,9 @@ double average_apply(double (*fn)(double)) {
 	return avg/nbrOfElements;
 }
 
-//	-----------
-//	some special functions
-//	-----------
+// -----------
+// some special functions
+// -----------
 int summary_apply(int (*fn)(int inp)) {
 	int sum = 0;
 	int nbrOfElements = sizeof(int_collection)/sizeof(int_collection[0]);
@@ -74,9 +72,9 @@ char word_apply(char (*fn)(char inp)) {
 	return sign;
 }
 
-//	-----------
-//	main
-//	-----------
+// -----------
+// main
+// -----------
 int main(void) {
 	printf("average (double) = %lf\n",average_apply(LAMBDA(double, (double x), {return x;})));
 	printf("average (int) = %lf\n",average_apply(LAMBDA(double, (double x), {return x*x;})));

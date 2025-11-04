@@ -12,22 +12,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//	as far we know, when a function is defined in that way,
-//	we assume, that no argument is allowed, however, in C
-//	you can add any amount of arguments
+// as far we know, when a function is defined in that way,
+// we assume, that no argument is allowed, however, in C
+// you can add any amount of arguments
 void simple_function() {
 	puts("I was called.");
 }
 
 int main(void) {
-	//	Are you surprised?
+	// Are you surprised?
 	simple_function();
 	simple_function(1, 2, 3);
 	simple_function(4.0, 5e9, -3e-10);
 	simple_function("Hello World!");
 	simple_function('E', 'P', 'I', 'C');
 	simple_function(NULL);
-	//	...
+	// ...
 
 	/*
 	* Why is this function with any argument(s) still able to being called?
@@ -42,9 +42,9 @@ int main(void) {
 	*    use "..." in the brackets.
 	*/
 
-	//	functions, like printf, fprintf, ... allows to handle any amount of
-	//	additional arguments
-	//	int printf(const char *const _Format, ...);
+	// functions, like printf, fprintf, ... allows to handle any amount of
+	// additional arguments
+	// int printf(const char *const _Format, ...);
 
 	return EXIT_SUCCESS;
 }

@@ -45,10 +45,10 @@
 #include <string.h>
 #define BUFFER_LENGTH	20
 
-//	structs may contain nothing
-//	NOTE: On Windows or any IDE it may happen, that
-//	an error is shown up, that a declaration is expected
-//	=> this application can be build anyway
+// structs may contain nothing
+// NOTE: On Windows or any IDE it may happen, that
+// an error is shown up, that a declaration is expected
+// => this application can be build anyway
 struct EmptyStruct {};
 
 struct MyStruct {
@@ -64,21 +64,21 @@ struct MyStruct {
 int main(void) {
 	struct EmptyStruct es;
 
-	//	in C: 0 bytes, in C++: 1 byte!
+	// in C: 0 bytes, in C++: 1 byte!
 	size_t size_of_struct = sizeof(es);
 	printf("amount of bytes for \"es\": ");
 
-	//	NOTE: On Windows sizeof is often declared as an unsigned int
-	//	instead of an unsigned long, so a warning (with -Wall flag)
-	//	appears on compile time; unless we're using the preprocessor
-	//	condition checks
+	// NOTE: On Windows sizeof is often declared as an unsigned int
+	// instead of an unsigned long, so a warning (with -Wall flag)
+	// appears on compile time; unless we're using the preprocessor
+	// condition checks
 	#if _WIN32
 	printf("%u byte(s)\n", size_of_struct);
 	#else
 	printf("%lu byte(s)\n", size_of_struct);
 	#endif
 
-	//	accessing to members
+	// accessing to members
 	struct MyStruct ms;
 	ms.sign = 'A';
 	ms.index = 100;
@@ -96,7 +96,7 @@ int main(void) {
 	printf("%lu byte(s)\n", size_of_struct);
 	#endif
 
-	//	WYSIWYG
+	// WYSIWYG
 	printf(
 		"%c, %d, %ld, %f, %d, %s\n",
 		ms.sign, ms.index, ms.identification, ms.percent, ms.another_index, ms.word

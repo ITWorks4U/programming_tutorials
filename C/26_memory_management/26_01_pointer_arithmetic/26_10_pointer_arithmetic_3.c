@@ -4,10 +4,10 @@
 #warning	"This sample causes undefined behaviors!"
 
 int main(void) {
-	//	How to "walk" trough your array / c-string without using strlen(expression)?
+	// How to "walk" trough your array / c-string without using strlen(expression)?
 	char expression[] = "Pointers aren't hard to use, right?";
 
-	//	first assuming:
+	// first assuming:
 	char c = expression[0];
 
 	while(c != '\0') {
@@ -42,7 +42,7 @@ int main(void) {
 	puts("---------------");
 
 	/*	correct usage:	*/
-	//	NOTE: It may happen, that you won't see the two samples below.
+	// NOTE: It may happen, that you won't see the two samples below.
 	int ctr = 1;
 
 	while(c != '\0') {

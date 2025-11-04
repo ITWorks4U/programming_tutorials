@@ -11,10 +11,10 @@
 int main(void) {
 	const int shall_not_be_modified = 100;
 
-	//	this is impossible, as expected
+	// this is impossible, as expected
 	// shall_not_be_modified++;
 
-	//	may give you a warning, that the const might no longer be available here
+	// may give you a warning, that the const might no longer be available here
 	int *address_ptr = &shall_not_be_modified;
 
 	printf(
@@ -22,7 +22,7 @@ int main(void) {
 		shall_not_be_modified, &shall_not_be_modified, address_ptr[0], address_ptr
 	);
 
-	//	"Arvada ...!" Oops, wrong spell. °(^.^)
+	// "Arvada ...!" Oops, wrong spell. °(^.^)
 	*address_ptr = 0xBAD;
 	puts("Now what...?");
 

@@ -4,8 +4,6 @@
 * has been occurred?
 */
 
-#warning	"Memory leak incoming!"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -21,6 +19,7 @@ void handle_exception(int signum) {
 }
 
 int main(void) {
+	puts("Warning: Memory leaks incoming!");
 	signal(SIGSEGV, handle_exception);
 
 	for(int i = 10; i >= -10; i -= 2) {
@@ -30,12 +29,12 @@ int main(void) {
 
 		printf("%d / %d = %d\n", m->a, m->b, m->a / m->b);
 
-		//	at this point m shall automatically be released, but what happens
-		//	on an "exception"? It doesn't matter, if you're using C++ with a
-		//	try-catch-block instead
+		// at this point m shall automatically be released, but what happens
+		// on an "exception"? It doesn't matter, if you're using C++ with a
+		// try-catch-block instead
 		//
-		//	when an "exception handling" has been done and the application terminated
-		//	the last allocated memory for m is still not freed => memory leak
+		// when an "exception handling" has been done and the application terminated
+		// the last allocated memory for m is still not freed => memory leak
 		free(m);
 	}
 

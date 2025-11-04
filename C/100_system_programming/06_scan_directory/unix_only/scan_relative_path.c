@@ -1,16 +1,22 @@
-/**	system programming in C
- *
- *	Scanning the current directory and list all files with their attributes.
- *	Attention:
- *		By using this sample you can scan your current directory only.
- *		This is caused by the stat function for each file, which shall exist
- *		on the current working directory of your launched application. So don't be
- *		confused, if a file might not exist, which really exist.
- *
- *		To fix that logical error, it's required to use the absolute path.
- *		Take a look to the advanced folder.
- *
- *	ITWorks4U
+/*
+* system programming in C
+*
+* Scanning the current directory and list all files with their attributes.
+* Attention:
+*   By using this sample you can scan your current directory only.
+*   This is caused by the stat function for each file, which shall exist
+*   on the current working directory of your launched application. So don't be
+*   confused, if a file might not exist, which really exist.
+*
+*   To fix that logical error, it's required to use the absolute path.
+*   Take a look to the advanced folder.
+*
+* author:   ITWorks4U
+* created:  January 1st, 2022
+* updated:  November 3rd, 2025
+*
+* youtube:  @itworks4u
+* github:   github.com/ITWorks4U
 */
 
 #ifdef _WIN32
@@ -24,17 +30,17 @@
 #include <string.h>
 #include <stdbool.h>
 
-/*	system libraries to use	*/
+/* system libraries to use */
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <dirent.h>
 
-/*	constants	*/
-#define	RWX			"rwxrwxrwx"
-#define	MAX_LENGTH	9
-#define	INFO		"INFO:"
-#define	WARNING		"WARNING:"
-#define	ERROR		"ERROR:"
+/* constants */
+#define	RWX         "rwxrwxrwx"
+#define	MAX_LENGTH  9
+#define	INFO        "INFO:"
+#define	WARNING     "WARNING:"
+#define	ERROR       "ERROR:"
 
 /// @brief Scanning the current folder path.
 /// @param path given path to scan
@@ -44,11 +50,11 @@ void scan_folder(const char *path) {
 	DIR *current_dir = NULL;
 
 	/*
-		DIR *opendir(const char *name);
-
-		Opening the current directory.
-		On success, a pointer for DIR returns,
-		otherwise NULL returns and errno is set.
+	* DIR *opendir(const char *name);
+	*
+	* Opening the current directory.
+	* On success, a pointer for DIR returns,
+	* otherwise NULL returns and errno is set.
 	*/
 
 	if ((current_dir = opendir(path)) == NULL) {
@@ -57,38 +63,38 @@ void scan_folder(const char *path) {
 	}
 
 	if (on_continue) {
-		/*	bit flags for any file	*/
+		/* bit flags for any file */
 		int bits[]= {
-			S_IRUSR,S_IWUSR,S_IXUSR,	/*	current user	*/
-			S_IRGRP,S_IWGRP,S_IXGRP,	/*	current group	*/
-			S_IROTH,S_IWOTH,S_IXOTH		/*	other			*/
+			S_IRUSR,S_IWUSR,S_IXUSR,  /* current user  */
+			S_IRGRP,S_IWGRP,S_IXGRP,  /* current group */
+			S_IROTH,S_IWOTH,S_IXOTH   /* other         */
 		};
 
 		struct dirent *dir_ptr = NULL;
 
 		/*
-			struct dirent *readdir(DIR *__dirp);
-
-			Read the next detected file. "File" can be a regular file, a folder, device, link, ...
-			When the end has been reached, NULL returns.
+		* struct dirent *readdir(DIR *__dirp);
+		*
+		* Read the next detected file. "File" can be a regular file, a folder, device, link, ...
+		* When the end has been reached, NULL returns.
 		*/
 
 		while ((dir_ptr = readdir(current_dir)) != NULL) {
 			struct stat s;
 
 			if (stat(dir_ptr->d_name, &s) < 0) {
-				/*	in case of an error the current file is going to skip	*/
+				/* in case of an error the current file is going to skip */
 				fprintf(stdout, "%s unable to receive file stat for \"%s\": %s skipping...\n", WARNING, dir_ptr->d_name, strerror(errno));
 				continue;
 			}
 
 			/*
-				struct stat contains properties for the file;
-				depending on your working system, C version, ...
-				the amount of properties may differ
-
-				There're macro functions to determine which
-				file is currently in use.
+			* struct stat contains properties for the file;
+			* depending on your working system, C version, ...
+			* the amount of properties may differ
+			*
+			* There're macro functions to determine which
+			* file is currently in use.
 			*/
 			if (S_ISREG(s.st_mode)) {
 				printf("regular file...\t\t");
@@ -117,12 +123,12 @@ void scan_folder(const char *path) {
 		}
 
 		/*
-			Closes the directory stream.
-
-			int closedir(DIR *__dirp);
-
-			on success, 0 returns
-			on failure, -1 returns and errno is set
+		* Closes the directory stream.
+		*
+		* int closedir(DIR *__dirp);
+		*
+		* on success, 0 returns
+		* on failure, -1 returns and errno is set
 		*/
 		if (closedir(current_dir) < 0) {
 			perror("closedir()");
@@ -137,8 +143,8 @@ void scan_folder(const char *path) {
 /// @return EXIT_SUCCESS / EXIT_FAILURE
 int main(int argc, char **argv) {
 	/*
-		Don't be confused about "argc != 2".
-		The first argument is your application itself.
+	* Don't be confused about "argc != 2".
+	* The first argument is your application itself.
 	*/
 
 	if (argc != 2) {

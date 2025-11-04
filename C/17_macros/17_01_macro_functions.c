@@ -16,17 +16,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//	macros can also be used for function operations,
-//	however, missing brackets causes a wrong result
+// macros can also be used for function operations,
+// however, missing brackets causes a wrong result
 //
-//	attention: a macro function can "operate" with any datatype,
-//	but this also causes an undefined behavior
-//	macro functions were made to run a function over and over again
-//	without forcing to use a limitation of datatype(s)
-#define		QUBIC_WRONG(X) (X * X * X)
-#define		QUBIC_CORRECT(X) ((X) * (X) * (X))
+// attention: a macro function can "operate" with any datatype,
+// but this also causes an undefined behavior
+// macro functions were made to run a function over and over again
+// without forcing to use a limitation of datatype(s)
+#define QUBIC_WRONG(X) (X * X * X)
+#define QUBIC_CORRECT(X) ((X) * (X) * (X))
 
-//	a normal function as an alternative
+// a normal function as an alternative
 int qubic_function(int number) {
 	return number * number * number;
 }

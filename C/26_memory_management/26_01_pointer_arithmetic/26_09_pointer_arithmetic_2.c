@@ -4,7 +4,7 @@
 int main(void) {
 	int array[] = {0,1,2,3,4,5,6};
 
-	//	not recommented to use an c-string for an integer array!
+	// not recommented to use an c-string for an integer array!
 	char *ptr = (char *) array;
 
 	printf("ptr = %d (array[0] = %c)\n", ptr[0], array[0]);
@@ -16,12 +16,12 @@ int main(void) {
 	printf("ptr = %d (array[3] = %c)\n", ptr[0], array[3]);
 	ptr++;
 	
-	//	the next value can be read here:
+	// the next value can be read here:
 	printf("ptr = %d (array[4] = %c)\n", ptr[0], array[4]);
 	ptr++;
 	printf("ptr = %d (array[5] = %c)\n", ptr[0], array[5]);
 	ptr++;
-	//	........
+	// ........
 
 	/*
 	* explanation:

@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+#error "By using a C++ compiler this application may be handled like a threat or it leads to an undefined behavior. Use a C compiler instead."
+#else
+
 /*
 * Simple time measurement for C programming.
 * In C++ there're another ways to handle time measurments.
@@ -31,8 +35,8 @@ int main(void) {
 	clock_t start_timer = clock();
 	puts("starting time measurement...");
 
-	//	a simple, stupid and "Holy sh*t! Why do you do such bullsh*t?" instruction
-	//	to emulate a long time amount
+	// a simple, stupid and "Holy sh*t! Why do you do such bullsh*t?" instruction
+	// to emulate a long time amount
 	while(counter != UINT_MAX) {
 		counter++;
 		strncpy(c_string, word_to_copy, strlen(word_to_copy));
@@ -41,9 +45,10 @@ int main(void) {
 	puts("Finished!");
 	clock_t end_timer = clock();
 
-	//	end-start must be devided by CLOCLS_PER_SEC (number of clock ticks per second)
-	//	to receive the current elapsed time in seconds
+	// end-start must be devided by CLOCLS_PER_SEC (number of clock ticks per second)
+	// to receive the current elapsed time in seconds
 	print_time(((double)(end_timer - start_timer) / CLOCKS_PER_SEC));
 
 	return EXIT_SUCCESS;
 }
+#endif

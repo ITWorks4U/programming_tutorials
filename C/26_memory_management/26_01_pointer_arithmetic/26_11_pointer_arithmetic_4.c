@@ -4,7 +4,7 @@
 #warning	"This sample results to an undefined behavior!"
 
 int main(void) {
-	//	Are you tired about pointer arithmetics? Well, there's much more... (:
+	// Are you tired about pointer arithmetics? Well, there's much more... (:
 
 	int i = 100;
 	int *ptr0 = &i;

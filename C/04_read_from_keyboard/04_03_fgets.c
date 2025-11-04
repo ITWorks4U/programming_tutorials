@@ -21,15 +21,15 @@ int main(void) {
 	char fixed_word[] = "A given string with a fixed length";
 	int number;
 
-	/*	reading from keyboard	*/
+	/* reading from keyboard */
 	printf("enter something: ");
 
-	//	reading up to 32 characters to word from keyboard (stdin); remember: every
-	//	C-string MUST end with a null termination character, so it may also crash your
-	//	application or any other issue, if there's no free space left for a null termination character
+	// reading up to 32 characters to word from keyboard (stdin); remember: every
+	// C-string MUST end with a null termination character, so it may also crash your
+	// application or any other issue, if there's no free space left for a null termination character
 	fgets(word, 32, stdin);
 
-	/*	see, what happens:	*/
+	/* see, what happens: */
 	printf("your input was: %s\n", word);
 	printf("signle_sign contains...? \"%c\"\n", single_sign);
 	printf("fixed word: %s\n", fixed_word);

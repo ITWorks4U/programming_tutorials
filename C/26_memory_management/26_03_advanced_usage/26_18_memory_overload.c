@@ -6,22 +6,21 @@
 * YOU SHOULD ALSO KNOW THAT YOUR RUNNING SYSTEM IS ALSO AFFECTED, WHEN NO MORE MEMORY
 * IS AVAILABLE. SO YOU HAVE TO REBOOT YOUR SYSTEM! THIS MAY ALSO AFFECT YOUR HARDWARE ON RUNTIME!
 */
-
-#warning "This sample will blow up your current RAM! Make sure, that you REALLY know what you do!!!"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
 #include <errno.h>
 
-//	1 << 30 is identical to 1024*1024*1024
-#define GIGABYTE	1 << 30
+// 1 << 30 is identical to 1024*1024*1024
+#define GIGABYTE 1 << 30
 
 int main(void) {
+	puts("Warning: This sample will BLOW UP your current RAM! Make sure, that you REALLY know what YOU do!");
+
 	int ctr = 0;
 
-	/*	Don't, seriously, don't do this!	*/
+	/* Don't, seriously, don't do this! */
 
 	while(true) {
 		/*

@@ -40,6 +40,6 @@
 */
 
 int main(void) {
-	//	nothing to do here
+	// nothing to do here
 	return 0;
 }

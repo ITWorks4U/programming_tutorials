@@ -1,12 +1,9 @@
 #ifdef __cplusplus
 #error "This sample can be build with a C compiler only."
 #else
-
-#warning "Not every function may work on your machine."
-
 #include <stdio.h>
 #include <stdlib.h>
-#define BUFFER_LENGTH	100
+#define BUFFER_LENGTH 100
 
 /*
 * There're different ways to allocate memory during runtime, like
@@ -23,10 +20,10 @@ struct Person {
 };
 
 void use_malloc(void) {
-	//	--------------------------------------
-	//	Since you're using malloc, your members contains garbage!
-	//	Try to figure out, what happens here. Depending on your OS, the results differs.
-	//	--------------------------------------
+	// --------------------------------------
+	// Since you're using malloc, your members contains garbage!
+	// Try to figure out, what happens here. Depending on your OS, the results differs.
+	// --------------------------------------
 	puts("--------------------\nmalloc\n--------------------");
 	struct Person *p = (struct Person *) malloc(sizeof(struct Person));
 
@@ -47,12 +44,12 @@ void use_malloc(void) {
 }
 
 void use_calloc(void) {
-	//	--------------------------------------
-	//	- "clean allocation"
-	//	- unlike to malloc() your members are going to
-	//	  initialize with a fixed value, like 0 for integer types,
-	//	  an empty word for C-Strings, NULL/nullptr for any pointer etc
-	//	--------------------------------------
+	// --------------------------------------
+	// - "clean allocation"
+	// - unlike to malloc() your members are going to
+	//   initialize with a fixed value, like 0 for integer types,
+	//   an empty word for C-Strings, NULL/nullptr for any pointer etc
+	// --------------------------------------
 	puts("--------------------\ncalloc\n--------------------");
 	struct Person *p = (struct Person *) calloc(1, sizeof(struct Person));
 
@@ -76,18 +73,18 @@ void use_realloc(void) {
 	puts("--------------------\nrealloc\n--------------------");
 	const int additional_space = 50;
 
-	//	calloc also works here...
+	// calloc also works here...
 	struct Person *p = (struct Person *) malloc(sizeof(struct Person));
 
-	//	any operations here
+	// any operations here
 
-	//	--------------------------------------
-	//	- reallocation memory
-	//	- an already allocated memory can be expand by n additional bytes
-	//	- this function can also be used to create new memory, but this is hardly used
-	//	- realloc also don't care about the variable's / member's content and you'll
-	//	  receive garbage on runtime
-	//	--------------------------------------
+	// --------------------------------------
+	// - reallocation memory
+	// - an already allocated memory can be expand by n additional bytes
+	// - this function can also be used to create new memory, but this is hardly used
+	// - realloc also don't care about the variable's / member's content and you'll
+	//   receive garbage on runtime
+	// --------------------------------------
 	p = (struct Person *) realloc(p, additional_space);
 
 	printf("size of person in bytes: ");
@@ -107,21 +104,21 @@ void use_realloc(void) {
 }
 
 void try_to_use_valloc(void) {
-	//	it may happen, that this does not work on your machine
+	// it may happen, that this does not work on your machine
 	
 	#ifdef _WIN32
-	#warning "Function valloc() is unknown. Use VirtualAlloc() (Windows.h), or _aligned_malloc() (malloc.h) instead."
+	puts("Function valloc() is unknown. Use VirtualAlloc() (Windows.h), or _aligned_malloc() (malloc.h) instead.");
 	#else
-	//	--------------------------------------
-	//	- page aligned memory allocating
-	//	- it has a similar effect like malloc(), but it's kept for
-	//	  historical reasons and it's also hardly used today
-	//	- valloc also don't care about the variable's / member's content and you'll
-	//	  receive garbage on runtime
+	// --------------------------------------
+	// - page aligned memory allocating
+	// - it has a similar effect like malloc(), but it's kept for
+	//   historical reasons and it's also hardly used today
+	// - valloc also don't care about the variable's / member's content and you'll
+	//   receive garbage on runtime
 	//
-	//	- more informations:
-	//	  https://www.ibm.com/docs/en/zos/2.2.0?topic=functions-valloc-page-aligned-memory-allocator
-	//	--------------------------------------
+	// - more informations:
+	//   https://www.ibm.com/docs/en/zos/2.2.0?topic=functions-valloc-page-aligned-memory-allocator
+	// --------------------------------------
 	puts("--------------------\nvalloc\n--------------------");
 	struct Person *p = (struct Person *) valloc(sizeof(struct Person));
 
@@ -137,11 +134,13 @@ void try_to_use_valloc(void) {
 }
 
 int main(void) {
+	puts("Warning: Not every function may work on your machine.");
+
 	use_malloc();
 	use_calloc();
 	use_realloc();
 
-	//	this may not work
+	// this may not work
 	try_to_use_valloc();
 
 	return EXIT_SUCCESS;

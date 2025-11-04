@@ -42,8 +42,8 @@ int main() {
 	cout << "2st instance:" << endl;
 	shared_ptr<Person> p1(p0);
 
-	//	Since shared_ptr also comes with move(p0), the result, however,
-	//	will be different in contrast to the normal usage.
+	// Since shared_ptr also comes with move(p0), the result, however,
+	// will be different in contrast to the normal usage.
 
 	cout << "address of p0 " << p0.get() << "H" << endl;
 	cout << "address of p1 " << p1.get() << "H" << endl;
@@ -56,12 +56,12 @@ int main() {
 	cout << "deleting p0 instance:" << endl;
 	p0.reset();
 
-	//	There's no need to delete your Person instance, because
-	//	this has been released automatically.
+	// There's no need to delete your Person instance, because
+	// this has been released automatically.
 
-	//	----------------------------------
-	//	in comparison with raw pointers
-	//	----------------------------------
+	// ----------------------------------
+	// in comparison with raw pointers
+	// ----------------------------------
 	cout << "---------------------" << endl <<
 	"in comparison with raw pointers" << endl <<
 	"---------------------" << endl;
@@ -74,11 +74,11 @@ int main() {
 	cout << "address of p2 " << p2 << "H" << endl;
 	cout << "address of p3 " << p3 << "H" << endl;
 
-	//	Since p3 is going to delete, p2 is also affected
-	//	and these pointers STILL points to the memory address!
+	// Since p3 is going to delete, p2 is also affected
+	// and these pointers STILL points to the memory address!
 	delete p3;
 
-	//	not required, but often recommended
+	// not required, but often recommended
 	p3 = nullptr;
 	p2 = nullptr;
 	p1 = nullptr;

@@ -21,6 +21,13 @@
 * example 3: using built in methods
 * NOTE:      It's a bit more complex, but may give
 *            you a more clean or more faster output.
+*
+* author:    itworks4U
+* created:   October 13th, 2025
+* updated:   November 3rd, 2025
+*
+* youtube:  @itworks4u
+* github:   github.com/ITWorks4U
 */
 
 #include <stdio.h>
@@ -47,9 +54,9 @@ void test_with_signals(void) {
 
 	signal(SIGUSR1, _signal_handling_event);
 
-	//	on some systems a SIGSEGV is going to raise,
-	//	when fopen() fails, so this >might< be a "valid"
-	//	way to handle such kind of errors
+	// on some systems a SIGSEGV is going to raise,
+	// when fopen() fails, so this >might< be a "valid"
+	// way to handle such kind of errors
 	signal(SIGSEGV, _signal_handling_event);
 
 	/*

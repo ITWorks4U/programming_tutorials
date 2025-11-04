@@ -9,7 +9,12 @@
 * The folder microcontroller contains a simple code snippet for the
 * serial communication.
 *
-* ITWorks4U
+* author:   ITWorks4U
+* created:  October 13th, 2025
+* updated:  November 4rd, 2025
+*
+* youtube:  @itworks4u
+* github:   github.com/ITWorks4U
 */
 
 #include <stdio.h>
@@ -45,8 +50,7 @@ int main(int argc, char **argv) {
 		char *last_token = strrchr(argv[0], '/');
 		#endif
 
-		char *application_name = ++last_token;
-		last_token = NULL;
+		char *application_name = (last_token) ? last_token + 1 : argv[0];
 
 		fprintf(stderr, "usage: %s <option>\noption could be:\n", application_name);
 		fprintf(stderr, "%s := only read a message\n", COMMAND_READ_ONLY);
@@ -73,7 +77,7 @@ int main(int argc, char **argv) {
 
 	char response_buffer[BUFFER_COMMUNICATION];
 	char command_to_use[BUFFER_COMMUNICATION];
-	
+
 	memset(response_buffer, '\0', BUFFER_COMMUNICATION);
 	memset(command_to_use, '\0', BUFFER_COMMUNICATION);
 

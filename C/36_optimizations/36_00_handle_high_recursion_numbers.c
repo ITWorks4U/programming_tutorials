@@ -55,7 +55,7 @@ int main(void) {
 			fibonacci_series(i);
 		}
 
-		//	every higher number results to a value overflow
+		// every higher number results to a value overflow
 	}
 
 	for(int i = 0; i < MAX_ELEMENTS; i++) {

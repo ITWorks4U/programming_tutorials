@@ -85,8 +85,8 @@ int main() {
 	cout << "deleting p0 instance:" << endl;
 	p0.reset();
 
-	//	There's no need to delete your Person instance, because
-	//	this has been released automatically.
+	// There's no need to delete your Person instance, because
+	// this has been released automatically.
 
 	return 0;
 }

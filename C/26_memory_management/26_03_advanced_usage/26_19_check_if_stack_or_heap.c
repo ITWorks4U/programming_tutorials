@@ -4,10 +4,10 @@
 */
 
 #ifndef _WIN32
-//	required for pthread_getattr_np function
+// required for pthread_getattr_np function
 #define _GNU_SOURCE
 
-//	Windows doesn't have the pthread library.
+// Windows doesn't have the pthread library.
 #include <pthread.h>
 #else
 #include <stdio.h>
@@ -15,9 +15,9 @@
 #include <inttypes.h>
 #include <Windows.h>
 
-#define LOCATED_ON_STACK	1
-#define LOCATED_ON_HEAP		0
-#define FAILED_PROCEDURE	-1
+#define LOCATED_ON_STACK   1
+#define LOCATED_ON_HEAP    0
+#define FAILED_PROCEDURE   -1
 #endif
 
 struct S {
@@ -28,7 +28,7 @@ struct S {
 
 int on_heap(const void *ptr) {
 	#ifdef _WIN32
-	//	only for Windows
+	// only for Windows
 	MEMORY_BASIC_INFORMATION mbi;
 	VirtualQuery(ptr, &mbi, sizeof(mbi));
 
@@ -40,13 +40,13 @@ int on_heap(const void *ptr) {
 	// check if the memory is located on the stack
 	if (mbi.Type == MEM_PRIVATE && mbi.Protect == PAGE_READWRITE) {
 		// stack allocations are MEM_PRIVATE with PAGE_READWRITE
-		//	and the AllocationBase == StackBase
+		// and the AllocationBase == StackBase
 		DWORD_PTR stack_top;
 		NT_TIB *tib = (NT_TIB *)NtCurrentTeb();
 		stack_top = (DWORD_PTR)tib->StackBase;
 
 		if ((DWORD_PTR)ptr < stack_top && (DWORD_PTR)ptr >= (DWORD_PTR)tib->StackLimit) {
-			//	stored on the stack
+			// stored on the stack
 			return LOCATED_ON_STACK;
 		}
 	}
@@ -56,11 +56,11 @@ int on_heap(const void *ptr) {
 		return LOCATED_ON_HEAP;
 	}
 
-	//	otherwise this is still unknown
+	// otherwise this is still unknown
 	return FAILED_PROCEDURE;
 
 	#else
-	//	only for the other OS instead (expected result and never fully tested)
+	// only for the other OS instead (expected result and never fully tested)
 
 	/*
 	* We're using our own running thread to figure out,
@@ -102,11 +102,11 @@ int main(void) {
 	printf("'s1'    => %s\n", on_heap(s1) == 0 ? "heap" : on_heap(s1) == 1 ? "stack" : "error");
 	printf("'s2'    => %s\n", on_heap(s2) == 0 ? "heap" : on_heap(s2) == 1 ? "stack" : "error");
 
-	//	since s2 is NULL, it can be used for free => free(NULL) doesn't do anything
+	// since s2 is NULL, it can be used for free => free(NULL) doesn't do anything
 	free(s2);
 	free(s1);
 
-	//	!!! double free for free(ptr);	!!!
+	// !!! double free for free(ptr);	!!!
 	//free(help);
 	free(ptr);
 

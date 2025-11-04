@@ -48,13 +48,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//	in Windows _exit() is defined in stdlib.h
+// in Windows _exit() is defined in stdlib.h
 #if defined(__unix__) || defined(__linux__) || defined(__APPLE__) || defined(_MAC)
-//	required to use _exit()
+// required to use _exit()
 #include <unistd.h>
 #endif
 
-/*	for assert() function (C89) / assert() macro (C99 and newer)	*/
+/* for assert() function (C89) / assert() macro (C99 and newer) */
 #include <assert.h>
 #define NBR_OF_ELEMENTS	10
 
@@ -65,7 +65,7 @@ void clean_up(void) {
 	puts("clean up....");
 	free(field);
 
-	//	optional in that case
+	// optional in that case
 	field = NULL;
 }
 
@@ -78,7 +78,7 @@ int main(void) {
 	*/
 	atexit(clean_up);
 
-	/*	normal instructions here...	*/
+	/* normal instructions here... */
 	field = (int *) malloc(sizeof(int *) * NBR_OF_ELEMENTS);
 
 	if (field == NULL) {
@@ -86,10 +86,10 @@ int main(void) {
 		return EXIT_FAILURE;
 	}
 
-	//	-----------------
-	//	Since you've decided to terminate your application earlier,
-	//	every other code won't be executed by default.
-	//	-----------------
+	// -----------------
+	// Since you've decided to terminate your application earlier,
+	// every other code won't be executed by default.
+	// -----------------
 
 	/*	Different ways to terminate your application:	*/
 
@@ -178,7 +178,7 @@ int main(void) {
 	*/
 	_Exit(EXIT_FAILURE);
 
-	//	this is never been printed to stdout
+	// this is never been printed to stdout
 	puts("What about this text here?");
 
 	return EXIT_SUCCESS;

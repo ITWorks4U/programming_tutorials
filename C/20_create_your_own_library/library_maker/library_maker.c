@@ -7,23 +7,23 @@
 #include <string.h>
 #include "library_maker.h"
 
-//	only available in this source file
+// only available in this source file
 static Element storage[MAX_NUMBER_OF_ELEMENTS] = {0};
 
 void print_all_elements(void) {
 	int nbr_of_elements = 0;
 
 	for (size_t i = 0; i < MAX_NUMBER_OF_ELEMENTS; i++) {
-		//	get rid of any element, which is "unknown" at this moment
-		//	since this array holds up to 50 elements, not every array position
-		//	contains a valid ID => those ID's are not count
+		// get rid of any element, which is "unknown" at this moment
+		// since this array holds up to 50 elements, not every array position
+		// contains a valid ID => those ID's are not count
 		if (storage[i].element_id != 0) {
 			nbr_of_elements++;
 
-			//	even those three functions returns a char pointer
-			//	these are not dynamically created C strings
-			//	=> refers on the stack and will be vanished,
-			//	when the scope has been left
+			// even those three functions returns a char pointer
+			// these are not dynamically created C strings
+			// => refers on the stack and will be vanished,
+			// when the scope has been left
 			char *element_type = get_element_type(storage[i]._type);
 			char *element_classification = get_classification(storage[i]._class);
 			char *element_notification = get_notification(storage[i]._note);

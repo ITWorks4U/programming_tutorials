@@ -1,11 +1,11 @@
 #ifndef OS_SYSTEM_DEFINITIONS_H
 #define OS_SYSTEM_DEFINITIONS_H
 
-//	function names for our purpose
-#define FUNC_ADD "addition"
+// function names for our purpose
+#define FUNC_ADD      "addition"
 #define FUNC_SUBTRACT "subtraction"
 #define FUNC_MULTIPLY "multiply"
-#define FUNC_DIVIDE "divide"
+#define FUNC_DIVIDE   "divide"
 
 typedef int (*addition_func)(int, int);
 typedef int (*subtraction_func)(int, int);
@@ -28,7 +28,6 @@ typedef int (*divide_func)(int, int);
 		#define LIBRARY_NAME "math_operations.so"
 	#endif
 #else
-	#warning	"Unable to detect the operating system. Your application will be terminated immediately."
 	#define APP_IS_UNABLE_TO_USE
 #endif
 

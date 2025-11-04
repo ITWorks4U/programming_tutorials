@@ -14,10 +14,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//	for C only
+// for C only
 #include <math.h>
 
-//	if you prefer to use C++, use this library instead
+// if you prefer to use C++, use this library instead
 // #include <cmath>
 
 #include <float.h>
@@ -30,7 +30,7 @@
 #define M_PI  3.1415926535897932384626433
 #endif
 
-/*	own written functions to calculate something	*/
+/* own written functions to calculate something */
 void calculate_area_circle(int radius) {
 	printf("area: %e\n", M_PI * radius * radius);
 }
@@ -47,7 +47,7 @@ int main(void) {
 
 	puts("============");
 
-	//	using some math functions from [c]math.h:
+	// using some math functions from [c]math.h:
 	for(double i = 0.0; i <= 90.0; i += 0.1) {
 		printf("sin(%lf) = %lf\n", i, sin(i));
 		printf("cos(%lf) = %lf\n", i, cos(i));
@@ -58,13 +58,13 @@ int main(void) {
 	puts("============");
 
 	for (int i = 0; i < 10; i++) {
-		//	casting is recommended, because most of those functions
-		//	are handling floating point numbers
+		// casting is recommended, because most of those functions
+		// are handling floating point numbers
 		printf("power of %d = %e\n", i, pow((double)i, (double)i));
 		printf("square root of %d = %e\n", i, sqrt((double) i));
 	}
 
-	//	many other functions here...
+	// many other functions here...
 	double d_infinite = DBL_MAX;
 	printf("Is %lf infinite? %s\n", d_infinite, isfinite(d_infinite) ? "yes" : "no");
 

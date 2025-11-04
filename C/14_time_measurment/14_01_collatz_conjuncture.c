@@ -1,10 +1,14 @@
+#ifdef __cplusplus
+#error "By using a C++ compiler this application may be handled like a threat or it leads to an undefined behavior. Use a C compiler instead."
+#else
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
 
-//	static tells the compiler, that this step_ctr is available
-//	only in this file
+// static tells the compiler, that this step_ctr is available
+// only in this file
 static int step_ctr = 0;
 
 void print_time(double seconds) {
@@ -19,16 +23,16 @@ int collatz_conjecture(int number) {
 	step_ctr++;
 
 	if (number == 1) {
-		//	return 1 for 1 only
+		// return 1 for 1 only
 		return 1;
 	}
 
 	if (number % 2 == 0) {
-		//	number is even
+		// number is even
 		return collatz_conjecture(number / 2);
 	}
 	
-	//	number is odd (except for 1)
+	// number is odd (except for 1)
 	return collatz_conjecture(3 * number + 1);
 }
 
@@ -44,3 +48,4 @@ int main(void) {
 	print_time(((double)(end_timer - start_timer) / CLOCKS_PER_SEC));
 	return EXIT_SUCCESS;
 }
+#endif

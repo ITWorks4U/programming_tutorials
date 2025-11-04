@@ -17,24 +17,24 @@ int main(void) {
 	char fixed_word[] = "A given string with a fixed length";
 	int number;
 
-	/*	reading from keyboard	*/
+	/* reading from keyboard */
 	printf("enter a single character: ");
 
-	//	reading from a string (stdin: keyboard)
+	// reading from a string (stdin: keyboard)
 	getc(stdin);
 
 	printf("again... ");
-	//	better handling in contrast to getc(), but does the same action
+	// better handling in contrast to getc(), but does the same action
 	fgetc(stdin);
 
 	printf("and again... ");
-	//	reading a single character from keyboard (stdin is fixed)
+	// reading a single character from keyboard (stdin is fixed)
 	getchar();
 
-	//	often used on Windows and turbo C
+	// often used on Windows and turbo C
 	// getch();
 
-	/*	see, what happens:	*/
+	/* see, what happens: */
 	printf("your input was: %s\n", word);
 	printf("signle_sign contains...? \"%c\"\n", single_sign);
 	printf("fixed word: %s\n", fixed_word);

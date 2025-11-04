@@ -12,20 +12,20 @@
 */
 
 int main(void) {
-	//	holds a single sign only
+	// holds a single sign only
 	char single_sign;
 
-	//	holds up to 31 characters including a null termination character \0
+	// holds up to 31 characters including a null termination character \0
 	char word[32];
 
-	//	fixed word
+	// fixed word
 	char fixed_word[] = "A given string with a fixed length";
 
-	/*	reading from keyboard	*/
+	// reading from keyboard
 	printf("enter something: ");
 	gets(word);
 
-	/*	see, what happens:	*/
+	// see, what happens
 	printf("your input was: %s\n", word);
 	printf("signle_sign contains...? \"%c\"\n", single_sign);
 	printf("fixed word: %s\n", fixed_word);

@@ -18,7 +18,7 @@ int main(void) {
 		puts("This statement is \"true\"");
 	}
 
-	//	identical to condition check above
+	// identical to condition check above
 	if (valueA && valueB) {
 		puts("This statement is \"true\"");
 	}

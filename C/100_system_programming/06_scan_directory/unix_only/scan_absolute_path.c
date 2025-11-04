@@ -1,16 +1,22 @@
-/**	system programming in C
- *
- *	Scanning the current directory including sub directories and list all files with their attributes.
- *
- *	In contrast to the basic version, this works also for any given path.
- *	contains:
- *	-	scanning the given path
- *	-	ignoring "." and ".."
- *	-	in case of a directory has been found, scan also this directory
- *	-	check, if the current file is a softlink
- *	-	display the size of the file in a human readable format
- *
- *	ITWorks4U
+/**
+* system programming in C
+*
+* Scanning the current directory including sub directories and list all files with their attributes.
+*
+* In contrast to the basic version, this works also for any given path.
+* contains:
+* - scanning the given path
+* - ignoring "." and ".."
+* - in case of a directory has been found, scan also this directory
+* - check, if the current file is a softlink
+* - display the size of the file in a human readable format
+*
+* author:   ITWorks4U
+* created:  January 1st, 2022
+* updated:  November 3rd, 2025
+*
+* youtube:  @itworks4u
+* github:   github.com/ITWorks4U
 */
 
 #ifdef _WIN32
@@ -27,21 +33,21 @@
 #include <errno.h>
 #include <unistd.h>
 
-/*	constants	*/
-#define	SEPARATOR	"--------------"
-#define	CURR_DIR	"."
-#define	SUPER_DIR	".."
-#define	SLASH		"/"
-#define	MAX_PATH_LENGTH	255
-#define	RWX		"rwxrwxrwx"
-#define	BUFFER_SIZE	9
-#define	KILOBYTE	1024L
-#define	MEGABYTE	KILOBYTE*1024L
-#define	GIGABYTE	MEGABYTE*1024L
+/* constants */
+#define SEPARATOR        "--------------"
+#define CURR_DIR         "."
+#define SUPER_DIR        ".."
+#define SLASH            "/"
+#define MAX_PATH_LENGTH  255
+#define RWX              "rwxrwxrwx"
+#define BUFFER_SIZE      9
+#define KILOBYTE         1024L
+#define MEGABYTE         KILOBYTE*1024L
+#define GIGABYTE         MEGABYTE*1024L
 
-/*	global variables	*/
-static char full_path[MAX_PATH_LENGTH];		/*	absolute path	*/
-static char link_path[MAX_PATH_LENGTH];		/*	link path for a softlink	*/
+/* global variables */
+static char full_path[MAX_PATH_LENGTH];     /* absolute path */
+static char link_path[MAX_PATH_LENGTH];     /* link path for a softlink */
 static int bits[]= {
 	S_IRUSR,S_IWUSR,S_IXUSR,
 	S_IRGRP,S_IWGRP,S_IXGRP,
@@ -55,20 +61,20 @@ void create_full_path(const char *path, const char *data) {
 	memset(full_path, '\0', MAX_PATH_LENGTH);
 	strncpy(full_path, path, strlen(path));
 
-	/*	warning: ‘strncat’ specified bound 1 equals source length [-Wstringop-overflow=]	*/
+	/* warning: ‘strncat’ specified bound 1 equals source length [-Wstringop-overflow=] */
 	//strncat(full_path, SLASH, strlen(SLASH));
 
-	/*	unsafe, but the warning above won't appear	*/
+	/* unsafe, but the warning above won't appear */
 	strcat(full_path, SLASH);
 
 	strncat(full_path, data, strlen(data));
 
 	/*
-		result:	/<the absolute path>/data
-	
-		The absolute path can also be determined by realpath() from stdlib,
-		but it may have a different result. Make sure this function is
-		defined on your working machine.
+	* result: /<the absolute path>/data
+	*
+	* The absolute path can also be determined by realpath() from stdlib,
+	* but it may have a different result. Make sure this function is
+	* defined on your working machine.
 	*/
 }
 
@@ -79,13 +85,13 @@ bool on_softlink(const char *path) {
 	memset(link_path, '\0', MAX_PATH_LENGTH);
 
 	/*
-		Read the link to the given pathname and copy the result to buf with the max length of bufsiz.
-
-		ssize_t readlink(const char *restrict pathname, char *restrict buf, size_t bufsiz);
-
-		returns:
-			-	>= 0 on success
-			-	< 0 on failure (by default -1 only)
+	* Read the link to the given pathname and copy the result to buf with the max length of bufsiz.
+	*
+	* ssize_t readlink(const char *restrict pathname, char *restrict buf, size_t bufsiz);
+	*
+	* returns:
+	* >= 0 on success
+	* <0 on failure (by default -1 only)
 	*/
 	ssize_t on_softlink = readlink(path, link_path, MAX_PATH_LENGTH);
 
@@ -117,9 +123,9 @@ bool on_directory(const char *path) {
 	}
 
 	/*
-		Depending on the current working machine, bit technology, C version, ...
-		the macros may be different. On older systems, the macros S_IFMT and
-		S_IFDIR were in use.
+	* Depending on the current working machine, bit technology, C version, ...
+	* the macros may be different. On older systems, the macros S_IFMT and
+	* S_IFDIR were in use.
 	*/
 	return (s.st_mode & __S_IFMT) == __S_IFDIR;
 }
@@ -140,15 +146,14 @@ char determine_type(const struct stat *s) {
 		return 'p';
 	} else if (S_ISLNK(s->st_mode)) {
 		return 'l';
-	}/* else if (S_ISSOCK(s->st_mode)) {
-		return 's';
-
-		//	On >>this<< current working machine (Linux Mint 21.1 64 bit) S_ISSOCK was not available.
-	}*/
+	// } else if (S_ISSOCK(s->st_mode)) {
+	// 	return 's';
+	// NOTE:  On >>this<< current working machine (Linux Mint 21.1 64 bit) S_ISSOCK was not available.
+	}
 
 	/*
-		Depending on the current working machine, bit technology, C version, ...
-		there might also be other macro functions (un-)available.
+	* Depending on the current working machine, bit technology, C version, ...
+	* there might also be other macro functions (un-)available.
 	*/
 
 	return '?';
@@ -179,7 +184,7 @@ void human_readable_size(long size) {
 void display_folder_content(const char *name) {
 	puts(SEPARATOR);
 
-	/*	get the absolute path (from stdlib)	*/
+	/* get the absolute path (from stdlib) */
 	char *ptr = realpath(name, NULL);
 	printf("scanning path: \"%s\"\n", name);
 	puts("mode\t\t\t\tname\tUID\tGID\tsize\tlast access\tlast modification\tis softlink");
@@ -192,7 +197,7 @@ void display_folder_content(const char *name) {
 
 	struct dirent *dirptr = NULL;
 	while((dirptr = readdir(current)) != NULL) {
-		/*	ignoring "." and ".."	=>	could have side effects for the code below	*/
+		/* ignoring "." and ".." => could have side effects for the code below */
 		if (on_current_or_super_directory(dirptr->d_name)) {
 			continue;
 		}
@@ -202,24 +207,24 @@ void display_folder_content(const char *name) {
 		char file_access[BUFFER_SIZE];
 		memset(file_access, '\0', BUFFER_SIZE);
 
-		/*	with the known full path stat shall not return -1	*/
+		/* with the known full path stat shall not return -1 */
 		if (stat(full_path, &file_stat) < 0) {
 			fprintf(stdout, "unable to receive data for \"%s\": %s skipping...\n", dirptr->d_name, strerror(errno));
 			continue;
 		}
 
-		/*	listing data properties for certain file; similar to "ls" command	*/
+		/* listing data properties for certain file; similar to "ls" command */
 		for(int j = 0; j < BUFFER_SIZE; j++) {
 			file_access[j] = (file_stat.st_mode & bits[j]) ? RWX[j] : '-';
 		}
 
 		/*
-			output:
-			<file type> <file bit modes> <name> <uid> <gid> <human readable file size> <last access time> <last modification time> <softlink?>
-
-			attention:
-				<last access time> <last modification time> contains the absolute elapsed time from January 1st 1970 in seconds
-				These shall be converted into a datetime format. => By default there's no known C-function, which can do this.
+		* output:
+		* <file type> <file bit modes> <name> <uid> <gid> <human readable file size> <last access time> <last modification time> <softlink?>
+		*
+		* attention:
+		* <last access time> <last modification time> contains the absolute elapsed time from January 1st 1970 in seconds
+		* These shall be converted into a datetime format. => By default there's no known C-function, which can do this.
 		*/
 		printf("%c%s\t%20s\t%d\t%d\t", determine_type(&file_stat), file_access, dirptr->d_name, file_stat.st_uid, file_stat.st_gid);
 		human_readable_size(file_stat.st_size);
@@ -233,7 +238,7 @@ void display_folder_content(const char *name) {
 			puts("");
 		}
 
-		/*	whenever a directory has been detected, scan this directory, too	*/
+		/* whenever a directory has been detected, scan this directory, too */
 		if (on_directory(full_path)) {
 			display_folder_content(full_path);
 		}

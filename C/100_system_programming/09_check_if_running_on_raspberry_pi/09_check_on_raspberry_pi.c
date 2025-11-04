@@ -1,13 +1,13 @@
 /**
-*	Check, if this application runs on a Raspberry Pi.
-*	At this point this shall run successfully on any known model.
+* Check, if this application runs on a Raspberry Pi.
+* At this point this shall run successfully on any known model.
 *
-*	author:		ITWorks4U
-*	created:	July 4th, 2025
-*	updated:	July 5th, 2025
+* author:   ITWorks4U
+* created:  July 4th, 2025
+* updated:  November 3rd, 2025
 *
-*	youtube:	@itworks4u
-*	github:		ITWorks4U
+* youtube:  @itworks4u
+* github:   github.com/ITWorks4U
 */
 
 #include <stdio.h>
@@ -16,10 +16,10 @@
 #include <string.h>
 #include <signal.h>
 
-#define	RPI_MODEL_MAX_LENGTH	128
-#define	RASPBERRY_PI_PATTERN	"Raspberry Pi"
-#define	NEW_RASPBERRY_PI_PATH	"/proc/device-tree/model"
-#define	OLD_RASPBERRY_PI_PATH	"/proc/cpuinfo"
+#define RPI_MODEL_MAX_LENGTH    128
+#define RASPBERRY_PI_PATTERN    "Raspberry Pi"
+#define NEW_RASPBERRY_PI_PATH   "/proc/device-tree/model"
+#define OLD_RASPBERRY_PI_PATH   "/proc/cpuinfo"
 
 static FILE *fp = NULL;
 
@@ -71,15 +71,17 @@ bool on_running_with_raspberry_pi(void) {
 }
 
 int main(void) {
-	/*	possible incoming signals	*/
+	/* possible incoming signals */
 	signal(SIGINT, handle_signals);
 	signal(SIGTERM, handle_signals);
 	signal(SIGABRT, handle_signals);
 
 	atexit(clean_up);
 
-	printf("This application runs on a %s: %s\n", RASPBERRY_PI_PATTERN,
-		on_running_with_raspberry_pi() ? "yes" : "no");
+	printf(
+		"This application runs on a %s: %s\n",
+		RASPBERRY_PI_PATTERN, on_running_with_raspberry_pi() ? "yes" : "no"
+	);
 
 	return EXIT_SUCCESS;
 }

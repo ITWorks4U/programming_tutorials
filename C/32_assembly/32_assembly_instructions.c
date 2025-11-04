@@ -21,24 +21,24 @@ int main(void) {
 	int c;
 
 	/*
-		To declare a block of instructions for assembly, write:
-		asm {}, __asm {}, __asm__ {}, asm ();, ... => depends on your used C compiler
+	* To declare a block of instructions for assembly, write:
+	* asm {}, __asm {}, __asm__ {}, asm ();, ... => depends on your used C compiler
 	*/
 
-	/*	e. g. for an Intel 8086 CPU	*/
-	/* __asm__ {
-		//	move "a" to AX register (AX = 16 bit register | AH, AL = 8 bit register)
-		mov ax, a
+	/* e. g. for an Intel 8086 CPU */
+	// __asm__ {
+	// 	// move "a" to AX register (AX = 16 bit register | AH, AL = 8 bit register)
+	// 	mov ax, a
 
-		//	move "b" to BX register
-		mov bx, b
+	// 	// move "b" to BX register
+	// 	mov bx, b
 
-		//	add to AX the content of BX
-		add ax, bx
+	// 	// add to AX the content of BX
+	// 	add ax, bx
 
-		//	move to "c" the result from AX
-		mov c, ax
-	}*/
+	// 	// move to "c" the result from AX
+	// 	mov c, ax
+	// }
 
 	/*
 	* volatile: tells the compiler, that a variable may change on runtime to interact correctly;
@@ -47,14 +47,14 @@ int main(void) {
 	* for more informations, take a look to chapter 22
 	*/
 
-	//	define what to do: "ADD from register EBX the content from EAX"
+	// define what to do: "ADD from register EBX the content from EAX"
 	asm /*volatile*/ ("addl %%ebx, %%eax;"
 
-		//	define an output to store a result to a certain variable
-		//	hint: on any IDE / OS it may happen, that you see an error here
+		// define an output to store a result to a certain variable
+		// hint: on any IDE / OS it may happen, that you see an error here
 		: "=a" (c)
 
-		//	define inputs to store to EBX and EAX
+		// define inputs to store to EBX and EAX
 		: "a" (a), "b" (b)
 	);
 

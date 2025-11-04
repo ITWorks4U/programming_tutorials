@@ -14,29 +14,29 @@ int main(void) {
 
 	switch(number_level) {
 		case 0:
-			//	This code is in use only, if number_level contains 0 only.
+			// This code is in use only, if number_level contains 0 only.
 			break;
 		case 1:
-			//	only for 1
+			// only for 1
 			break;
 		case -123:
-			//	only for -123...
+			// only for -123...
 			break;
 		case 100:
 		case 200:
 		case 300:
-			//	you can also handle multuple, fixed cases
+			// you can also handle multuple, fixed cases
 			break;
 		default:
-			//	any other unmanaged case lands here
+			// any other unmanaged case lands here
 			break;
 	}
 
-	/*	weired behavior of scanf():	*/
+	/* weired behavior of scanf(): */
 
-	//	What happens here? => if number_level stores 0, which is a valid number,
-	//	this will be wronly used. If you want to check, if 0 is a valid number,
-	//	use a regular expression instead. => This will be handled later.
+	// What happens here? => if number_level stores 0, which is a valid number,
+	// this will be wronly used. If you want to check, if 0 is a valid number,
+	// use a regular expression instead. => See chapter 27.
 	if (number_level) {
 		puts("This statement is \"true\"");
 	} else {

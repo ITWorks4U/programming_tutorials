@@ -15,20 +15,20 @@ int main() {
 	int a = 10;
 	int b = 20;
 
-	//	definition of boolean expression
-	//	alternative: int, where 0 <=> false and 1 <=> true
+	// definition of boolean expression
+	// alternative: int, where 0 <=> false and 1 <=> true
 	bool a_is_greater_than_b = a > b;
 
-	//	some condidtion check versions:
+	// some condidtion check versions:
 	if (a_is_greater_than_b) {
 		printf("%d is greater than %d\n", a, b);
 	} else {
 		printf("%d is greater than %d\n", b, a);
 	}
 
-	//	also mostly used condition check in a short form
-	//	at this moment a bit hard to understand
-	//	=> this will be described later
+	// also mostly used condition check in a short form
+	// at this moment a bit hard to understand
+	// => this will be described later
 	printf("Is %d greater than %d?: %d\n", a, b, a > b ? a : b);
 
 	return EXIT_SUCCESS;

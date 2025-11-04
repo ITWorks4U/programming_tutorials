@@ -22,35 +22,38 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-//	error in C and C++
-//	in an IDE this might not be shown as an error
-// enum Empty {};
+// error in C and C++
+// in an IDE this might not be shown as an error
+#if false
+enum Empty {};
+#endif
 
 enum Status {
 	OK, DEBUG, INFO, WARNING, ERROR, NOTHING 
 };
 
-//	WARNING is already defined in Status.
-//	'lt' is an acronym expression for 'LogType' 
+// WARNING is already defined in Status.
+// 'lt' is an acronym expression for 'LogType' 
 enum LogType {
 	LOG_DEBUG = 100, LOG_INFO, /*WARNING,*/ LOG_WARNING
 } lt;
 
-//	defining an own datatype by using 'typedef'
+// defining an own datatype by using 'typedef'
 typedef enum {
 	ON, OFF
 }ToggleSwitch;
 
 int main(void) {
-	/*	accessing to enumerations	*/
+	/* accessing to enumerations */
 
-	//	-----------
-	//	Status
-	//	-----------
+	// -----------
+	// Status
+	// -----------
 	enum Status status = OK;
 
-	//	Surprised? Since "OK" is the first value, 0 is automatically set
+	// Surprised? Since "OK" is the first value, 0 is automatically set
 	printf("status = %d\n", status);
 
 	/*
@@ -72,10 +75,9 @@ int main(void) {
 	}
 	#endif
 
-
-	//	-----------
-	//	custom data type
-	//	-----------
+	// -----------
+	// custom data type
+	// -----------
 	ToggleSwitch ts = ON;
 	if (ts == ON) {
 		puts("ToggleSwitch is ON!");
@@ -83,9 +85,9 @@ int main(void) {
 		puts("ToggleSwitch is OFF!");
 	}
 
-	//	-----------
-	//	Different amount of bytes? No!
-	//	-----------
+	// -----------
+	// Different amount of bytes? No!
+	// -----------
 	size_t size_status = sizeof(enum Status);
 	size_t size_log_type = sizeof(lt);
 	size_t size_toggle_switch = sizeof(ToggleSwitch);

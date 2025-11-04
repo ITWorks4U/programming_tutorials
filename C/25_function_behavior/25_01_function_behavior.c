@@ -12,30 +12,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//	required for "function overloading"
+// required for "function overloading"
 #include <stdarg.h>
 
-//	allows to "overload" a function to do different operations similar to a
-//	function / method overload in OOP languages
+// allows to "overload" a function to do different operations similar to a
+// function / method overload in OOP languages
 //
-//	attention: you are also creating your own pitfall with a function like this,
-//	when you're using differnt argument types instead of the expected data type
+// attention: you are also creating your own pitfall with a function like this,
+// when you're using differnt argument types instead of the expected data type
 //
-//	this function below shall handle integer arguments only to let calculate
-//	the mean value of n integers
+// this function below shall handle integer arguments only to let calculate
+// the mean value of n integers
 double calculate_mean_value(int nbr_of_elements, ...) {
 	double mean_value = 0.0;
 
-	//	to handle the amount of additional arguments, use:
+	// to handle the amount of additional arguments, use:
 	va_list vector;
 
-	//	initialize the vector with the given number of elements
+	// initialize the vector with the given number of elements
 	va_start(vector, nbr_of_elements);
 
 	printf("( ");
 	for(int i = 0; i < nbr_of_elements; i++) {
-		//	va_arg picks the next element from the vector and this shall be
-		//	interpreted as an integer
+		// va_arg picks the next element from the vector and this shall be
+		// interpreted as an integer
 		int element = va_arg(vector, int);
 
 		printf("%d ", element);
@@ -57,29 +57,29 @@ double calculate_mean_value(int nbr_of_elements, ...) {
 	}
 	printf(") => ");
 
-	//	remove the vector from memory
+	// remove the vector from memory
 	va_end(vector);
 
 	return mean_value / nbr_of_elements;
 }
 
 int main(void) {
-	//	to call those function(s), you must know how many arguments are you expecting
-	//	to append additionally, otherwise an undefinded behavior may appear
-	//	9 := number of arguments
-	//	1,2,...,9 := the arguments to use
+	// to call those function(s), you must know how many arguments are you expecting
+	// to append additionally, otherwise an undefinded behavior may appear
+	// 9 := number of arguments
+	// 1,2,...,9 := the arguments to use
 	printf("average value #1: %lf\n", calculate_mean_value(9, 1,2,3,4,5,6,7,8,9));
 	printf("average value #2: %lf\n", calculate_mean_value(3, 123,456,789));
 
-	//	What will happen here?
+	// What will happen here?
 	printf("average value #3: %lf\n", calculate_mean_value(9, 123,456,789));
 	printf("average value #4: %lf\n", calculate_mean_value(5, 1,2,3,4,5,6,7,8,9));
 
-	//	this, however, works, because a char can easily be interpreted as the integer value from ASCII table
+	// this, however, works, because a char can easily be interpreted as the integer value from ASCII table
 	printf("average value #5: %lf\n", calculate_mean_value(9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'));
 
-	//	Guess what happens, when you try to use other arguments?
-	//	Perhaps your application works, perhaps your application crashes...?
+	// Guess what happens, when you try to use other arguments?
+	// Perhaps your application works, perhaps your application crashes...?
 	printf("average value #6: %lf\n", calculate_mean_value(1, "A simple C-string."));
 	printf("average value #7: %lf\n", calculate_mean_value(100));
 	printf("average value #8: %lf\n", calculate_mean_value(5, "", "", "", "", ""));

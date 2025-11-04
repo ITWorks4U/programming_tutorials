@@ -1,4 +1,4 @@
-//	This sample shall be build with a C++ compiler only.
+// This sample shall be build with a C++ compiler only.
 
 #include <iostream>
 #include "os_system_definitions.h"
@@ -103,6 +103,8 @@ int main(void) {
 		#endif
 
 		return EXIT_SUCCESS;
+	#else
+	cerr << "ERROR: It was not able to detect on which OS this applcation is running. Nothing was made." << endl;
 	#endif
 
 	return EXIT_FAILURE;

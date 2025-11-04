@@ -22,13 +22,13 @@ int main(void) {
 	load_numbers_from_file();
 
 	if (coord_on_continue) {
-		//	use the bubble sort algorithm twice to sort 250,000 data elements
+		// use the bubble sort algorithm twice to sort 250,000 data elements
 		bubble_sort();
 		bubble_sort();
 	}
 
-	//	on the test machine, the time amount took up to one minute
-	//	How long did this work on your machine? (:
+	// on the test machine, the time amount took up to one minute
+	// How long did this work on your machine? (:
 
 	return EXIT_SUCCESS;
 }
