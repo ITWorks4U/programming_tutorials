@@ -13,6 +13,9 @@ import signal_handling as sig
 
 def start_server() -> None:
 	try:
+		# NOTE: AF_INET is only for IPv4. If IPv6 is planned to use,
+		#       AF_INET6 shall be used instead.
+
 		with socket(AF_INET, SOCK_STREAM) as s:
 			sc: SocketConstants = SocketConstants()
 
@@ -22,7 +25,9 @@ def start_server() -> None:
 			# bind the host name and port number
 			# NOTE: a tuple is required here, so host_name
 			# and port_number are members of a tuple
-			s.bind((sc.host_name, sc.port_number))
+
+			bind_address = (sc.host_name, sc.port_number)
+			s.bind(bind_address)
 
 			# start to listen to that connection
 			s.listen()
@@ -57,10 +62,6 @@ def start_server() -> None:
 							if len(msg) > 0:
 								socket_conn.sendall(data)
 							#end if
-
-							# not required, but in use here
-							# sleep 10ms
-							sleep(0.01)
 						#end while
 					#end with
 				#end if

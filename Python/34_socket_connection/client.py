@@ -10,6 +10,9 @@ import signal_handling as sig
 
 def start_client() -> None:
 	try:
+		# NOTE: AF_INET is only for IPv4. If IPv6 is planned to use,
+		#       AF_INET6 shall be used instead.
+
 		with socket(AF_INET, SOCK_STREAM) as s:
 			sc: SocketConstants = SocketConstants()
 

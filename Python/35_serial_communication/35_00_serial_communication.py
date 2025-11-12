@@ -5,17 +5,23 @@
 #
 # NOTE: Make sure you have installed the pyserial package module.
 #
-# NOTE: Never use a thread or a sub process for a bidirectional communication,
+# NOTE: Never use a thread or a sub process for a bidirectional communication here,
 # because a serial communication is a critical resource. When this resource is
 # in use for reading data, it can't be used for sending data at the same time.
 # This causes a deadlock.
 #
-# NOTE: Make sure, that no other application blocks the COM port.
+# NOTE: Make sure, that no other application blocks the serial port.
 # Otherwise a serial communication is not available.
 # ---
 
+from signal import signal, SIGINT, SIGTERM
+from sys import exit
 from time import sleep
 from serial import Serial
+
+def handle_signals(signum, frame) -> None:
+	exit(0)
+#end function
 
 def scan_all_serial_ports() -> bool:
 	from platform import system
@@ -31,8 +37,13 @@ def scan_all_serial_ports() -> bool:
 
 def serial_communication(command: str) -> None:
 	# port:     the USB port for the serial communication
-	#           NOTE: COMx (x = 1,2,3,...) works only for Windows. On a UNIX system, like Linux, macOS, ...
-	#           this shall be used instead: /dev/ttyUSBx (x = 0,1,2,3,...)
+	#
+	# NOTE: COMx works only for Windows.
+	#       On a UNIX system, like: Linux, macOS, ... this shall be used instead:            /dev/ttyUSBx
+	#       Depending on an another (UNIX) system, this could also be the desired address:   /dev/ttyACMx
+	#
+	#       (x = 0,1,2,3,...)
+	#
 	# baudrate: how many characters per second are going to transfer
 	# timeout:  how long a communcation is up to opened before the connection is
 	#           automatically closed
@@ -64,17 +75,28 @@ def serial_communication(command: str) -> None:
 #end function
 
 if __name__ == "__main__":
+	signal(SIGINT, handle_signals)
+	signal(SIGTERM, handle_signals)
+
 	# NOTE: The serial communication port may be different on your system.
 	if scan_all_serial_ports():
-		# get system info of the current micro controller
-		serial_communication(command="system_info")
-		sleep(2)
 
-		# NOTE: "led_red_o[n|ff]" is a fixed command on the micro controller,
-		# which turns on a red LED on or off
-		serial_communication(command="led_red_on")
-		sleep(1)
-		serial_communication(command="led_red_off")
+		valid_commands: list[str] = ["system_info", "led_green_on", "led_green_off", "led_yellow_on", "led_yellow_off", "led_red_on", "led_red_off", "q"]
+		print("Enter q to quit.")
+
+		while True:
+			input_message: str = input("\nenter command: ")
+
+			if input_message in valid_commands:
+				if input_message == "q":
+					break
+				#end if
+
+				serial_communication(command=input_message)
+			else:
+				print(f"given command: '{input_message}' unknown...")
+			#end if
+		#end while
 	else:
 		print("> error: no serial ports detected...")
 	#end if
