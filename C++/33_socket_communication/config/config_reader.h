@@ -28,7 +28,7 @@ class ConfigReader {
 
 	/// @brief Initialize the config reader by using a custom config file instead.
 	///
-	/// NOTE:  The config file must have the valid keys: host, port and buffer.
+	/// NOTE:  The config file must have the valid keys: host, port.
 	/// @param config_path a valid config path
 	ConfigReader(String config_path) {
 		load_config_file(config_path);
