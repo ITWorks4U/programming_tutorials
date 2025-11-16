@@ -47,8 +47,16 @@ void ConfigReader::load_config_file(const String &file_name) {
 		String val = _trim(line.substr(pos + 1));
 
 		if (key == "host") {
+			if (val.empty()) {
+				throw runtime_error("Missing host name in config file.");
+			}
+
 			host_name = val;
 		} else if (key == "port") {
+			if (val.empty()) {
+				throw runtime_error("Missing port number in config file.");
+			}
+
 			try {
 				port_number = std::stoi(val);
 			} catch (...) {
