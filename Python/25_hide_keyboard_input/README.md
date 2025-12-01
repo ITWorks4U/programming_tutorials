@@ -4,23 +4,32 @@
 -   usually, we're using input(promt: str) -> str function, to read from the keyboard, however, this is really unsecure, of course.
     -   especially by entering account informations it might be better to enter the data without seeing them
 -   by default, Python does not comes with a function for that (at this moment)
+>   **NOTE:** These modules could already exist on your system, otherwise those must be installed with pip.
+
 
 ### different kind of hiding the input
 
--   1.  install **getpass** package by `pip[3|.exe] install getpass`
+-   install **getpass** package by `pip[3|.exe] install getpass`
 ```
-import getpass
-getpass.getpass(str: promt)
-```
-
--   2.  install **maskpass** package by `pip[3|.exe] install maskpass`
-```
-import maskpass
-maskpass.askpass(str: promt)
+from getpass import getpass
+getpass(promt: str)
 ```
 
--   3.  install **getch** package by `pip[3|.exe] install getch`
+-   install **maskpass** package by `pip[3|.exe] install maskpass`
 ```
-import getch
-getch.getch()
+from maskpass import askpass
+askpass(promt: str, mask: str)
+```
+
+-   install **getch** package by `pip[3|.exe] install getch`
+>   **NOTE:** This module could be unable to install on your system.
+```
+from getch import getch
+getch()
+```
+
+-   install **pwinput** package by `pip[3|.exe] install pwinput`
+```
+from pwinput import pwinput
+pwinput(promt: str, mask: str)
 ```
