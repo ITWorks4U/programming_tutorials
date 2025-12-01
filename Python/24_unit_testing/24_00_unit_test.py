@@ -32,7 +32,7 @@ class TestAddFunction(ut.TestCase):
 		# assuming, that 2 + 3 shall return 5
 		# if this fails, then the third argument is going to
 		# print on console
-		self.assertEqual(addidion(2, 3), 5, "2 + 3 shall usually return 5...")
+		self.assertEqual(addition(2, 3), 5, "2 + 3 shall usually return 5...")
 	#end test
 
 	def test_subtraction(self):

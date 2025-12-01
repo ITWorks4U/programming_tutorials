@@ -21,7 +21,7 @@ from math_test.math_test_functions import *
 from math_test.math_exception import MathException
 
 def test_pass():
-	assert addidion(2, 3) == 5
+	assert addition(2, 3) == 5
 #end test
 
 def test_fail():
@@ -49,5 +49,5 @@ def test_xfail():
 
 @pytest.mark.xfail(reason="Should fail but doesn't")
 def test_unexpected_success():
-	assert addidion(2, 2) == 4
+	assert addition(2, 2) == 4
 #end test

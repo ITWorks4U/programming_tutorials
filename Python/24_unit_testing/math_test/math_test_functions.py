@@ -1,6 +1,6 @@
 from math_test.math_exception import MathException
 
-def addidion(a: int, b: int) -> None:
+def addition(a: int, b: int) -> None:
 	if not (isinstance(a, int) and isinstance(b, int)):
 		raise ValueError("a or b is not an integer")
 	#end if
