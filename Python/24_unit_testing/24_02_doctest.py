@@ -36,7 +36,7 @@ def addition_test(a: int, b: int) -> int:
 #   - import the modules as usual (on top of this script, but not inside the function itself)
 #   - import the modules within the documentation itself
 # ---
-def module_test():
+def module_test() -> None:
 	"""
 	>>> from math_test.math_test_functions import subtraction
 	>>> subtraction(-1,-1)
@@ -50,6 +50,15 @@ def module_test():
 	Traceback (most recent call last):
 	...
 	math_test.math_exception.MathException: denominator must not be 0
+	"""
+#end test
+
+# skip a test by adding "# doctest: +SKIP" behind the testing code
+def skip_test() -> None:
+	"""
+	>>> from math_test.math_test_functions import division
+	>>> division(5,1)   # doctest: +SKIP
+	5
 	"""
 #end test
 
