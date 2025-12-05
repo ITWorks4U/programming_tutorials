@@ -36,15 +36,3 @@ raise Exception("Oops!")
 fc.close()
 ```
 >   A resource release exists, but in case of an exception this resource is now leaked.
-
--   grow a collection, like a list without clear the previous content
-```
-leaky_list: list = []
-
-def leaky_func():
-    big_data = "X" * 10**6  # 1 MB
-    leaky_list.append(big_data)
-
-for _ in range(100000):
-    leaky_func()
-```

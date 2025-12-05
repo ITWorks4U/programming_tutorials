@@ -4,15 +4,17 @@
 # no need to install that module
 # ---
 
-from sys import argv
-import tracemalloc
+
+from tracemalloc import start, take_snapshot
 
 fp = None
 
-#	number of frames (similar to lines), which will be traced
-tracemalloc.start(100)
+# number of frames (similar to lines), which will be traced
+start(100)
 
 def read_a_file():
+	from sys import argv
+
 	global fp
 	print("opening file...")
 	fp = open(argv[0])
@@ -42,14 +44,22 @@ def main():
 
 		print(".: traceback :.")
 
-		snapshot = tracemalloc.take_snapshot()
+		snapshot = take_snapshot()
 		top_stats = snapshot.statistics("traceback")
+		memory_blocks = []
 
-		for stat in top_stats:
-			print(f"# memory blocks: {stat.count}, size: {stat.size} bytes")
+		for ctr, stat in enumerate(top_stats):
+			memory_blocks.append({
+				"ctr": ctr,
+				"number of blocks" : stat.count,
+				"size" : stat.size,
+				"traceback" : stat.traceback.format()
+			})
+		#end for
 
-			for line in stat.traceback.format():
-				print(line)
+		for mb in memory_blocks:
+			for obj in mb.items():
+				print(obj)
 			#end for
 		#end for
 	#end try
