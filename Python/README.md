@@ -36,7 +36,7 @@
     -   furthermore, use spaces or tabs only for this certain block(s)
     -   you can also "mix" them, if those are separated into an own block
 
-###### note:
+###### NOTE:
 -   you also can display whitespace(s) and tab(s) (almost any editor):
     -   `Menu bar -> view -> display whitespaces (or similar expression)`
 
@@ -49,8 +49,8 @@
 -   short answer: **nope**
 
 ### 4.  Which python 3 version is in use?
--   version: **3.13.7**
-    -   ususally, with a lower Python version the scripts shall be run fine
+-   used version: **3.13.7**
+    -   ususally, with a lower Python version the scripts shall run fine
 
 ### 5.  On which operating system are these scripts runable?
 -   Linux
