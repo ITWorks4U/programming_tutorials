@@ -2,7 +2,7 @@
 
 -   Cython can be used to speed up code
     -   more in use, if a complex algorithm takes too much time for raw Python code
-    -   the code will be converted into a C code, but this does not result into a C source file
+    -   the code will be converted into a C code
 
 ### required modules
 -   setuptools
@@ -14,8 +14,8 @@
 ### example
 -   use bubble sort (time complexitiy of O(n²)) to sort 250,000 random numbers
     -   with raw Python code this is a **bad** and **dumb** idea
-        -   this may takes many minutes or up to some hours
-    -   with a C library, see chapter 28, this tooks few minutes
+        -   this may takes up to some hours
+    -   with a C library, see chapter 31, this takes a few minutes
     -   with Cython, this also takes few minutes
 
 ### requirements
