@@ -1,0 +1,9 @@
+# ignoring folders
+libraries/*
+hash/*
+hashed_map/*
+raw_data_only/*
+matrix/*
+
+# ignoring config files
+*.json
