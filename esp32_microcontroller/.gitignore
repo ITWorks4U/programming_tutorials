@@ -1,0 +1,10 @@
+# ignoring remaining folders, if any
+hash
+hashed_map
+raw_data_only
+matrix
+4_bit_7_segment
+motor
+
+# ignoring config files, if any
+*.json

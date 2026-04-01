@@ -11,6 +11,7 @@
 | C | Windows, Linux, macOS |
 | C++ | Windows, Linux, macOS |
 | Python | Windows, Linux, macOS |
+| C/C++ | ESP32 microcontroller |
 
 ### in the future:
 -   batch (Windows only)
