@@ -1,10 +1,10 @@
 #   object oriented programming (OOP)
 -   allows you to define container structures as classes to handle a bunch of informations as once
-    -   similar to `struct` (see: [chapter 19 for C++](https://github.com/ITWorks4U/programming_tutorials/tree/main/C%2B%2B/19_structures))
+    -   similar to the classic storage containers, like `struct` => [chapter 3b: for C++](https://github.com/ITWorks4U/programming-tutorials/tree/main/C%2B%2B/b_advanced/03_storage_containers)
 -   comes with the `class` keyword
     -   classes are similar to a struct, but comes with more and secured features
     -   comes with expressions, like `public`, `private` or `protected`
-        -   by default everything is private
+        -   by default **everything** is private
 
 ### define a class
 ```

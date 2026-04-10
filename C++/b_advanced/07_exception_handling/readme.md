@@ -18,11 +18,13 @@ try {
 
 ### What about the C-style "exception handling"?
 -   Don't use this in C++. It **may** work, but you won't be happy with that, because you must figure out which specific error has really been thrown.
+-   ["exception handling" in C](https://github.com/ITWorks4U/programming-tutorials/tree/main/C/b_advanced/08_exception_handling)
 
 ### Memory management
 -   What happens, when you try to do something and you're using a dynamic allocated buffer?
 -   Can you ensure to release that allocated memory for sure?
     -   unlike to manage memory by your own, you should use `smart_pointers` instead
+    -   => [smart pointers for C++](https://github.com/ITWorks4U/programming-tutorials/tree/main/C/b_advanced/10_memory_management/c_smart_pointers)
 
 ### Different types of exceptions
 
@@ -34,7 +36,7 @@ try {
 | bad_exception | exception | when the exception class was wrong | deprecated, but still a part of C++; using an old style of C++, like: `void foo() throw(std::runtime_error);` |
 | bad_typeid | exception | type ID was wrong | using a typeid on a dereferenced null pointer to a polymorphic type; `Base* ptr = nullptr; std::cout << typeid(*ptr).name() << std::endl;` |
 | ios_base::failure | exception | exception class for file streams | try to open a file stream, where: file does not exist, insufficient permissions, ... |
-| runtime_error | exception | commonly exception class during runtime | division by 0 |
+| runtime_error | exception | commonly exception class during runtime | division by 0 (**NOTE**: *A division by 0 may also cause an undefined behavior!*) |
 | range_error | runtime_error | value out of range | does not been thrown automatically; this must be handled by yourself, like: `throw std::range_error("...");` |
 | overflow_error | runtime_error | overflow | when a mathematical overflow has been detected by **yourself**; e. g.: a valid range is over the upper boundary, then you can use: `throw std::overflow_error("...");` |
 | underflow_error | runtime_error | underflow | similar above, but just for exceeding a lower boundary with: `throw std::underflow_error("...");` |

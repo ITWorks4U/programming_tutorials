@@ -6,7 +6,7 @@
 >>  -   in contrast to C you can't call a function, before the function has been defined
 >>  -   a function in C++ can only be called depending on the number of given arguments
 >>      -   it's also possible to call a function with any amount of arguments like in C
->>          -   will be handled in **section 31**
+>>          -   will be handled in [chapter b:15](https://github.com/ITWorks4U/programming-tutorials/tree/main/C%2B%2B/b_advanced/15_extended_function_behavior)
 >>  -   a function must have a return statement, when the datatype is **not** *void*
 
 ### definition of a function

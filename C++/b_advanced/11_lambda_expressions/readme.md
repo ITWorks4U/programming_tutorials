@@ -3,6 +3,7 @@
 -   offers to use an anonymous function for a quick implementation without define a function itself
 -   often used by mathematicians
 -   in contrast to C programming, which doesn't comes with lambda expressions, but those can be simulated with macro expressions, in C++ the usage of lambda expressions are quite easy
+    -   ["lambda expressions" in C](https://github.com/ITWorks4U/programming-tutorials/tree/main/C/b_advanced/15_lambda_expressions)
 
 ### basic syntax for a lambda expression
 

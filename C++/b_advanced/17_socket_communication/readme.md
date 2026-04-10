@@ -8,6 +8,7 @@
     -   a connection config file contains basic settings for the socket communication
 
 >   **NOTE**:   These code examples were written in **C++** only. No raw C code is in use here to prevent undefined behavior.
+>>  [C programming chapter d:6](https://github.com/ITWorks4U/programming-tutorials/tree/main/C/d_system_programming/06_socket_communication)
 
 >   **NOTE**:   In case of any exception no exception handling has been implemented.
 

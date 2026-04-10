@@ -30,7 +30,7 @@ do_something(&vec);         //  Seriously?
     -   `va_arg`
     -   `va_end`
 
->   **NOTE**:   This example can be used from [the C variant](https://github.com/ITWorks4U/programming_tutorials/tree/main/C/25_function_behavior) instead.
+>   **NOTE**:   [Take a look to C programming chaper b:9](https://github.com/ITWorks4U/programming-tutorials/tree/main/C/b_advanced/09_strange_function_behavior)
 
 ### Using a function as an argument for an another function
 -   more in use in C

@@ -11,6 +11,7 @@ int i_number = 100;
 double d_number = (double) i_number;
 ```
 -   on debugging this is harder to read and detect for a possible error
+-   often comes with an undefined behavior
 
 ### casting with C++-style
 -   same assument like above
@@ -24,9 +25,9 @@ double d_number = static_cast<double>(i_number);
 
 ### different ways for casting
 
-| casting | description | where uzsually to use |
+| casting | description | additional informations |
 | - | - | - |
-| `static_cast` | convert a primitive data type, like `int`, `float`, `double` into an another primitive data type | convert a primitive data type into an another |
+| `static_cast` | convert a primitive data type, like `int`, `float`, `double` into an another primitive data type | instead of `(double) i_number ` use `static_cast<double>(i_number)` |
 | `dynamic_cast` | convert a class instance for an another inherited or super class | by using polymorphism |
 | `reinterpret_cast` | allows you always to cast a type into another type, where the compiler might not compile the program | often used for raw pointers, but use this with care |
 | `const_cast` | allows you to cast a const* into another type and vice versa; hardly used | if really in use, then use this with care |

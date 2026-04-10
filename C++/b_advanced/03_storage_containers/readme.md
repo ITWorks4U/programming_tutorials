@@ -4,18 +4,20 @@
 -   in C only `struct`, `union` and `enum` exists
     -   C++ also comes with `class`, `enum class`
 
+>   **NOTE**:   The C programming language comes with a different behavior to the supported data structures rather than C++.
+
 ### struct
 
 -   storage holder for any kind of datatypes
 -   each member has its own memory to work with
 -   commonly used for any storage attempt
 -   a C-struct can also hold its own functions, like C++, however, this is a hard piece of code
-    -   for more details check: [chapter 36 C Programming](https://github.com/ITWorks4U/programming_tutorials/tree/main/C/36_oop_in_C)
+    -   for more details check: [chapter 19 b: C Programming](https://github.com/ITWorks4U/programming-tutorials/tree/main/C/b_advanced/19_oop_in_C)
 -   a C++-struct offers a bunch of different settings
     -   you can initialize up to one element in the structure
-    -   are often used to store data without visibilit reasons or for inheritance
-        -   every member, function is set to `public`
-        -   member(s), function(s) can also set to `private` or `protected`
+    -   are often used to store data without visibility reasons or for inheritance
+        -   by default, **every** member is set to `public`
+        -   these can also set to `private` or `protected`
 
 ### union
 -   storage holder for any kind of datatypes
@@ -40,7 +42,7 @@
 
 ### class
 -   for OOP
--   in contrast to a `struct` every member, method (class function), ... is set to `private` by default
+-   in contrast to a `struct` every member, method, ... is set to `private` by default
     -   public access for outside: `public`
     -   for inheritance / polymorphic: `protected` (can also be `public`)
-    -   more details in **chapter 22**
+    -   more details in [chapter 5 b: C++ Programming](https://github.com/ITWorks4U/programming-tutorials/tree/main/C%2B%2B/b_advanced/05_classes_oop_and_more)

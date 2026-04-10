@@ -1,11 +1,11 @@
-#   Serial communication in C++
+#   Serial communication in C++ (UART)
 -   allows to communicate with other systems, like PC, embedded systems, ... over a serial communication, like:
     -   COMx (x = 1,2,...,256)
     -   /dev/ttyUSBx (x = 0,1,...,31,...,63)
-    -   UART
     -   ...
 
 >   **NOTE**:   These code examples were written in **C++** only. No raw C code is in use here to prevent undefined behavior.
+>>  [C programming chapter d:11](https://github.com/ITWorks4U/programming-tutorials/tree/main/C/d_system_programming/11_UART_communication)
 
 >   **NOTE**:   In case of any exception no exception handling has been implemented.
 
